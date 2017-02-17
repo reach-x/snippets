@@ -1,3 +1,3 @@
 <?php
 
-printf("%s\n",date("m"));
+printf("%s\n", date("m"));

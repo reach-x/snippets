@@ -10,10 +10,10 @@
 */
 
 
-$campaigns = json_decode(file_get_contents("campaigns.json"),TRUE);
+$campaigns = json_decode(file_get_contents("campaigns.json"), TRUE);
 
-foreach ($campaigns as $title => $changes){
-	foreach($changes as $change){
+foreach ($campaigns as $title => $changes) {
+	foreach ($changes as $change) {
 		printf("%s: (%s) %s => %s \n", $title, $change['sid'], $change['campaign_name'], $change['old'], $change['new']);
 	}
 }

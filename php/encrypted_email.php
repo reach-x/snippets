@@ -1,6 +1,6 @@
 <?php
 
-$name =<<<EOS
+$name = <<<EOS
 Include the script you wrote to crack this encryption. 
 Make it pretty, ulgy code doesn't get an interview.
 Send it to:
@@ -13,9 +13,9 @@ EOS;
 
 $encrypted_text = array();
 
-foreach (str_split($name) as $letter){
-	printf("%s,\n",$letter);
+foreach (str_split($name) as $letter) {
+	printf("%s,\n", $letter);
 	$encrypted_text[] = ord($letter);
 }
 
-printf("%s\n",json_encode($encrypted_text));
+printf("%s\n", json_encode($encrypted_text));

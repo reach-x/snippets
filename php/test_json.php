@@ -1,6 +1,6 @@
 <?php
 
-$json =<<<EOJ
+$json = <<<EOJ
 [{
 	"PropertyId": "555",
 	"FloorplanId": "555",
@@ -20,14 +20,18 @@ $json =<<<EOJ
 }]
 EOJ;
 
-$data = json_decode($json,TRUE); //TRUE makes json_decode return an array
+$data = json_decode($json, TRUE); //TRUE makes json_decode return an array
 
 //printf("error: %s\n",json_last_error_msg());
 //print_r(array('$data'=>$data));
 
-$wanted_keys = array("FloorplanName"=>"","Beds"=>"","Baths"=>"");
-$new_array = array_filter($data, function($datum){
-	
+$wanted_keys = array(
+	"FloorplanName" => "",
+	"Beds" => "",
+	"Baths" => "",
+);
+$new_array = array_filter($data, function($datum) {
+
 });
 
 print_r($new_array);

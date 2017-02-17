@@ -16,7 +16,7 @@ $weighted_buyers = [
 
 ksort($weighted_buyers);
 
-while($buyer = array_pop($weighted_buyers)){
+while ($buyer = array_pop($weighted_buyers)) {
 
 	print_r($buyer);
 }

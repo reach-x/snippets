@@ -5,7 +5,7 @@ $field_name = "IS_VALID_LEAD";
 $value = "invalid";
 
 $criteria = array(
-	'IS_VALID_LEAD' => array("invalid")
+	'IS_VALID_LEAD' => array("invalid"),
 );
 
 $is_filtered = FALSE;

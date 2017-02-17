@@ -23,8 +23,7 @@ State: CA
 EOS;
 
 
-$sample_email = preg_replace("/(\%\%.*\%\%)/","",$sample_email);
+$sample_email = preg_replace("/(\%\%.*\%\%)/", "", $sample_email);
 
 
-
-printf("%s\n",$sample_email);
+printf("%s\n", $sample_email);

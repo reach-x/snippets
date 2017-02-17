@@ -10,8 +10,7 @@
 	<div style='margin-top: 10px;' id="jqxgrid">
 		Building grid.
 	</div>
-	<br/><br/>
-	<a href="#" id="add_routing_rule_link">Add Routing Rule</a>
+	<br/><br/> <a href="#" id="add_routing_rule_link">Add Routing Rule</a>
 
 	<div id="add_routing_rule_form" style="display:none;">
 		<img src='/js/jqwidgets/styles/images/loader.gif'/>
@@ -103,7 +102,7 @@
 						<div id="managed_esp_fields">
 
 							<fieldset style="border:0px">
-								<label for="esp_id"style="text-align: left;float: left;margin-right: 10px;font-size: 15px;width:150px">ESP</label>
+								<label for="esp_id" style="text-align: left;float: left;margin-right: 10px;font-size: 15px;width:150px">ESP</label>
 								<select class='validate_manager_list_view' name="esp_id" id="esp_id">
 
 								</select>
@@ -116,26 +115,22 @@
 
 							<fieldset id="total_capacity_fieldset" style="border:0px">
 								<label for="total_capacity" style="text-align: left;float: left;margin-right: 10px;font-size: 15px;width:150px">List Capacity</label>
-								<input class='validate_manager_list_view' type="text" name="total_capacity" id="total_capacity"
-								       value=""/>
+								<input class='validate_manager_list_view' type="text" name="total_capacity" id="total_capacity" value=""/>
 							</fieldset>
 
 							<fieldset id="days_inactive_tolerance_fieldset" style="border:0px">
 								<label for="days_inactive_tolerance" style="text-align: left;float: left;margin-right: 10px;font-size: 15px;width:150px">Days Inactive Tolerance</label>
-								<input class='validate_manager_list_view' type="text" name="days_inactive_tolerance" id="days_inactive_tolerance"
-								       value=""/>
+								<input class='validate_manager_list_view' type="text" name="days_inactive_tolerance" id="days_inactive_tolerance" value=""/>
 							</fieldset>
 
 							<fieldset id="dept_name_fieldset" style="border:0px">
 								<label for="dept_name" style="text-align: left;float: left;margin-right: 10px;font-size: 15px;width:150px">From Dept</label>
-								<input class='validate_manager_list_view' type="text" name="dept_name" id="dept_name"
-								       value=""/>
+								<input class='validate_manager_list_view' type="text" name="dept_name" id="dept_name" value=""/>
 							</fieldset>
 
 							<fieldset id="from_address_fieldset" style="border:0px">
 								<label for="from_address" style="text-align: left;float: left;margin-right: 10px;font-size: 15px;width:150px">From Name</label>
-								<input class='validate_manager_list_view' type="text" name="from_address" id="from_address"
-								       value=""/>
+								<input class='validate_manager_list_view' type="text" name="from_address" id="from_address" value=""/>
 							</fieldset>
 
 						</div>
@@ -185,8 +180,7 @@
 					<td colspan="2" class="post_fields remote_url">
 						<fieldset style="border:0px">
 							<label for="variable_data" style="text-align: left;float: left;margin-right: 10px;font-size: 15px;width:150px">variable_data</label>
-            <textarea class='validate_manager_list_view' style="width: 750px; margin: 2px 0px; height: 60px;" type="text" name="variable_data"
-                      id="variable_data"></textarea>
+							<textarea class='validate_manager_list_view' style="width: 750px; margin: 2px 0px; height: 60px;" type="text" name="variable_data" id="variable_data"></textarea>
 						</fieldset>
 					</td>
 				</tr>
@@ -261,9 +255,9 @@
 					<td></td>
 					<td>
 						<label for="status_id" style="text-align: left;float: left;margin-right: 10px;font-size: 15px;width:150px;"></label>
-						<input type="submit" name="command" id="scrub_list_button" value="Scrub List" />
+						<input type="submit" name="command" id="scrub_list_button" value="Scrub List"/>
 						<input type="submit" name="command" id="update_button" value="Update"/>
-						<input type="submit" name="command" id="add_new_button" value="Save New" />
+						<input type="submit" name="command" id="add_new_button" value="Save New"/>
 					</td>
 				</tr>
 			</table>
@@ -305,66 +299,67 @@
 		color: black;
 		background-color: #e83636;
 	}
+
 	dialog {
 		width: 500px;
-		background:#e8e8e8;
+		background: #e8e8e8;
 		border: 1px solid #dadada;
-		font-family:sans-serif;
+		font-family: sans-serif;
 		padding: 5px 10px 20px 20px;
 		z-index: 10000;
 		box-shadow: 0px 0px 40px 10px;
-		position:fixed;
+		position: fixed;
 	}
 </style>
 
 <script type="text/javascript">
-	(function() {
+	(function () {
 		var dialog = document.getElementById('window');
-		document.getElementById('show').onclick = function() {
+		document.getElementById('show').onclick = function () {
 			dialog.show();
 		};
-		document.getElementById('exit').onclick = function() {
+		document.getElementById('exit').onclick = function () {
 			dialog.close();
 		};
 	})();
-	function get_manager_info(datarecord,tab){
-		var url = "/admin/managers/edit_by_manager_list_id/"+datarecord['manager_list_id']+"/1";
+	function get_manager_info(datarecord, tab) {
+		var url = "/admin/managers/edit_by_manager_list_id/" + datarecord['manager_list_id'] + "/1";
 		$.ajax({
 			url: url
-		}).done(function(data) {
+		}).done(function (data) {
 			{
-				data=JSON.parse(data);
+				data = JSON.parse(data);
 				console.log(data);
-				load_manager(datarecord,data,tab)
+				load_manager(datarecord, data, tab)
 			}
 		});
 	}
-	function load_manager(datarecord,manager,tab){
-		var url="/admin/managers/edit/"+manager['manager_id']+"/1";
+	function load_manager(datarecord, manager, tab) {
+		var url = "/admin/managers/edit/" + manager['manager_id'] + "/1";
 		$.ajax({
 			url: url
-			}).done(function(data) {
+		}).done(function (data) {
 			{
-				data=JSON.parse(data);
+				data = JSON.parse(data);
 				console.log(data);
-				var manager=data['manager'];
-				var phone=data['phone'];
-				var email=data['email'];
-				var status=data['status'];
-				var template=$("#manager_template").clone();
+				var manager = data['manager'];
+				var phone = data['phone'];
+				var email = data['email'];
+				var status = data['status'];
+				var template = $("#manager_template").clone();
 				template.find("#manager").val(manager);
 				template.find("#phone").val(phone);
 				template.find("#email").val(email);
-				for(var i in data['status_options']){
-					if(i==data['status_id']){
-						template.find("#status_id").prepend("<option value='"+i+"' selected'>"+data['status_options'][i]+"</option>");
-					}else{
-						template.find("#status_id").append("<option value='"+i+"'>"+data['status_options'][i]+"</option>");
+				for (var i in data['status_options']) {
+					if (i == data['status_id']) {
+						template.find("#status_id").prepend("<option value='" + i + "' selected'>" + data['status_options'][i] + "</option>");
+					} else {
+						template.find("#status_id").append("<option value='" + i + "'>" + data['status_options'][i] + "</option>");
 					}
 				}
-				template.find("form").submit(function(e) {
-					var url = '/admin/managers/update/' + data.manager_id+"/1";
-					var form_data=$(this).serializeArray();
+				template.find("form").submit(function (e) {
+					var url = '/admin/managers/update/' + data.manager_id + "/1";
+					var form_data = $(this).serializeArray();
 					console.log(form_data);
 					$.ajax({
 						type: "POST",
@@ -383,57 +378,57 @@
 			$("#rowdetails_manager").html(template);
 		});
 	}
-	function valid_manager_list_view(form){
-		var data=new Array();
-		data['server']=form.find("#server").val();
-		data['batch_size']=form.find("#batch_size").val();
+	function valid_manager_list_view(form) {
+		var data = new Array();
+		data['server'] = form.find("#server").val();
+		data['batch_size'] = form.find("#batch_size").val();
 
-		data['manager_list']=form.find("#manager_list").val();
-		data['manager_id']=form.find("#manager_id").val();
-		data['delivery_type_id']=form.find("#delivery_type_id").val();
+		data['manager_list'] = form.find("#manager_list").val();
+		data['manager_id'] = form.find("#manager_id").val();
+		data['delivery_type_id'] = form.find("#delivery_type_id").val();
 
-		data['username']=form.find("#username").val();
-		data['password']=form.find("#password").val();
-		data['remote_directory']=form.find("#remote_directory").val();
-		data['remote_port']=form.find("#remote_port").val();
+		data['username'] = form.find("#username").val();
+		data['password'] = form.find("#password").val();
+		data['remote_directory'] = form.find("#remote_directory").val();
+		data['remote_port'] = form.find("#remote_port").val();
 
-		data['esp_id']=form.find("#esp_id").val();
-		data['total_capacity']=form.find("#total_capacity").val();
-		data['days_inactive_tolerance']=form.find("#days_inactive_tolerance").val();
-		data['dept_name']=form.find("#dept_name").val();
-		data['from_address']=form.find("#from_address").val();
+		data['esp_id'] = form.find("#esp_id").val();
+		data['total_capacity'] = form.find("#total_capacity").val();
+		data['days_inactive_tolerance'] = form.find("#days_inactive_tolerance").val();
+		data['dept_name'] = form.find("#dept_name").val();
+		data['from_address'] = form.find("#from_address").val();
 
-		data['list_category_id']=form.find("#list_category_id").val();
-		data['post_type']=form.find("#post_type").val();
-		data['post_delay']=form.find("#post_delay").val();
-		data['post_url']=form.find("#post_url").val();
-		data['post_timeout']=form.find("#post_timeout").val();
+		data['list_category_id'] = form.find("#list_category_id").val();
+		data['post_type'] = form.find("#post_type").val();
+		data['post_delay'] = form.find("#post_delay").val();
+		data['post_url'] = form.find("#post_url").val();
+		data['post_timeout'] = form.find("#post_timeout").val();
 
-		data['variable_data']=form.find("#variable_data").val();
-		data['success_text']=form.find("#success_text").val();
-		data['error_text']=form.find("#error_text").val();
-		data['duplicate_text']=form.find("#duplicate_text").val();
-		data['reject_text']=form.find("#reject_text").val();
-		data['purge_inactive']=form.find("#purge_inactive").val();
-		data['allow_duplicates']=form.find("#allow_duplicates").val();
-		data['send_mail']=form.find("#send_mail").val();
-		data['status_id']=form.find("#status_id").val();
+		data['variable_data'] = form.find("#variable_data").val();
+		data['success_text'] = form.find("#success_text").val();
+		data['error_text'] = form.find("#error_text").val();
+		data['duplicate_text'] = form.find("#duplicate_text").val();
+		data['reject_text'] = form.find("#reject_text").val();
+		data['purge_inactive'] = form.find("#purge_inactive").val();
+		data['allow_duplicates'] = form.find("#allow_duplicates").val();
+		data['send_mail'] = form.find("#send_mail").val();
+		data['status_id'] = form.find("#status_id").val();
 
 		console.log(data);
-		if(form.find("#delivery_type_id").val()==3){//Poster
+		if (form.find("#delivery_type_id").val() == 3) {//Poster
 			form.find("#post_delay").parent().show();
 			form.find("#success_text").parent().show();
 			form.find("#error_text").parent().show();
 			form.find("#duplicate_text").parent().show();
 			form.find("#reject_text").parent().show();
-		}else{
+		} else {
 			form.find("#post_delay").parent().hide();
 			form.find("#success_text").parent().hide();
 			form.find("#error_text").parent().hide();
 			form.find("#duplicate_text").parent().hide();
 			form.find("#reject_text").parent().hide();
 		}
-		if(form.find("#delivery_type_id").val()==4){//ESP List Que
+		if (form.find("#delivery_type_id").val() == 4) {//ESP List Que
 			form.find("#dept_name").parent().show();
 			form.find("#from_address").parent().show();
 			form.find("#esp_id").parent().show();
@@ -441,7 +436,7 @@
 			form.find("#purge_inactive").parent().show();
 			form.find("#days_inactive_tolerance").parent().show();
 			form.find("#total_capacity").parent().show();
-		}else{
+		} else {
 			form.find("#dept_name").parent().hide();
 			form.find("#from_address").parent().hide();
 			form.find("#esp_id").parent().hide();
@@ -450,14 +445,14 @@
 			form.find("#days_inactive_tolerance").parent().hide();
 			form.find("#total_capacity").parent().hide();
 		}
-		if(form.find("#post_type").val()==10||form.find("#post_type").val()==7||form.find("#post_type").val()==8){
+		if (form.find("#post_type").val() == 10 || form.find("#post_type").val() == 7 || form.find("#post_type").val() == 8) {
 			form.find("#username").parent().show();
 			form.find("#password").parent().show();
-			if(form.find("#post_type").val()==10){
+			if (form.find("#post_type").val() == 10) {
 				form.find("#remote_directory").parent().show();
 				form.find("#remote_port").parent().show();
 			}
-		}else{
+		} else {
 			form.find("#username").parent().hide();
 			form.find("#password").parent().hide();
 			form.find("#remote_directory").parent().hide();
@@ -465,32 +460,32 @@
 		}
 
 	}
-	function load_manager_list(datarecord){
-		var url = '/admin/manager_lists/edit/'+datarecord['manager_list_id']+"/1";
-		var template=$("#manager_list_template").clone();
+	function load_manager_list(datarecord) {
+		var url = '/admin/manager_lists/edit/' + datarecord['manager_list_id'] + "/1";
+		var template = $("#manager_list_template").clone();
 		$.ajax({
 			url: url
-		}).done(function(data) {
+		}).done(function (data) {
 			{
-				data=JSON.parse(data);
+				data = JSON.parse(data);
 				console.log(data);
-				template.find("#form_div").attr("manager_list_id",datarecord['manager_list_id']);
+				template.find("#form_div").attr("manager_list_id", datarecord['manager_list_id']);
 				template.find("#server").val(data['server']);
 				template.find("#batch_size").val(data['batch_size']);
 
 				template.find("#manager_list").val(data['manager_list']);
-				for(var i in data.managers){
-					if(i == data.manager_id){
-						template.find("#manager_id").prepend("<option value='"+i+"' selected>"+data.managers[i]+"</option>");
-					}else{
-						template.find("#manager_id").append("<option value='"+i+"'>"+data.managers[i]+"</option>");
+				for (var i in data.managers) {
+					if (i == data.manager_id) {
+						template.find("#manager_id").prepend("<option value='" + i + "' selected>" + data.managers[i] + "</option>");
+					} else {
+						template.find("#manager_id").append("<option value='" + i + "'>" + data.managers[i] + "</option>");
 					}
 				}
-				for(var i in data.delivery_types){
-					if(i == data.delivery_type_id){
-						template.find("#delivery_type_id").prepend("<option value='"+i+"' selected>"+data.delivery_types[i]+"</option>");
-					}else{
-						template.find("#delivery_type_id").append("<option value='"+i+"'>"+data.delivery_types[i]+"</option>");
+				for (var i in data.delivery_types) {
+					if (i == data.delivery_type_id) {
+						template.find("#delivery_type_id").prepend("<option value='" + i + "' selected>" + data.delivery_types[i] + "</option>");
+					} else {
+						template.find("#delivery_type_id").append("<option value='" + i + "'>" + data.delivery_types[i] + "</option>");
 					}
 				}
 				template.find("#username").val(data.username);
@@ -498,75 +493,75 @@
 				template.find("#remote_directory").val(data.remote_directory);
 				template.find("#remote_port").val(data.remote_port);
 
-				for(var i in data.esps){
-					if(i==data.esp_id){
-						template.find("#esp_id").prepend("<option value='"+i+"' selected>"+data.esps[i]+"</option>");
-					}else{
-						template.find("#esp_id").append("<option value='"+i+"'>"+data.esps[i]+"</option>");
+				for (var i in data.esps) {
+					if (i == data.esp_id) {
+						template.find("#esp_id").prepend("<option value='" + i + "' selected>" + data.esps[i] + "</option>");
+					} else {
+						template.find("#esp_id").append("<option value='" + i + "'>" + data.esps[i] + "</option>");
 					}
 				}
 				template.find("#esp_list_id").val(data.esp_list_id);
-				for(var i in data.list_categories){
-					if(i == data.list_category_id){
-						template.find("#list_category_id").prepend("<option value='"+i+"' selected>"+data.list_categories[i]+"</option>");
-					}else{
-						template.find("#list_category_id").append("<option value='"+i+"'>"+data.list_categories[i]+"</option>");
+				for (var i in data.list_categories) {
+					if (i == data.list_category_id) {
+						template.find("#list_category_id").prepend("<option value='" + i + "' selected>" + data.list_categories[i] + "</option>");
+					} else {
+						template.find("#list_category_id").append("<option value='" + i + "'>" + data.list_categories[i] + "</option>");
 					}
 				}
 				template.find("#total_capacity").val(data.total_capacity);
 				template.find("#days_inactive_tolerance").val(data.days_inactive_tolerance);
 				template.find("#dept_name").val(data.dept_name);
 				template.find("#from_address").val(data.from_address);
-				for(var i in data.post_types){
-					if(data.post_type == data.post_types[i]){
-						template.find("#post_type").prepend("<option value='"+data.post_types[i]+"' selected>"+data.post_types[i]+"</option>");
-					}else{
-						template.find("#post_type").append("<option value='"+data.post_types[i]+"'>"+data.post_types[i]+"</option>");
+				for (var i in data.post_types) {
+					if (data.post_type == data.post_types[i]) {
+						template.find("#post_type").prepend("<option value='" + data.post_types[i] + "' selected>" + data.post_types[i] + "</option>");
+					} else {
+						template.find("#post_type").append("<option value='" + data.post_types[i] + "'>" + data.post_types[i] + "</option>");
 					}
 				}
 				template.find("#post_delay").val(data['post_delay']);
 				template.find("#post_url").val(data['post_url']);
 				template.find("#post_timeout").val(data['post_timeout']);
-				var variable_data=data['variable_data'].replace(/&amp;/g,'&');
+				var variable_data = data['variable_data'].replace(/&amp;/g, '&');
 				template.find("#variable_data").val(variable_data);
 				template.find("#success_text").val(data['success_text']);
 				template.find("#error_text").val(data['error_text']);
 				template.find("#duplicate_text").val(data['duplicate_text']);
 				template.find("#reject_text").val(data['reject_text']);
 
-				if(data.purge_inactive==0){
+				if (data.purge_inactive == 0) {
 					template.find("#purge_inactive").prepend("<option value='0' selected> NO </option>");
 					template.find("#purge_inactive").append("<option value='1'> YES </option>");
-				}else{
+				} else {
 					template.find("#purge_inactive").prepend("<option value='1' selected> YES </option>");
 					template.find("#purge_inactive").append("<option value='0'> NO </option>");
 				}
-				if(data.allow_duplicates==0){
+				if (data.allow_duplicates == 0) {
 					template.find("#allow_duplicates").prepend("<option value='0' selected> NO </option>");
 					template.find("#allow_duplicates").append("<option value='1'> YES </option>");
-				}else{
+				} else {
 					template.find("#allow_duplicates").prepend("<option value='1' selected> YES </option>");
 					template.find("#allow_duplicates").append("<option value='0'> NO </option>");
 				}
-				if(data.send_mail==0){
+				if (data.send_mail == 0) {
 					template.find("#send_mail").prepend("<option value='0' selected> NO </option>");
 					template.find("#send_mail").append("<option value='1'> YES </option>");
-				}else{
+				} else {
 					template.find("#send_mail").prepend("<option value='1' selected> YES </option>");
 					template.find("#send_mail").append("<option value='0'> NO </option>");
 				}
-				for(var i in data.status_options){
-					if(i == data.status_id){
-						template.find("#status_id").prepend("<option value='"+i+"' selected>"+data.status_options[i]+"</option>");
-					}else{
-						template.find("#status_id").append("<option value='"+i+"'>"+data.status_options[i]+"</option>");
+				for (var i in data.status_options) {
+					if (i == data.status_id) {
+						template.find("#status_id").prepend("<option value='" + i + "' selected>" + data.status_options[i] + "</option>");
+					} else {
+						template.find("#status_id").append("<option value='" + i + "'>" + data.status_options[i] + "</option>");
 					}
 				}
 				template.show();
-				template.find("#update_button").one("click",function(){
-					template.find("form").submit(function(e) {
-						var url = '/admin/manager_lists/update/'+data.manager_list_id+"/1";
-						var form_data=$(this).serializeArray();
+				template.find("#update_button").one("click", function () {
+					template.find("form").submit(function (e) {
+						var url = '/admin/manager_lists/update/' + data.manager_list_id + "/1";
+						var form_data = $(this).serializeArray();
 						console.log(form_data);
 						$.ajax({
 							type: "POST",
@@ -577,9 +572,9 @@
 								var dialog = document.getElementById('window');
 								dialog.show();
 								$("#window").find("#back_button").remove();
-								$("#window").find("form").submit(function(e){
-									var url='/admin/manager_lists/confirm_update/'+data.manager_list_id+"/1";
-									var form_data=$("#window").find("form").serializeArray();
+								$("#window").find("form").submit(function (e) {
+									var url = '/admin/manager_lists/confirm_update/' + data.manager_list_id + "/1";
+									var form_data = $("#window").find("form").serializeArray();
 									$("#window").find("#back_button").remove();
 									$.ajax({
 										type: "POST",
@@ -596,12 +591,12 @@
 						e.preventDefault(); // avoid to execute the actual submit of the form.
 					});
 				});
-				template.find("#add_new_button").one("click",function(){
+				template.find("#add_new_button").one("click", function () {
 					$(this).closest("#form_div").find("#command").val("Save New");
 					console.log("add New");
-					template.find("form").submit(function(e) {
-						var url = '/admin/manager_lists/update/' + data.manager_list_id+"/1";
-						var form_data=$(this).serializeArray();
+					template.find("form").submit(function (e) {
+						var url = '/admin/manager_lists/update/' + data.manager_list_id + "/1";
+						var form_data = $(this).serializeArray();
 						console.log(form_data);
 						$.ajax({
 							type: "POST",
@@ -610,19 +605,19 @@
 							success: function (data2) {
 								console.log(data2);
 								alert("It may take up to 5 minutes for new records to appear. Alternatively you can clear your browsers cache to see the record immediately.")
-//								window.location="/admin/manager_lists?new="+Math.random().toString(36).substring(7);
+								//								window.location="/admin/manager_lists?new="+Math.random().toString(36).substring(7);
 							}
 						});
 						e.preventDefault(); // avoid to execute the actual submit of the form.
 					});
 				});
 
-				template.find("#scrub_list_button").click(function(){
+				template.find("#scrub_list_button").click(function () {
 					console.log("scrub_list");
-					template.find("form").submit(function(e) {
+					template.find("form").submit(function (e) {
 
 						var url = '/admin/manager_lists/scrub_manager_list/' + data.manager_list_id;
-						var form_data=$(this).serializeArray();
+						var form_data = $(this).serializeArray();
 						console.log(form_data);
 						$.ajax({
 							url: url,
@@ -635,44 +630,88 @@
 				});
 				$("#rowdetails_manager_list").html(template);
 				valid_manager_list_view($("#rowdetails_manager_list"));
-				$(".validate_manager_list_view").on('change',function(){
+				$(".validate_manager_list_view").on('change', function () {
 					valid_manager_list_view($(this).closest("#form_div"));
 				});
-				$(".validate_manager_list_view").on('focusout',function(){
+				$(".validate_manager_list_view").on('focusout', function () {
 					valid_manager_list_view($(this).closest("#form_div"));
 				});
 			}
 		})
 
-
 	}
-	function load_routing_rules(datarecord,url){
-		var url = "/admin/manager_lists/routing_rules/dataset/"+datarecord['manager_list_id'];
+	function load_routing_rules(datarecord, url) {
+		var url = "/admin/manager_lists/routing_rules/dataset/" + datarecord['manager_list_id'];
 		// prepare the data
 		var source = {
 			datatype: "json",
 			url: url,
 			datafields: [
-				{name: 'routing_rule_id', type: 'int'},
-				{name: 'owner_id', type: 'int'},
-				{name: 'owner', type: 'string'},
-				{name: 'owner_list_id', type: 'int'},
-				{name: 'owner_list', type: 'string'},
-				{name: 'list_category', type: 'string'},
-				{name: 'today', type: 'int'},
-				{name: 'yesterday', type: 'int'},
-				{name: 'daily_average', type: 'int'},
-				{name: 'gross', type: 'int'},
-				{name: 'isp_domain_group_id', type: 'int'},
-				{name: 'isp_domain_group', type: 'string'},
-				{name: 'routing_rule_status', type: 'string'},
-				{name: 'owner_status_id', type: 'int'},
-				{name: 'owner_list_status_id', type: 'int'}
+				{
+					name: 'routing_rule_id',
+					type: 'int'
+				},
+				{
+					name: 'owner_id',
+					type: 'int'
+				},
+				{
+					name: 'owner',
+					type: 'string'
+				},
+				{
+					name: 'owner_list_id',
+					type: 'int'
+				},
+				{
+					name: 'owner_list',
+					type: 'string'
+				},
+				{
+					name: 'list_category',
+					type: 'string'
+				},
+				{
+					name: 'today',
+					type: 'int'
+				},
+				{
+					name: 'yesterday',
+					type: 'int'
+				},
+				{
+					name: 'daily_average',
+					type: 'int'
+				},
+				{
+					name: 'gross',
+					type: 'int'
+				},
+				{
+					name: 'isp_domain_group_id',
+					type: 'int'
+				},
+				{
+					name: 'isp_domain_group',
+					type: 'string'
+				},
+				{
+					name: 'routing_rule_status',
+					type: 'string'
+				},
+				{
+					name: 'owner_status_id',
+					type: 'int'
+				},
+				{
+					name: 'owner_list_status_id',
+					type: 'int'
+				}
 			]
 		};
 
 		var dataAdapter = new $.jqx.dataAdapter(source);
-		var template=$("#routing_rules_template").clone();
+		var template = $("#routing_rules_template").clone();
 		template.show();
 		template.find("#jqxgrid").jqxGrid({
 			selectionmode: 'multiplecellsadvanced',
@@ -691,11 +730,14 @@
 			},
 			columns: [
 				{
-					text: 'Edit', datafield: null, cellsalign: 'left', width: 40,
+					text: 'Edit',
+					datafield: null,
+					cellsalign: 'left',
+					width: 40,
 					cellsrenderer: function (row, column, value) {
 						row_data = template.find("#jqxgrid").jqxGrid('getrowdata', row);
 						routing_rule_id = row_data["routing_rule_id"];
-						var html = '<a href="#" onclick="edit_routing_rule('+routing_rule_id +','+datarecord['manager_list_id']+')" style="overflow: hidden;  text-overflow: ellipsis; padding-bottom: 2px; text-align: right; margin-right: 2px; margin-left: 4px; margin-top: 4px;">Edit</a>';
+						var html = '<a href="#" onclick="edit_routing_rule(' + routing_rule_id + ',' + datarecord['manager_list_id'] + ')" style="overflow: hidden;  text-overflow: ellipsis; padding-bottom: 2px; text-align: right; margin-right: 2px; margin-left: 4px; margin-top: 4px;">Edit</a>';
 						return html;
 					}
 				},
@@ -707,23 +749,78 @@
 					cellsrenderer: function (row, column, value) {
 						row_data = template.find("#jqxgrid").jqxGrid('getrowdata', row);
 						routing_rule_id = row_data["routing_rule_id"];
-						var html = '<a href="#" onclick="edit_routing_rule_filter('+routing_rule_id +','+datarecord['manager_list_id']+')" style="overflow: hidden;  text-overflow: ellipsis; padding-bottom: 2px; text-align: right; margin-right: 2px; margin-left: 4px; margin-top: 4px;">Edit</a>';
+						var html = '<a href="#" onclick="edit_routing_rule_filter(' + routing_rule_id + ',' + datarecord['manager_list_id'] + ')" style="overflow: hidden;  text-overflow: ellipsis; padding-bottom: 2px; text-align: right; margin-right: 2px; margin-left: 4px; margin-top: 4px;">Edit</a>';
 						return html;
 					}
 				},
-				{text: 'RRID', datafield: 'routing_rule_id', cellsalign: 'left', width: 40},
-				{text: 'RR Status', datafield: 'routing_rule_status', cellsalign: 'right', width: 80},
-				{text: 'Owner', datafield: 'owner', cellsalign: 'left', width: 125},
-				{text: 'Owner List', datafield: 'owner_list', cellsalign: 'right', width: 125},
-				{text: 'Owner List ID', datafield: 'owner_list_id', cellsalign: 'right', width: 80},
-				{text: 'List Category', datafield: 'list_category', cellsalign: 'right', width: 125},
-				{text: 'Today', datafield: 'today', cellsalign: 'right', width: 80},
-				{text: 'Yesterday', datafield: 'yesterday', cellsalign: 'right', width: 80},
+				{
+					text: 'RRID',
+					datafield: 'routing_rule_id',
+					cellsalign: 'left',
+					width: 40
+				},
+				{
+					text: 'RR Status',
+					datafield: 'routing_rule_status',
+					cellsalign: 'right',
+					width: 80
+				},
+				{
+					text: 'Owner',
+					datafield: 'owner',
+					cellsalign: 'left',
+					width: 125
+				},
+				{
+					text: 'Owner List',
+					datafield: 'owner_list',
+					cellsalign: 'right',
+					width: 125
+				},
+				{
+					text: 'Owner List ID',
+					datafield: 'owner_list_id',
+					cellsalign: 'right',
+					width: 80
+				},
+				{
+					text: 'List Category',
+					datafield: 'list_category',
+					cellsalign: 'right',
+					width: 125
+				},
+				{
+					text: 'Today',
+					datafield: 'today',
+					cellsalign: 'right',
+					width: 80
+				},
+				{
+					text: 'Yesterday',
+					datafield: 'yesterday',
+					cellsalign: 'right',
+					width: 80
+				},
 
-				{text: 'D. Average', datafield: 'daily_average', cellsalign: 'right', width: 80},
-				{text: 'Gross', datafield: 'gross', cellsalign: 'right', width: 80},
+				{
+					text: 'D. Average',
+					datafield: 'daily_average',
+					cellsalign: 'right',
+					width: 80
+				},
+				{
+					text: 'Gross',
+					datafield: 'gross',
+					cellsalign: 'right',
+					width: 80
+				},
 
-				{text: 'ISP Domain Group', datafield: 'isp_domain_group', cellsalign: 'right', width: 80},
+				{
+					text: 'ISP Domain Group',
+					datafield: 'isp_domain_group',
+					cellsalign: 'right',
+					width: 80
+				},
 				{
 					text: 'Owner Status',
 					datafield: null,
@@ -758,20 +855,20 @@
 				}
 			]
 		});
-		template.find("#add_routing_rule_link").parent().append("<div id='routing_secondary_"+datarecord['manager_list_id']+"'></div>");
+		template.find("#add_routing_rule_link").parent().append("<div id='routing_secondary_" + datarecord['manager_list_id'] + "'></div>");
 
-		template.find("#add_routing_rule_link").attr("id","add_routing_rule_link_"+datarecord['manager_list_id']);
+		template.find("#add_routing_rule_link").attr("id", "add_routing_rule_link_" + datarecord['manager_list_id']);
 
-		template.find("#add_routing_rule_link_"+datarecord['manager_list_id']).click(function (event) {
+		template.find("#add_routing_rule_link_" + datarecord['manager_list_id']).click(function (event) {
 			event.preventDefault();
-			$("#routing_secondary_"+datarecord['manager_list_id']).hide();
+			$("#routing_secondary_" + datarecord['manager_list_id']).hide();
 			add_routing_rule(datarecord['manager_list_id']);
 		});
 		$("#rowdetails_routes").html(template);
 	}
-	function add_routing_rule(manager_list_id){
-		$("#routing_secondary_"+manager_list_id).html('<img src="/js/jqwidgets/styles/images/loader.gif">');
-		var url = '/admin/manager_lists/routing_rules/add?manager_list_id='+manager_list_id;
+	function add_routing_rule(manager_list_id) {
+		$("#routing_secondary_" + manager_list_id).html('<img src="/js/jqwidgets/styles/images/loader.gif">');
+		var url = '/admin/manager_lists/routing_rules/add?manager_list_id=' + manager_list_id;
 		$.ajax({
 			url: url,
 			success: function (data) {
@@ -789,7 +886,7 @@
 							$("#routing_secondary_" + manager_list_id).html('<img src="/js/jqwidgets/styles/images/loader.gif">');
 							var dialog = document.getElementById('window');
 							dialog.show();
-							$("#routes"+manager_list_id).trigger("click");
+							$("#routes" + manager_list_id).trigger("click");
 						}
 					});
 					e.preventDefault();
@@ -797,45 +894,45 @@
 			}
 		});
 	}
-	function edit_routing_rule(routing_rule_id,manager_list_id){
-		$("#routing_secondary_"+manager_list_id).html('<img src="/js/jqwidgets/styles/images/loader.gif">');
-		var url = '/admin/manager_lists/edit_routing_rules/'+routing_rule_id;
+	function edit_routing_rule(routing_rule_id, manager_list_id) {
+		$("#routing_secondary_" + manager_list_id).html('<img src="/js/jqwidgets/styles/images/loader.gif">');
+		var url = '/admin/manager_lists/edit_routing_rules/' + routing_rule_id;
 		$.ajax({
 			url: url,
 			success: function (data2) {
-				$("#routing_secondary_"+manager_list_id).html($(data2).find("#form_div"));
-				$("#routing_secondary_"+manager_list_id).show();
-				$("#routing_secondary_"+manager_list_id).find("form").submit(function(e) {
+				$("#routing_secondary_" + manager_list_id).html($(data2).find("#form_div"));
+				$("#routing_secondary_" + manager_list_id).show();
+				$("#routing_secondary_" + manager_list_id).find("form").submit(function (e) {
 
-					var url = '/admin/manager_lists/routing_rules/update/'+routing_rule_id;
-					var form_data=$(this).serializeArray();
-					$("#routing_secondary_"+manager_list_id).html('<img src="/js/jqwidgets/styles/images/loader.gif">');
+					var url = '/admin/manager_lists/routing_rules/update/' + routing_rule_id;
+					var form_data = $(this).serializeArray();
+					$("#routing_secondary_" + manager_list_id).html('<img src="/js/jqwidgets/styles/images/loader.gif">');
 					$.ajax({
 						type: "POST",
 						url: url,
 						data: form_data,
 						success: function (data2) {
-							$("#routing_secondary_"+manager_list_id).html($(data2).find("form"));
-							$("#routing_secondary_"+manager_list_id).find("#back_button").click(function(e){
+							$("#routing_secondary_" + manager_list_id).html($(data2).find("form"));
+							$("#routing_secondary_" + manager_list_id).find("#back_button").click(function (e) {
 								e.preventDefault();
-								edit_routing_rule(routing_rule_id,manager_list_id);
+								edit_routing_rule(routing_rule_id, manager_list_id);
 							});
-							$("#routing_secondary_"+manager_list_id).show();
-							$("#routing_secondary_"+manager_list_id).find("form").submit(function(e) {
-								var url = '/admin/manager_lists/confirm_routing_rule_update/'+routing_rule_id+'/'+manager_list_id;
+							$("#routing_secondary_" + manager_list_id).show();
+							$("#routing_secondary_" + manager_list_id).find("form").submit(function (e) {
+								var url = '/admin/manager_lists/confirm_routing_rule_update/' + routing_rule_id + '/' + manager_list_id;
 								var form_data = $(this).serializeArray();
-								$("#routing_secondary_"+manager_list_id).html('<img src="/js/jqwidgets/styles/images/loader.gif">');
+								$("#routing_secondary_" + manager_list_id).html('<img src="/js/jqwidgets/styles/images/loader.gif">');
 								$.ajax({
 									type: "POST",
 									url: url,
 									data: form_data,
-									success:function(data2){
-										$("#routing_secondary_"+manager_list_id).html("<div></div>");
-										$("#routing_secondary_"+manager_list_id).show();
+									success: function (data2) {
+										$("#routing_secondary_" + manager_list_id).html("<div></div>");
+										$("#routing_secondary_" + manager_list_id).show();
 										$("#pop_content").html("Record has been successfully updated.");
 										var dialog = document.getElementById('window');
 										dialog.show();
-										$("#routes"+manager_list_id).trigger("click");
+										$("#routes" + manager_list_id).trigger("click");
 									}
 								});
 								e.preventDefault(); // avoid to execute the actual submit of the form.
@@ -847,25 +944,25 @@
 			}
 		});
 	}
-	function edit_routing_rule_filter(routing_rule_id,managerListId){
-		$("#routing_secondary_"+managerListId).html('<img src="/js/jqwidgets/styles/images/loader.gif">');
-		var url = '/admin/routing_rules/'+routing_rule_id;
+	function edit_routing_rule_filter(routing_rule_id, managerListId) {
+		$("#routing_secondary_" + managerListId).html('<img src="/js/jqwidgets/styles/images/loader.gif">');
+		var url = '/admin/routing_rules/' + routing_rule_id;
 		$.ajax({
 			url: url
-		}).done(function(data){
-			var entity=$(data).find("#content");
-			$("#routing_secondary_"+managerListId).html(entity);
+		}).done(function (data) {
+			var entity = $(data).find("#content");
+			$("#routing_secondary_" + managerListId).html(entity);
 
-			$("#routing_secondary_"+managerListId).show();
-//			$.getJSON("/admin/owner_lists/get_by_owner_id/" + $("#owner_id").val(), function (response) {
-//				for (index in response.owner_lists) {
-//					option = document.createElement("option");
-//					option.value = response.owner_lists[index].owner_list_id;
-//					option.text = response.owner_lists[index].owner_list;
-//					entity.find("#owner_list_id").append(option);
-//				}
-//			});
-			$.getJSON("/admin/manager_lists/get_by_manager_id/"+entity.find("#manager_id").val(), function (response) {
+			$("#routing_secondary_" + managerListId).show();
+			//			$.getJSON("/admin/owner_lists/get_by_owner_id/" + $("#owner_id").val(), function (response) {
+			//				for (index in response.owner_lists) {
+			//					option = document.createElement("option");
+			//					option.value = response.owner_lists[index].owner_list_id;
+			//					option.text = response.owner_lists[index].owner_list;
+			//					entity.find("#owner_list_id").append(option);
+			//				}
+			//			});
+			$.getJSON("/admin/manager_lists/get_by_manager_id/" + entity.find("#manager_id").val(), function (response) {
 				for (index in response.manager_lists) {
 					option = document.createElement("option");
 					option.value = response.manager_lists[index].manager_list_id;
@@ -876,11 +973,15 @@
 			entity.find("#submit").click(function (event) {
 				event.preventDefault();
 
-				if($("#routing_secondary_"+managerListId).find("#routing_rule_filter_id").val()==0){
+				if ($("#routing_secondary_" + managerListId).find("#routing_rule_filter_id").val() == 0) {
 					console.log("New Filter");
-					$("#sub_form").find("input[name=routing_rule_filter_id]").each(function(){$(this).val("0")});
-					$("#sub_form").find("input[name=routing_rule_id]").each(function(){$(this).val(routing_rule_id)});
-					var sub_form=$("#sub_form").serialize();
+					$("#sub_form").find("input[name=routing_rule_filter_id]").each(function () {
+						$(this).val("0")
+					});
+					$("#sub_form").find("input[name=routing_rule_id]").each(function () {
+						$(this).val(routing_rule_id)
+					});
+					var sub_form = $("#sub_form").serialize();
 					console.log($("#sub_form").serialize());
 
 					$.ajax({
@@ -889,11 +990,11 @@
 						data: $("#sub_form").serialize()
 					}).done(function (data) {
 						console.log(data);
-//					window.location.reload();
+						//					window.location.reload();
 						$(".jqx-window-close-button").trigger("click");
-						$("#routes"+manager_list_id).trigger("click");
+						$("#routes" + manager_list_id).trigger("click");
 					});
-				}else{
+				} else {
 					console.log($("#sub_form").serialize());
 					$.ajax({
 						type: "POST",
@@ -901,40 +1002,41 @@
 						data: $("#sub_form").serialize()
 					}).done(function (data) {
 						console.log(data);
-//					window.location.reload();
+						//					window.location.reload();
 						$(".jqx-window-close-button").trigger("click");
-						$("#routes"+manager_list_id).trigger("click");
+						$("#routes" + manager_list_id).trigger("click");
 					});
 				}
 			});
 		});
 	}
-	function load_tabs(datarecord,url,tab_urls,flag){
+	function load_tabs(datarecord, url, tab_urls, flag) {
 
-		if(flag==0){
+		if (flag == 0) {
 
 			$("#rowdetails_" + url).html("<iframe style='width: 100%;height: 550px;' src=''><img src='/js/jqwidgets/styles/images/loader.gif'/><iframe>");
-			setTimeout(function(){
-				load_tabs(datarecord,url,tab_urls,1);
-			},5);
-		}else{
-			$("#rowdetails_" + url).find("iframe").attr("src",tab_urls[url] + datarecord['manager_list_id']);
+			setTimeout(function () {
+				load_tabs(datarecord, url, tab_urls, 1);
+			}, 5);
+		} else {
+			$("#rowdetails_" + url).find("iframe").attr("src", tab_urls[url] + datarecord['manager_list_id']);
 		}
 
 	}
-	function load_legacy_queue(datarecord){
-		var url = "/admin/manager_lists/legacy_queue/"+datarecord['manager_list_id'];
+	function load_legacy_queue(datarecord) {
+		var url = "/admin/manager_lists/legacy_queue/" + datarecord['manager_list_id'];
 		$.ajax({
 			url: url,
 			success: function (data3) {
-				$("#rowdetails_legacy_queue_"+datarecord['manager_list_id']).html($(data3).find("#main"));
-				$("#rowdetails_legacy_queue_"+datarecord['manager_list_id']).find("legend").remove();
+				$("#rowdetails_legacy_queue_" + datarecord['manager_list_id']).html($(data3).find("#main"));
+				$("#rowdetails_legacy_queue_" + datarecord['manager_list_id']).find("legend").remove();
 				load_legacy_queue_info();
-				var select=$("#rowdetails_legacy_queue_"+datarecord["manager_list_id"]).find("#manager_list_id_jqxDropDownList");
-				var option=select.find("option[value='"+datarecord["manager_list_id"]+"']").text();
-				$("#rowdetails_legacy_queue_"+datarecord["manager_list_id"]).find("fieldset").first().append("<span>"+option+"</span>");
-				$("#rowdetails_legacy_queue_"+datarecord["manager_list_id"]).find("fieldset").first().find("#manager_list_id").hide();
-				var entity=$("#rowdetails_legacy_queue_"+datarecord['manager_list_id']);
+				var select = $("#rowdetails_legacy_queue_" + datarecord["manager_list_id"]).find("#manager_list_id_jqxDropDownList");
+				var option = select.find("option[value='" + datarecord["manager_list_id"] + "']").text();
+				$("#rowdetails_legacy_queue_" + datarecord["manager_list_id"]).find("fieldset").first().append("<span>" + option + "</span>");
+				$("#rowdetails_legacy_queue_" + datarecord["manager_list_id"]).find("fieldset").first().find("#manager_list_id").hide();
+				var entity = $("#rowdetails_legacy_queue_" + datarecord['manager_list_id']);
+
 				function load_legacy_queue_info() {
 					$("#manager_list_id").jqxDropDownList({
 						searchMode: 'containsignorecase',
@@ -945,30 +1047,30 @@
 
 					var request;
 
-					$("#rowdetails_legacy_queue_"+datarecord['manager_list_id']).find("#start_date").jqxCalendar({
+					$("#rowdetails_legacy_queue_" + datarecord['manager_list_id']).find("#start_date").jqxCalendar({
 						width: 220,
 						height: 220,
 						theme: theme
 					});
 
-					$("#rowdetails_legacy_queue_"+datarecord['manager_list_id']).find("#end_date").jqxCalendar({
+					$("#rowdetails_legacy_queue_" + datarecord['manager_list_id']).find("#end_date").jqxCalendar({
 						width: 220,
 						height: 220,
 						theme: theme,
 						enableViews: true
 					});
 
-					$("#rowdetails_legacy_queue_"+datarecord['manager_list_id']).find('#start_date ').jqxCalendar('setMinDate', new Date(2012, 11, 15));
-					$("#rowdetails_legacy_queue_"+datarecord['manager_list_id']).find('#start_date ').jqxCalendar('setMaxDate', new Date());
+					$("#rowdetails_legacy_queue_" + datarecord['manager_list_id']).find('#start_date ').jqxCalendar('setMinDate', new Date(2012, 11, 15));
+					$("#rowdetails_legacy_queue_" + datarecord['manager_list_id']).find('#start_date ').jqxCalendar('setMaxDate', new Date());
 
-					$("#rowdetails_legacy_queue_"+datarecord['manager_list_id']).find('#end_date ').jqxCalendar('setMinDate', new Date(2012, 11, 15));
-					$("#rowdetails_legacy_queue_"+datarecord['manager_list_id']).find('#end_date ').jqxCalendar('setMaxDate', new Date());
+					$("#rowdetails_legacy_queue_" + datarecord['manager_list_id']).find('#end_date ').jqxCalendar('setMinDate', new Date(2012, 11, 15));
+					$("#rowdetails_legacy_queue_" + datarecord['manager_list_id']).find('#end_date ').jqxCalendar('setMaxDate', new Date());
 
-					$("#rowdetails_legacy_queue_"+datarecord['manager_list_id']).find("#start_date").on('click change', function (event) {
+					$("#rowdetails_legacy_queue_" + datarecord['manager_list_id']).find("#start_date").on('click change', function (event) {
 						update_range();
 					});
 
-					$("#rowdetails_legacy_queue_"+datarecord['manager_list_id']).find("#end_date").on('click change', function (event) {
+					$("#rowdetails_legacy_queue_" + datarecord['manager_list_id']).find("#end_date").on('click change', function (event) {
 						update_range();
 					});
 
@@ -1082,13 +1184,13 @@
 					});
 				};
 
-				$("#rowdetails_legacy_queue_"+datarecord['manager_list_id']).show();
+				$("#rowdetails_legacy_queue_" + datarecord['manager_list_id']).show();
 
 			}
 		});
 	}
-	function load_export_scripts(datarecord){
-		$("#rowdetails_export_"+datarecord["manager_list_id"]).find("#manager_list_id").jqxDropDownList({
+	function load_export_scripts(datarecord) {
+		$("#rowdetails_export_" + datarecord["manager_list_id"]).find("#manager_list_id").jqxDropDownList({
 			searchMode: 'containsignorecase',
 			theme: theme,
 			width: "100%",
@@ -1147,30 +1249,28 @@
 		});
 		$("#manager_list_id").trigger("select");
 
-		$("#rowdetails_export_"+datarecord["manager_list_id"]).find("#start_date").jqxCalendar({
+		$("#rowdetails_export_" + datarecord["manager_list_id"]).find("#start_date").jqxCalendar({
 			width: 220,
 			height: 220,
-			theme: theme,
-			// setMinDate: new Date(2012, 11, 15),
+			theme: theme, // setMinDate: new Date(2012, 11, 15),
 			// setMaxDate: new Date()
 			//            value: new Date(2012, 11, 15),
 		});
 
-		$("#rowdetails_export_"+datarecord["manager_list_id"]).find("#end_date").jqxCalendar({
+		$("#rowdetails_export_" + datarecord["manager_list_id"]).find("#end_date").jqxCalendar({
 			width: 220,
 			height: 220,
-			theme: theme,
-			// setMinDate: new Date(2012, 11, 15),
+			theme: theme, // setMinDate: new Date(2012, 11, 15),
 			// setMaxDate: new Date(),
 			enableViews: true
 			// value: new Date(),
 		});
 
-		$("#rowdetails_export_"+datarecord["manager_list_id"]).find("#start_date").on('click change', function (event) {
+		$("#rowdetails_export_" + datarecord["manager_list_id"]).find("#start_date").on('click change', function (event) {
 			update_range();
 		});
 
-		$("#rowdetails_export_"+datarecord["manager_list_id"]).find("#end_date").on('click change', function (event) {
+		$("#rowdetails_export_" + datarecord["manager_list_id"]).find("#end_date").on('click change', function (event) {
 			update_range();
 		});
 
@@ -1178,12 +1278,12 @@
 			start_date = get_start_date();
 			end_date = get_end_date();
 
-			$("#rowdetails_export_"+datarecord["manager_list_id"]).find("#selection").html("<div>" + start_date + " - " + end_date + "</div>");
+			$("#rowdetails_export_" + datarecord["manager_list_id"]).find("#selection").html("<div>" + start_date + " - " + end_date + "</div>");
 		}
 
 		function get_start_date() {
 
-			start_date = new Date($("#rowdetails_export_"+datarecord["manager_list_id"]).find("#start_date").val());
+			start_date = new Date($("#rowdetails_export_" + datarecord["manager_list_id"]).find("#start_date").val());
 			var start_day = start_date.getDate();
 			var start_month = start_date.getMonth() + 1; //Months are zero based
 			var start_year = start_date.getFullYear();
@@ -1193,7 +1293,7 @@
 		}
 
 		function get_end_date() {
-			end_date = new Date($("#rowdetails_export_"+datarecord["manager_list_id"]).find("#end_date").val());
+			end_date = new Date($("#rowdetails_export_" + datarecord["manager_list_id"]).find("#end_date").val());
 			var end_day = end_date.getDate();
 			var end_month = end_date.getMonth() + 1; //Months are zero based
 			var end_year = end_date.getFullYear();
@@ -1204,8 +1304,8 @@
 		function get_job_details() {
 			job_details = [];
 
-			job_details.manager_list_id = $("#rowdetails_export_"+datarecord["manager_list_id"]).find("#manager_list_id").val();
-			job_details.manager_list = $("#rowdetails_export_"+datarecord["manager_list_id"]).find("#manager_list_id").text();
+			job_details.manager_list_id = $("#rowdetails_export_" + datarecord["manager_list_id"]).find("#manager_list_id").val();
+			job_details.manager_list = $("#rowdetails_export_" + datarecord["manager_list_id"]).find("#manager_list_id").text();
 
 			job_details.field_ids = [];
 			job_details.fields = [];
@@ -1223,7 +1323,7 @@
 				job_details.isp_domain_ids[index] = $(selected).val();
 			});
 
-			job_details.filter_type = $("#rowdetails_export_"+datarecord["manager_list_id"]).find("#filter_types").val();
+			job_details.filter_type = $("#rowdetails_export_" + datarecord["manager_list_id"]).find("#filter_types").val();
 			job_details.only_new_posts = (job_details.filter_type === "new_records") ? "true" : "false";
 
 			switch (job_details.filter_type) {
@@ -1236,7 +1336,7 @@
 				case 'limit_range':
 					job_details.start_date = "";
 					job_details.end_date = "";
-					job_details.limit = $("#rowdetails_export_"+datarecord["manager_list_id"]).find("#limit").val() === 0 ? "All Posts" : $("#rowdetails_export_"+datarecord["manager_list_id"]).find("#limit").val();
+					job_details.limit = $("#rowdetails_export_" + datarecord["manager_list_id"]).find("#limit").val() === 0 ? "All Posts" : $("#rowdetails_export_" + datarecord["manager_list_id"]).find("#limit").val();
 					break;
 
 				case 'new_records':
@@ -1252,9 +1352,9 @@
 					break;
 
 			}
-			job_details.recipient = $("#rowdetails_export_"+datarecord["manager_list_id"]).find("#recipient").val();
-			job_details.save_file_path = $("#rowdetails_export_"+datarecord["manager_list_id"]).find("#sftp_users").val();
-			job_details.recurring_export = $("#rowdetails_export_"+datarecord["manager_list_id"]).find("#recurring_export").val();
+			job_details.recipient = $("#rowdetails_export_" + datarecord["manager_list_id"]).find("#recipient").val();
+			job_details.save_file_path = $("#rowdetails_export_" + datarecord["manager_list_id"]).find("#sftp_users").val();
+			job_details.recurring_export = $("#rowdetails_export_" + datarecord["manager_list_id"]).find("#recurring_export").val();
 
 			console.log(job_details);
 
@@ -1265,18 +1365,18 @@
 
 			job_details = get_job_details();
 
-			$("#rowdetails_export_"+datarecord["manager_list_id"]).find("#summary_manager_list").html(job_details.manager_list);
-			$("#rowdetails_export_"+datarecord["manager_list_id"]).find("#summary_fields").html(job_details.fields.join(", "));
-			$("#rowdetails_export_"+datarecord["manager_list_id"]).find("#summary_isp_domains").html(job_details.isp_domains.join(", "));
+			$("#rowdetails_export_" + datarecord["manager_list_id"]).find("#summary_manager_list").html(job_details.manager_list);
+			$("#rowdetails_export_" + datarecord["manager_list_id"]).find("#summary_fields").html(job_details.fields.join(", "));
+			$("#rowdetails_export_" + datarecord["manager_list_id"]).find("#summary_isp_domains").html(job_details.isp_domains.join(", "));
 
-			$("#rowdetails_export_"+datarecord["manager_list_id"]).find("#summary_filter_type").html(job_details.filter_type);
-			$("#rowdetails_export_"+datarecord["manager_list_id"]).find("#summary_start_date").html(job_details.start_date);
-			$("#rowdetails_export_"+datarecord["manager_list_id"]).find("#summary_end_date").html(job_details.end_date);
-			$("#rowdetails_export_"+datarecord["manager_list_id"]).find("#summary_limit").html(job_details.limit);
-			$("#rowdetails_export_"+datarecord["manager_list_id"]).find("#summary_recurring_export").html(job_details.recurring_export);
-			$("#rowdetails_export_"+datarecord["manager_list_id"]).find("#summary_only_new_posts").html(job_details.only_new_posts);
+			$("#rowdetails_export_" + datarecord["manager_list_id"]).find("#summary_filter_type").html(job_details.filter_type);
+			$("#rowdetails_export_" + datarecord["manager_list_id"]).find("#summary_start_date").html(job_details.start_date);
+			$("#rowdetails_export_" + datarecord["manager_list_id"]).find("#summary_end_date").html(job_details.end_date);
+			$("#rowdetails_export_" + datarecord["manager_list_id"]).find("#summary_limit").html(job_details.limit);
+			$("#rowdetails_export_" + datarecord["manager_list_id"]).find("#summary_recurring_export").html(job_details.recurring_export);
+			$("#rowdetails_export_" + datarecord["manager_list_id"]).find("#summary_only_new_posts").html(job_details.only_new_posts);
 
-			$("#rowdetails_export_"+datarecord["manager_list_id"]).find("#summary_recipient").html(job_details.recipient);
+			$("#rowdetails_export_" + datarecord["manager_list_id"]).find("#summary_recipient").html(job_details.recipient);
 
 			//<div id="summary">
 			//    <b>Manager list: </b><span id="summary_manager_list"></span> <br/> <br/>
@@ -1299,7 +1399,7 @@
 			return typeof(input) === 'object' && (input instanceof Array);
 		}
 
-		$("#rowdetails_export_"+datarecord["manager_list_id"]).find("#export_data_button").click(function () {
+		$("#rowdetails_export_" + datarecord["manager_list_id"]).find("#export_data_button").click(function () {
 			job_details = get_job_details();
 
 			var payload = new Object();
@@ -1328,7 +1428,7 @@
 				data: payload,
 				success: function (response, textStatus, jqXHR) {
 					$inputs.prop("disabled", false);
-//					$("#export_data_button").hide(100);
+					//					$("#export_data_button").hide(100);
 					$("#message").html("<b>Job created successfully</b>");
 					update_summary_info();
 					$("#summary").show();
@@ -1361,26 +1461,26 @@
 		});
 
 	}
-	function load_export_data(url,datarecord){
-//		tab_urls.export+datarecord["manager_list_id"]
+	function load_export_data(url, datarecord) {
+		//		tab_urls.export+datarecord["manager_list_id"]
 		console.log(url);
 		$.ajax({
 			url: url,
 			success: function (data) {
-				var style=$(data).find("#content").find("style");
-				$("#rowdetails_export_"+datarecord["manager_list_id"]).prepend(style);
-				var email="<?php echo $this->session->userdata("email_address");?>";
+				var style = $(data).find("#content").find("style");
+				$("#rowdetails_export_" + datarecord["manager_list_id"]).prepend(style);
+				var email = "<?php echo $this->session->userdata("email_address");?>";
 				console.log(email);
-				$("#rowdetails_export_"+datarecord["manager_list_id"]).find("img").remove();
-				$("#rowdetails_export_"+datarecord["manager_list_id"]).append($(data).find("#main"));
+				$("#rowdetails_export_" + datarecord["manager_list_id"]).find("img").remove();
+				$("#rowdetails_export_" + datarecord["manager_list_id"]).append($(data).find("#main"));
 
-				$("#rowdetails_export_"+datarecord["manager_list_id"]).find("legend").remove();
-				$("#rowdetails_export_"+datarecord["manager_list_id"]).find("#recipient").val(email);
+				$("#rowdetails_export_" + datarecord["manager_list_id"]).find("legend").remove();
+				$("#rowdetails_export_" + datarecord["manager_list_id"]).find("#recipient").val(email);
 				load_export_scripts(datarecord);
-				var select=$("#rowdetails_export_"+datarecord["manager_list_id"]).find("#manager_list_id_jqxDropDownList");
-				var option=select.find("option[value='"+datarecord["manager_list_id"]+"']").text();
-				$("#rowdetails_export_"+datarecord["manager_list_id"]).find("fieldset").first().append("<span>"+option+"</span>");
-				$("#rowdetails_export_"+datarecord["manager_list_id"]).find("fieldset").first().find("#manager_list_id").hide();
+				var select = $("#rowdetails_export_" + datarecord["manager_list_id"]).find("#manager_list_id_jqxDropDownList");
+				var option = select.find("option[value='" + datarecord["manager_list_id"] + "']").text();
+				$("#rowdetails_export_" + datarecord["manager_list_id"]).find("fieldset").first().append("<span>" + option + "</span>");
+				$("#rowdetails_export_" + datarecord["manager_list_id"]).find("fieldset").first().find("#manager_list_id").hide();
 
 			}
 		});
@@ -1398,8 +1498,8 @@
 			"last_errors/script.js",
 		);
 
-		foreach($scripts as $script){
-			printf("\n%s\n",file_get_contents(sprintf("%s/%s",$base_directory,$script)));
+		foreach ($scripts as $script) {
+			printf("\n%s\n", file_get_contents(sprintf("%s/%s", $base_directory, $script)));
 		}
 		?>
 
@@ -1423,22 +1523,57 @@
 			sortcolumn: 'manager_list_id',
 			sortdirection: 'desc',
 			datafields: [
-				{name: 'manager_id', type: 'number'},
-				{name: 'manager', type: 'string'},
-				{name: 'manager_list_id', type: 'number'},
-				{name: 'manager_list', type: 'string'},
-//				{name: 'list_categories', type: 'string'},
-				{name: 'revenue', type: 'string'},
-				{name: 'today', type: 'number'},
-				{name: 'yesterday', type: 'number'},
-				{name: 'daily_average', type: 'number'},
-				{name: 'errors_today', type: 'number'},
-				{name: 'error_rate', type: 'float'},
-				{name: 'gross', type: 'number'},
-				{name: 'last_report_date', type: 'date'}
+				{
+					name: 'manager_id',
+					type: 'number'
+				},
+				{
+					name: 'manager',
+					type: 'string'
+				},
+				{
+					name: 'manager_list_id',
+					type: 'number'
+				},
+				{
+					name: 'manager_list',
+					type: 'string'
+				},
+				//				{name: 'list_categories', type: 'string'},
+				{
+					name: 'revenue',
+					type: 'string'
+				},
+				{
+					name: 'today',
+					type: 'number'
+				},
+				{
+					name: 'yesterday',
+					type: 'number'
+				},
+				{
+					name: 'daily_average',
+					type: 'number'
+				},
+				{
+					name: 'errors_today',
+					type: 'number'
+				},
+				{
+					name: 'error_rate',
+					type: 'float'
+				},
+				{
+					name: 'gross',
+					type: 'number'
+				},
+				{
+					name: 'last_report_date',
+					type: 'date'
+				}
 			],
 		});
-
 
 		var greater_than_zero_filter = function () {
 
@@ -1526,7 +1661,7 @@
 		var tab_urls = {
 			routes: "/admin/manager_lists/routing_rules/",
 			posts: "/admin/manager_lists/last_posts/",
-            errors: "/admin/manager_lists/last_errors/",
+			errors: "/admin/manager_lists/last_errors/",
 			stats: "/admin/manager_lists/stats/",
 			current_stats: "/admin/manager_lists/current_stats/",
 			manager: "/admin/manager/edit/",
@@ -1541,77 +1676,77 @@
 		var initrowdetails = function (index, parentElement, gridElement, datarecord) {
 			console.log($($($(parentElement).children()[0])));
 			$($($(parentElement).children()[0])).jqxTabs({theme: theme});
-			$($($(parentElement).children()[0])).find("li").click(function(){
-				var currentTab=$(this).find(".jqx-tabs-titleContentWrapper").text();
+			$($($(parentElement).children()[0])).find("li").click(function () {
+				var currentTab = $(this).find(".jqx-tabs-titleContentWrapper").text();
 				var tab;
-				switch(currentTab){
+				switch (currentTab) {
 					case 'Routes':
-						load_routing_rules(datarecord,tab_urls.routes,parentElement);
-						tab='routes';
+						load_routing_rules(datarecord, tab_urls.routes, parentElement);
+						tab = 'routes';
 						break;
 					case 'Posts':
-						tab='posts';
+						tab = 'posts';
 						$("#rowdetails_posts").html('<div id="dataTable"><img src="/js/jqwidgets/styles/images/loader.gif"/></div>');
-						$("#rowdetails_posts").attr("id","rowdetails_posts_"+datarecord['manager_list_id']);
-						build_posts(datarecord['manager_list_id'],index, parentElement, gridElement, datarecord);
+						$("#rowdetails_posts").attr("id", "rowdetails_posts_" + datarecord['manager_list_id']);
+						build_posts(datarecord['manager_list_id'], index, parentElement, gridElement, datarecord);
 						break;
 					case 'Last Errors':
 						$("#rowdetails_last_errors").html('<div id="dataTable"><img src="/js/jqwidgets/styles/images/loader.gif"/></div>');
-						$("#rowdetails_last_errors").attr("id","rowdetails_last_errors_"+datarecord['manager_list_id']);
-						build_last_errors(datarecord['manager_list_id'],index, parentElement, gridElement, datarecord);
+						$("#rowdetails_last_errors").attr("id", "rowdetails_last_errors_" + datarecord['manager_list_id']);
+						build_last_errors(datarecord['manager_list_id'], index, parentElement, gridElement, datarecord);
 						break;
 					case 'Stats':
-						tab='stats';
+						tab = 'stats';
 						$("#rowdetails_stats").html('<div id="dataTable"></div>');
-						$("#rowdetails_stats").attr("id","rowdetails_stats_"+datarecord['manager_list_id']);
-						build_stats(datarecord['manager_list_id'],index, parentElement, gridElement, datarecord);
+						$("#rowdetails_stats").attr("id", "rowdetails_stats_" + datarecord['manager_list_id']);
+						build_stats(datarecord['manager_list_id'], index, parentElement, gridElement, datarecord);
 						break;
 					case 'Current Stats':
-						tab='current_stats';
+						tab = 'current_stats';
 						$("#rowdetails_current_stats").html('<div id="dataTable"></div>');
-						$("#rowdetails_current_stats").attr("id","rowdetails_current_stats_"+datarecord['manager_list_id']);
-						build_current_stats(datarecord['manager_list_id'],index, parentElement, gridElement, datarecord);
+						$("#rowdetails_current_stats").attr("id", "rowdetails_current_stats_" + datarecord['manager_list_id']);
+						build_current_stats(datarecord['manager_list_id'], index, parentElement, gridElement, datarecord);
 						break;
 					case 'Edit Manager':
-						tab='edit_manager';
-						get_manager_info(datarecord,"/admin/manager/edit/");
+						tab = 'edit_manager';
+						get_manager_info(datarecord, "/admin/manager/edit/");
 						break;
 					case 'Edit Manager List':
-						tab='edit_manager_list';
+						tab = 'edit_manager_list';
 						load_manager_list(datarecord);
 						break;
 					case 'Legacy Queue':
-						tab='legacy_queue';
-						$("#rowdetails_legacy_queue").attr("id","rowdetails_legacy_queue_"+datarecord['manager_list_id']);
+						tab = 'legacy_queue';
+						$("#rowdetails_legacy_queue").attr("id", "rowdetails_legacy_queue_" + datarecord['manager_list_id']);
 						load_legacy_queue(datarecord);
 						break;
 					case 'Export':
-						tab='export';
-						$("#rowdetails_export").attr("id","rowdetails_export_"+datarecord['manager_list_id']);
-						load_export_data(tab_urls.export+datarecord["manager_list_id"],datarecord);
+						tab = 'export';
+						$("#rowdetails_export").attr("id", "rowdetails_export_" + datarecord['manager_list_id']);
+						load_export_data(tab_urls.export + datarecord["manager_list_id"], datarecord);
 						break;
 					case 'Jobs':
-						tab='jobs';
+						tab = 'jobs';
 						$("#rowdetails_jobs").html('<div id="jqxWidget" style="float: left;"><div id="jqxgrid"></div></div>');
-						$("#rowdetails_jobs").attr("id","rowdetails_jobs_"+datarecord['manager_list_id']);
-						build_jobs_here(datarecord['manager_list_id'],index, parentElement, gridElement, datarecord);
+						$("#rowdetails_jobs").attr("id", "rowdetails_jobs_" + datarecord['manager_list_id']);
+						build_jobs_here(datarecord['manager_list_id'], index, parentElement, gridElement, datarecord);
 						break;
 					case 'Logs':
-						tab='logs';
+						tab = 'logs';
 						$("#rowdetails_logs").html('<div id="jqxWidget" style="float: left;"><div id="jqxgrid"></div></div>');
-						$("#rowdetails_logs").attr("id","rowdetails_logs_"+datarecord['manager_list_id']);
-						build_logs_here(datarecord['manager_list_id'],index, parentElement, gridElement, datarecord);
+						$("#rowdetails_logs").attr("id", "rowdetails_logs_" + datarecord['manager_list_id']);
+						build_logs_here(datarecord['manager_list_id'], index, parentElement, gridElement, datarecord);
 						break;
 					case 'Archive Routes':
-						tab ='archive_routes';
-						$("#rowdetails_archive_routes").attr('id',"rowdetails_archive_routes_"+datarecord['manager_list_id']);
-						$("#rowdetails_archive_routes_"+datarecord['manager_list_id']).html('<img src="/js/jqwidgets/styles/images/loader.gif"/>');
-						var url="/admin/manager_lists/archive_routes/" + datarecord['manager_list_id'];
+						tab = 'archive_routes';
+						$("#rowdetails_archive_routes").attr('id', "rowdetails_archive_routes_" + datarecord['manager_list_id']);
+						$("#rowdetails_archive_routes_" + datarecord['manager_list_id']).html('<img src="/js/jqwidgets/styles/images/loader.gif"/>');
+						var url = "/admin/manager_lists/archive_routes/" + datarecord['manager_list_id'];
 						$.ajax({
 							url: url,
 							success: function (data) {
-								$("#rowdetails_archive_routes_"+datarecord["manager_list_id"]).find("img").remove();
-								$("#rowdetails_archive_routes_"+datarecord["manager_list_id"]).append($(data).find("#content"));
+								$("#rowdetails_archive_routes_" + datarecord["manager_list_id"]).find("img").remove();
+								$("#rowdetails_archive_routes_" + datarecord["manager_list_id"]).append($(data).find("#content"));
 							}
 						});
 						break;
@@ -1619,7 +1754,7 @@
 						console.log("Tab is not initialized in the switch statement.");
 						break;
 				}
-				$(this).attr('id',tab+datarecord["manager_list_id"]);
+				$(this).attr('id', tab + datarecord["manager_list_id"]);
 			});
 			$($($(parentElement).children()[0])).find("li").first().trigger("click");
 		};
@@ -1640,10 +1775,24 @@
 			enablebrowserselection: true,
 			rowdetails: true,
 			initrowdetails: initrowdetails,
-			rowdetailstemplate: {rowdetails: $("#rowdetails").html(), rowdetailsheight: 600},
+			rowdetailstemplate: {
+				rowdetails: $("#rowdetails").html(),
+				rowdetailsheight: 600
+			},
 			columns: [
-				{text: 'manager', dataField: 'manager', cellsalign: 'left', filtercondition: 'contains', width: 200},
-				{text: 'ID', dataField: 'manager_list_id', cellsalign: 'center', width: 40},
+				{
+					text: 'manager',
+					dataField: 'manager',
+					cellsalign: 'left',
+					filtercondition: 'contains',
+					width: 200
+				},
+				{
+					text: 'ID',
+					dataField: 'manager_list_id',
+					cellsalign: 'center',
+					width: 40
+				},
 				{
 					text: 'manager list',
 					dataField: 'manager_list',
@@ -1652,18 +1801,39 @@
 					cellsalign: 'left',
 					width: 240
 				},
-//				{
-//					text: 'list categories',
-//					dataField: 'list_categories',
-//					filtertype: 'textbox',
-//					filtercondition: 'contains',
-//					cellsalign: 'left',
-//					width: 120
-//				},
-				{text: 'today', dataField: 'today', cellsalign: 'right', width: 90, type: 'number'},
-				{text: 'yesterday', dataField: 'yesterday', cellsalign: 'right', width: 90},
-				{text: 'daily average', dataField: 'daily_average', cellsalign: 'right', width: 90},
-				{text: 'errors today', dataField: 'errors_today', cellsalign: 'right', width: 90},
+				//				{
+				//					text: 'list categories',
+				//					dataField: 'list_categories',
+				//					filtertype: 'textbox',
+				//					filtercondition: 'contains',
+				//					cellsalign: 'left',
+				//					width: 120
+				//				},
+				{
+					text: 'today',
+					dataField: 'today',
+					cellsalign: 'right',
+					width: 90,
+					type: 'number'
+				},
+				{
+					text: 'yesterday',
+					dataField: 'yesterday',
+					cellsalign: 'right',
+					width: 90
+				},
+				{
+					text: 'daily average',
+					dataField: 'daily_average',
+					cellsalign: 'right',
+					width: 90
+				},
+				{
+					text: 'errors today',
+					dataField: 'errors_today',
+					cellsalign: 'right',
+					width: 90
+				},
 				{
 					text: 'error rate',
 					dataField: 'error_rate',
@@ -1671,40 +1841,71 @@
 					width: 90,
 					cellclassname: error_class
 				},
-				{text: 'gross', dataField: 'gross', cellsalign: 'right', width: 90},
-				{text: 'last post', dataField: 'last_report_date', cellsalign: 'right', width: 90}
+				{
+					text: 'gross',
+					dataField: 'gross',
+					cellsalign: 'right',
+					width: 90
+				},
+				{
+					text: 'last post',
+					dataField: 'last_report_date',
+					cellsalign: 'right',
+					width: 90
+				}
 			]
 		});
 	});
 
-
-
-//	// display selected row index.
-//	$("#manager_lists_grid").on('cellselect', function (event) {
-//		var columnheader = $("#manager_lists_grid").jqxGrid('getcolumn', event.args.datafield).text;
-//	});
-//
-//	// display unselected row index.
-//	$("#manager_lists_grid").on('cellunselect', function (event) {
-//		var columnheader = $("#manager_lists_grid").jqxGrid('getcolumn', event.args.datafield).text;
-//	});
-	function build_jobs_here(manager_list_id,index, parentElement, gridElement, datarecord) {
+	//	// display selected row index.
+	//	$("#manager_lists_grid").on('cellselect', function (event) {
+	//		var columnheader = $("#manager_lists_grid").jqxGrid('getcolumn', event.args.datafield).text;
+	//	});
+	//
+	//	// display unselected row index.
+	//	$("#manager_lists_grid").on('cellunselect', function (event) {
+	//		var columnheader = $("#manager_lists_grid").jqxGrid('getcolumn', event.args.datafield).text;
+	//	});
+	function build_jobs_here(manager_list_id, index, parentElement, gridElement, datarecord) {
 		var managerListID = manager_list_id;
 		var url = "/admin/manager_lists/job_dataset/" + managerListID;
-
 
 		// prepare the data
 		var source = {
 			datatype: "json",
 			datafields: [
-				{name: 'consumer_job_id', type: 'int'},
-				{name: 'consumer_job_type', type: 'string'},
-				{name: 'manager_list', type: 'string'},
-				{name: 'recipient', type: 'string'},
-				{name: 'processed_at', type: 'datetime'},
-				{name: 'created_at', type: 'datetime'},
-				{name: 'consumer_job_status', type: 'string'},
-				{name: 'output', type: 'string'}
+				{
+					name: 'consumer_job_id',
+					type: 'int'
+				},
+				{
+					name: 'consumer_job_type',
+					type: 'string'
+				},
+				{
+					name: 'manager_list',
+					type: 'string'
+				},
+				{
+					name: 'recipient',
+					type: 'string'
+				},
+				{
+					name: 'processed_at',
+					type: 'datetime'
+				},
+				{
+					name: 'created_at',
+					type: 'datetime'
+				},
+				{
+					name: 'consumer_job_status',
+					type: 'string'
+				},
+				{
+					name: 'output',
+					type: 'string'
+				}
 			],
 			id: 'consumer_job_id',
 			url: url
@@ -1718,7 +1919,7 @@
 			console.log(datarecord);
 		};
 
-		$("#rowdetails_jobs_"+manager_list_id).find("#jqxgrid").jqxGrid({
+		$("#rowdetails_jobs_" + manager_list_id).find("#jqxgrid").jqxGrid({
 			theme: theme,
 			width: 1024,
 			source: dataAdapter,
@@ -1757,13 +1958,26 @@
 					cellsalign: 'left',
 					width: 240
 				},
-				{text: 'processed_at', datafield: 'processed_at', width: 140},
-				{text: 'created_at', datafield: 'created_at', width: 140},
-				{text: 'status', datafield: 'consumer_job_status', filtertype: 'checkedlist', width: 80}
+				{
+					text: 'processed_at',
+					datafield: 'processed_at',
+					width: 140
+				},
+				{
+					text: 'created_at',
+					datafield: 'created_at',
+					width: 140
+				},
+				{
+					text: 'status',
+					datafield: 'consumer_job_status',
+					filtertype: 'checkedlist',
+					width: 80
+				}
 			]
 		});
 	}
-	function build_logs_here(manager_list_id,index, parentElement, gridElement, datarecord){
+	function build_logs_here(manager_list_id, index, parentElement, gridElement, datarecord) {
 		var managerListID = manager_list_id;
 		var url = "/admin/manager_lists/log_dataset/" + managerListID;
 
@@ -1771,13 +1985,34 @@
 		var source = {
 			datatype: "json",
 			datafields: [
-				{name: 'manager_list_log_id', type: 'int'},
-				{name: 'manager_list_id', type: 'int'},
-				{name: 'change', type: 'string'},
-				{name: 'notes', type: 'string'},
-				{name: 'user_id', type: 'int'},
-				{name: 'username', type: 'string'},
-				{name: 'created_at', type: 'string'}
+				{
+					name: 'manager_list_log_id',
+					type: 'int'
+				},
+				{
+					name: 'manager_list_id',
+					type: 'int'
+				},
+				{
+					name: 'change',
+					type: 'string'
+				},
+				{
+					name: 'notes',
+					type: 'string'
+				},
+				{
+					name: 'user_id',
+					type: 'int'
+				},
+				{
+					name: 'username',
+					type: 'string'
+				},
+				{
+					name: 'created_at',
+					type: 'string'
+				}
 			],
 			id: 'manager_list_log_id',
 			url: url
@@ -1791,18 +2026,37 @@
 			$($($(parentElement).children()[0])).html('<strong>Changed</strong> <br />' + formattedChange + '<br /><br /><strong>Notes</strong><br />' + datarecord.notes);
 		};
 
-		$("#rowdetails_logs_"+manager_list_id).find("#jqxgrid").jqxGrid({
+		$("#rowdetails_logs_" + manager_list_id).find("#jqxgrid").jqxGrid({
 			theme: theme,
 			width: 1100,
 			source: dataAdapter,
 			rowdetails: true,
-			rowdetailstemplate: {rowdetails: "<div class='main'></div>", rowdetailsheight: 150},
+			rowdetailstemplate: {
+				rowdetails: "<div class='main'></div>",
+				rowdetailsheight: 150
+			},
 			initrowdetails: initrowdetails,
 			columns: [
-				{text: 'Date', datafield: 'created_at', width: 140},
-				{text: 'Who', datafield: 'username', width: 100},
-				{text: 'Change', datafield: 'change', width: 400},
-				{text: 'Notes', datafield: 'notes', width: 400}
+				{
+					text: 'Date',
+					datafield: 'created_at',
+					width: 140
+				},
+				{
+					text: 'Who',
+					datafield: 'username',
+					width: 100
+				},
+				{
+					text: 'Change',
+					datafield: 'change',
+					width: 400
+				},
+				{
+					text: 'Notes',
+					datafield: 'notes',
+					width: 400
+				}
 			]
 		});
 	}
@@ -1922,8 +2176,7 @@
 				<li>Logs</li>
 				<li>Archive Routes</li>
 			</ul>
-			<div id="rowdetails_routes" class="rowdetails_tab"
-			     style="display: block;width: 100%;height: 600px;overflow: scroll; ">
+			<div id="rowdetails_routes" class="rowdetails_tab" style="display: block;width: 100%;height: 600px;overflow: scroll; ">
 				<img src='/js/jqwidgets/styles/images/loader.gif'/>
 			</div>
 			<div id="rowdetails_posts" class="rowdetails_tab" style="display: block;width: 100%;height: 600px;overflow: scroll; ">
@@ -1932,40 +2185,31 @@
 			<div id="rowdetails_last_errors" class="rowdetails_tab" style="display: block;width: 100%;height: 600px;overflow: scroll; ">
 				<img src='/js/jqwidgets/styles/images/loader.gif'/>
 			</div>
-			<div id="rowdetails_stats" class="rowdetails_tab"
-			     style="display: block;width: 100%;height: 600px;overflow: scroll; ">
+			<div id="rowdetails_stats" class="rowdetails_tab" style="display: block;width: 100%;height: 600px;overflow: scroll; ">
 				<img src='/js/jqwidgets/styles/images/loader.gif'/>
 			</div>
-			<div id="rowdetails_current_stats" class="rowdetails_tab"
-			     style="display: block;width: 100%;height: 600px;overflow: scroll; ">
+			<div id="rowdetails_current_stats" class="rowdetails_tab" style="display: block;width: 100%;height: 600px;overflow: scroll; ">
 				<img src='/js/jqwidgets/styles/images/loader.gif'/>
 			</div>
-			<div id="rowdetails_manager" class="rowdetails_tab"
-			     style="display: block;width: 100%;height: 600px;overflow: scroll; ">
+			<div id="rowdetails_manager" class="rowdetails_tab" style="display: block;width: 100%;height: 600px;overflow: scroll; ">
 				<img src='/js/jqwidgets/styles/images/loader.gif'/>
 			</div>
-			<div id="rowdetails_manager_list" class="rowdetails_tab"
-			     style="display: block;width: 100%;height: 600px;overflow: scroll; ">
+			<div id="rowdetails_manager_list" class="rowdetails_tab" style="display: block;width: 100%;height: 600px;overflow: scroll; ">
 				<img src='/js/jqwidgets/styles/images/loader.gif'/>
 			</div>
-			<div id="rowdetails_legacy_queue" class="rowdetails_tab"
-			     style="display: block;width: 100%;height: 600px;overflow: scroll; ">
+			<div id="rowdetails_legacy_queue" class="rowdetails_tab" style="display: block;width: 100%;height: 600px;overflow: scroll; ">
 				<img src='/js/jqwidgets/styles/images/loader.gif'/>
 			</div>
-			<div id="rowdetails_jobs" class="rowdetails_tab"
-			     style="display: block;width: 100%;height: 600px;overflow: scroll; ">
+			<div id="rowdetails_jobs" class="rowdetails_tab" style="display: block;width: 100%;height: 600px;overflow: scroll; ">
 				<img src='/js/jqwidgets/styles/images/loader.gif'/>
 			</div>
-			<div id="rowdetails_export" class="rowdetails_tab"
-			     style="display: block;width: 100%;height: 600px;overflow: scroll; ">
+			<div id="rowdetails_export" class="rowdetails_tab" style="display: block;width: 100%;height: 600px;overflow: scroll; ">
 				<img src='/js/jqwidgets/styles/images/loader.gif'/>
 			</div>
-			<div id="rowdetails_logs" class="rowdetails_tab"
-			     style="display: block;width: 100%;height: 600px;overflow: scroll; ">
+			<div id="rowdetails_logs" class="rowdetails_tab" style="display: block;width: 100%;height: 600px;overflow: scroll; ">
 				<img src='/js/jqwidgets/styles/images/loader.gif'/>
 			</div>
-			<div id="rowdetails_archive_routes" class="rowdetails_tab"
-			     style="display: block;width: 100%;height: 600px;overflow: scroll; ">
+			<div id="rowdetails_archive_routes" class="rowdetails_tab" style="display: block;width: 100%;height: 600px;overflow: scroll; ">
 				<img src='/js/jqwidgets/styles/images/loader.gif'/>
 			</div>
 		</div>

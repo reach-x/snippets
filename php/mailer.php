@@ -16,9 +16,9 @@ fwrite($stream, "ehlo [127.0.0.1]\r\n");
 
 $response = '';
 do {
-    $line = fgets($stream);
-    $response .= $line;
-} while (null !== $line && false !== $line && ' ' != $line{3});
+	$line = fgets($stream);
+	$response .= $line;
+} while (NULL !== $line && FALSE !== $line && ' ' != $line{3});
 
 print_r($response);
 

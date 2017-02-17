@@ -410,7 +410,11 @@ SQL;
 if ($tracking_data['counter_records'] > 0) {
 
 	$report_date = $scrub_date = date('Y-m-d');
-	$email_array = array('tam@inboxmediacorp.com', 'anthony@thinkasdf.com', 'jbrahy@thinkasdf.com');
+	$email_array = array(
+		'tam@inboxmediacorp.com',
+		'anthony@thinkasdf.com',
+		'jbrahy@thinkasdf.com',
+	);
 
 	$subject = "Lead Backup Stats for " . $report_date;
 
@@ -522,11 +526,19 @@ exit;
 
 
 function get_email_domain_subset($email_address) {
+
 	$valid_email_domains = array(
 		'aol' => array('aol.com'),
-		'msn' => array('msn.com', 'live.com', 'hotmail.com'),
+		'msn' => array(
+			'msn.com',
+			'live.com',
+			'hotmail.com',
+		),
 		'yahoo' => array('yahoo.com'),
-		'google' => array('gmail.com', 'google.com')
+		'google' => array(
+			'gmail.com',
+			'google.com',
+		),
 	);
 
 	if (strstr($email_address, '@') === FALSE) {
@@ -548,11 +560,13 @@ function get_email_domain_subset($email_address) {
 }
 
 function endsWith($haystack, $needle) {
+
 	return $needle === "" || (($temp = strlen($haystack) - strlen($needle)) >= 0 && strpos($haystack, $needle, $temp) !== FALSE);
 }
 
 
 function generate_datetime($timestamp = NULL) {
+
 	if ($timestamp === NULL) {
 		$timestamp = time();
 	}
@@ -561,6 +575,7 @@ function generate_datetime($timestamp = NULL) {
 }
 
 function build_tracking_object() {
+
 	return array(
 		'all_records' => array(),
 		'all_aol' => array(),

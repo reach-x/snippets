@@ -13,13 +13,13 @@ $values = array(
 );
 
 
-print_r(combine_keys_and_values($keys,$values));
+print_r(combine_keys_and_values($keys, $values));
 
-function combine_keys_and_values($keys,$values){
+function combine_keys_and_values($keys, $values) {
 
 	$combined = array();
 
-	for($index=0;$index<count($keys);$index++){
+	for ($index = 0; $index < count($keys); $index++) {
 		$combined[$keys[$index]] = $values[$index];
 	}
 
