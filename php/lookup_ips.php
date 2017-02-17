@@ -3,8 +3,8 @@
 class database {
 
 	public $username = "root";
-	public $password = "4RXisthefuture!";
-	public $database = "ip_info";
+	public $password = "<password>";
+	public $database = "<database_name>";
 	public $name = "ip_info";
 	public $server = 'db01.mypm.us';
 	public $port = 3306;

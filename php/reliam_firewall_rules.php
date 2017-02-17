@@ -7,7 +7,7 @@ $destination_machine = $argv[2]; // atjospd9jhdvoj
 $destination_interface = $argv[3]; // 83
 
 date_default_timezone_set("US/Pacific");
-$west_01_username = "jbrahy@reach-x.com";
+$west_01_username = "<username>";
 $west_01_api_key = "50e937350b16d5829b9f9dd46904a2c3ef5d06c1";
 $west_01_url = sprintf("http://west01.cloud.reliam.com/virtual_machines/%s/firewall_rules.json",$source_machine);
 
@@ -91,7 +91,7 @@ foreach ($servers as $virtual_server) {
 	//    "ip_addresses": [
 	//                {
 	//                    "ip_address": {
-	//                    "address": "69.89.78.21",
+	//                    "address": "<ip_address>",
 
 	//print_r($server['ip_addresses'][0]['ip_address']['address']);
 
