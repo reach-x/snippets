@@ -1,0 +1,66 @@
+<?php
+
+
+$path = "/tur/9764/2016/1/14/900137892/1/1/1?mpid=0&olid=200";
+		$domains = array(
+			"www.cashloansx.co.uk",
+			"www.cashloanx.com",
+			"www.chronicpainhelper.com",
+			"www.chronicpainhelpers.com",
+			"www.click-clip-save.com",
+			"www.cosdr.com",
+			"www.deal-bazaar.com",
+			"www.directxsavings.com",
+			"www.esaver-financial.com",
+			"www.findmydegreeprogram.com",
+			"www.gobankcards.com",
+			"www.holidaybankcards.com",
+			"www.installmentfinder.com",
+			"www.installmentnow.com",
+			"www.installmentproducts.com",
+			"www.installmentspace.com",
+			"www.insured2x.com",
+			"www.insuredyes.com",
+			"www.isearch4jobs.com",
+			"www.isearchforjobs.com",
+			"www.loan4x.co.uk",
+			"www.loans2x.com",
+			"www.loans4x.co.uk",
+			"www.loans4x.com",
+			"www.localfitnessdeals.com",
+			"www.money4x.co.uk",
+			"www.money4x.com",
+			"www.mytopschoolsearch.com",
+			"www.onlineratesaver.com",
+			"www.pm1.info",
+			"www.pmy.us",
+			"www.premiumcruisediscounts.com",
+			"www.qualityquotesonline.com",
+			"www.quicksearchforjobs.com",
+			"www.reachxdeals.co.uk",
+			"www.search4creditcards.net",
+			"www.search4work.net",
+			"www.searchforjobsnow.com",
+			"www.shapearticles.co.uk",
+			"www.shapearticles.com",
+			"www.simpleinstallmentloan.com",
+			"www.simplemobileloan.co.uk",
+			"www.simplemobileloan.com",
+			"www.simplemobileloans.co.uk",
+			"www.simplemobileloans.com",
+			"www.simplesaversolutions.com",
+			"www.smileperfectimplants.com",
+			"www.topcollegematch.com",
+			"www.topdiscountx.com",
+			"www.topproductsaver.com",
+			"www.topxdiscount.com",
+			"www.topxsavings.com",
+			"www.trusted-website.com",
+			"www.weeklydirectx.com",
+			"www.weeklysavingsx.com"
+		);
+
+
+foreach ($domains as $domain){
+	printf("<br/><a target=_blank href='http://%s%s'>%s</a>\n",$domain,$path,$domain);
+}
