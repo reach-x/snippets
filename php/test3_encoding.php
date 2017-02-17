@@ -1,4 +1,4 @@
 <?php
 
 
-printf("%s\n",$argv[1]);
+printf("%s\n", $argv[1]);

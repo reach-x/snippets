@@ -60,7 +60,7 @@ class imbk5 extends mysqli {
 				'VID' => $gl_arr['VID'],
 				'ClientName' => $gl_arr['ClientName'],
 				'ListName' => $gl_arr['ListName'],
-				'LiveFeed' => $gl_arr['LiveFeed']
+				'LiveFeed' => $gl_arr['LiveFeed'],
 			);
 		}
 
@@ -140,6 +140,7 @@ class imbk5 extends mysqli {
 	}
 
 	function __destruct() {
+
 		$this->close();
 	}
 

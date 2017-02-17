@@ -2,5 +2,4 @@
 <?php
 
 
-
-printf("%s\n",join($argv[1],file($argv[2])));
+printf("%s\n", join($argv[1], file($argv[2])));

@@ -58,20 +58,17 @@ print_r(get_neverbounce_token($credentials));
 function get_neverbounce_token(&$credentials) {
 
 	$ch = curl_init("https://popularllc.neverbounce.com/v3/access_token");
-	curl_setopt_array($ch,
-	                  array(
-		                  //		                  CURLOPT_VERBOSE => TRUE,
-		                  //		                  CURLOPT_HEADER => TRUE,
-		                  CURLOPT_POST => TRUE,
-		                  CURLOPT_POSTFIELDS => array(
-			                  "grant_type" => 'client_credentials',
-			                  "scope" => 'basic user',
-		                  ),
-		                  CURLOPT_USERPWD => sprintf("%s:%s",
-		                                             $credentials[DATA_SERVICE_NEVERBOUNCE]['username'],
-		                                             $credentials[DATA_SERVICE_NEVERBOUNCE]['password']),
-		                  CURLOPT_RETURNTRANSFER => TRUE,
-	                  ));
+	curl_setopt_array($ch, array(
+			//		                  CURLOPT_VERBOSE => TRUE,
+			//		                  CURLOPT_HEADER => TRUE,
+			CURLOPT_POST => TRUE,
+			CURLOPT_POSTFIELDS => array(
+				"grant_type" => 'client_credentials',
+				"scope" => 'basic user',
+			),
+			CURLOPT_USERPWD => sprintf("%s:%s", $credentials[DATA_SERVICE_NEVERBOUNCE]['username'], $credentials[DATA_SERVICE_NEVERBOUNCE]['password']),
+			CURLOPT_RETURNTRANSFER => TRUE,
+		));
 	$raw_response = curl_exec($ch);
 	$response = json_decode($raw_response, TRUE);
 	$credentials[DATA_SERVICE_NEVERBOUNCE]['access_token'] = $response['access_token'];

@@ -11,6 +11,6 @@ $owner_posts = array(
 );
 
 
-foreach ($owner_posts as $owner_post){
+foreach ($owner_posts as $owner_post) {
 	print_r($owner_post);
 }

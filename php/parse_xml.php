@@ -19,12 +19,12 @@ $index = array();
 xml_parse_into_struct($xml_parser, $xml, $values, $index);
 
 print_r(array(
-//	'values' => $values,
-//	'index' => $index,
+	//	'values' => $values,
+	//	'index' => $index,
 	'payout index' => $index['PAYOUT'],
 	'payout' => $values[$index['PAYOUT'][0]],
-//	'payout' => $values[7],
-	
+	//	'payout' => $values[7],
+
 ));
 
 xml_parser_free($xml_parser);

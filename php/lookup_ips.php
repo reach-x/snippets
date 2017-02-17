@@ -39,20 +39,21 @@ foreach ($rows as $row) {
 	$ip_address = $result->fetch_assoc();
 
 	if (!isset($usage_types[$ip_address['usage_type']])) {
-		$usage_types[$ip_address['usage_type']] = array('hits' => 0, 'amount' => -0);
+		$usage_types[$ip_address['usage_type']] = array(
+			'hits' => 0,
+			'amount' => -0,
+		);
 	}
 
 	$usage_types[$ip_address['usage_type']]['hits']++;
 
 	if (isset($row['manager_post_id']) && $row['manager_post_id'] > 0) {
 
-		$sql = sprintf("select sum(amount) amount from lbc.campaign_revenue where manager_post_id=%d and `date` BETWEEN '2016-02-29 00:00:00' AND '2016-03-02 23:59:59'",
-		               $row['manager_post_id']);
+		$sql = sprintf("select sum(amount) amount from lbc.campaign_revenue where manager_post_id=%d and `date` BETWEEN '2016-02-29 00:00:00' AND '2016-03-02 23:59:59'", $row['manager_post_id']);
 		$result = $mysqli->query($sql);
 		$revenue = $result->fetch_assoc();
 		//print_r(array('$revenue' => $revenue, '$sql' => $sql));
-		$usage_types[$ip_address['usage_type']]['amount'] = round(floatval($usage_types[$ip_address['usage_type']]['amount']) + floatval($revenue['amount']),
-		                                                          2);
+		$usage_types[$ip_address['usage_type']]['amount'] = round(floatval($usage_types[$ip_address['usage_type']]['amount']) + floatval($revenue['amount']), 2);
 	}
 
 }

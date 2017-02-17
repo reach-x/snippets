@@ -9,27 +9,23 @@ $destination_interface = $argv[3]; // 83
 date_default_timezone_set("US/Pacific");
 $west_01_username = "<username>";
 $west_01_api_key = "50e937350b16d5829b9f9dd46904a2c3ef5d06c1";
-$west_01_url = sprintf("http://west01.cloud.reliam.com/virtual_machines/%s/firewall_rules.json",$source_machine);
+$west_01_url = sprintf("http://west01.cloud.reliam.com/virtual_machines/%s/firewall_rules.json", $source_machine);
 
 $west_02_username = "jb@popularllc.com";
 $west_02_api_key = "15add47ac480e55c0107742eef75c9c77256c2f8";
-$west_02_url = sprintf("http://west01.cloud.reliam.com/virtual_machines/%s/firewall_rules.json",$destination_machine);
+$west_02_url = sprintf("http://west01.cloud.reliam.com/virtual_machines/%s/firewall_rules.json", $destination_machine);
 
 $firewall_rules = onapp_api($west_01_username, $west_01_api_key, $west_01_url);
 
-foreach($firewall_rules as $firewall_rule){
-	
+foreach ($firewall_rules as $firewall_rule) {
+
 	$address = $firewall_rule['firewall_rule']['address'];
 
-	
+
 }
 
 
-
-
-
-
-function onapp_api($username,$api_key,$url){
+function onapp_api($username, $api_key, $url) {
 
 	$ch = curl_init();
 
@@ -44,10 +40,9 @@ function onapp_api($username,$api_key,$url){
 	$response = json_decode(curl_exec($ch), TRUE);
 
 	curl_close($ch);
-	
+
 	return $response;
 }
-
 
 
 exit;
@@ -65,7 +60,7 @@ $server_template_variables = array(
 	'monthly_bandwidth_used',
 	'total_disk_size',
 	'updated_at',
-	'created_at'
+	'created_at',
 );
 
 //hostname: pm-prod-app05

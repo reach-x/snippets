@@ -1,3 +1,3 @@
 <?php
 
-printf("minute: %d\n",date("i"));
+printf("minute: %d\n", date("i"));
