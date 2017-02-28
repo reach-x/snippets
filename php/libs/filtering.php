@@ -213,6 +213,12 @@ print_r($filter->run($request, $fields));
 
 class filter {
 
+	/**
+	 * @param $request
+	 * @param $fields
+	 *
+	 * @return array
+	 */
 	function run($request, $fields) {
 
 		$clean_data = array();
