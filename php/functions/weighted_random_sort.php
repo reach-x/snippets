@@ -29,7 +29,9 @@ $bag_o_digits = array_map($weight_lookup, $bag_o_digits);
 
 //print_r($bag_o_digits);
 
-$weighted_random_sort = array_flip(array_map(function($key) use($bag_o_digits) { return array_search($key, $bag_o_digits); }, array_keys($weights)));
+$weighted_random_sort = array();
+
+array_map(function($key) use(&$weighted_random_sort, $bag_o_digits) { $weighted_random_sort[array_search($key, $bag_o_digits)] =  $key; }, array_keys($weights));
 
 ksort($weighted_random_sort);
 
