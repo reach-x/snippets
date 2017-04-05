@@ -1,0 +1,18 @@
+//{
+//  "site_id": "114",
+//  "filter": "SITE_ENTRY_POST_FILTER_IN_ARRAY",
+//  "value": "10002",
+//  "criteria": {
+//	"BUYER_ID": [
+//	  10001,
+//	  10002
+//	]
+//  },
+//  "record_conversion": false,
+//  "$field_name": "buyer_id",
+//  "$site_entry_data[$field_name]": "10002",
+//  "$site_entry_data[strtolower($field_name)]": "10002",
+//  "$site_entry_data[strtoupper($field_name)]": null,
+//  "method": "$record_conversion = in_array($value, $criteria[$field_name]);",
+//  "expanded": "in_array(10002,);"
+//}
