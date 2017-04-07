@@ -2,9 +2,9 @@
 
 <?php
 
-$source_machine = $argv[1]; // pn1cj9wcha0eko
-$destination_machine = $argv[2]; // atjospd9jhdvoj
-$destination_interface = $argv[3]; // 83
+$source_machine = $argv[1];
+$destination_machine = $argv[2];
+$destination_interface = $argv[3];
 
 date_default_timezone_set("US/Pacific");
 $west_01_username = "<username>";
