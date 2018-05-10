@@ -1,0 +1,20 @@
+{
+  "topicaAction": {
+	"username": "username",
+	"password": "password",
+	"subscriberAdd": {
+	  "list": "list_id",
+	  "data": {
+		"source": "inline",
+		"content": [
+		  "asdf@asdf.com",
+		  "asdf@asdf.com",
+		  "asdf@asdf.com",
+		  "asdf@asdf.com",
+		  "asdf@asdf.com",
+		  "asdf@asdf.com"
+		]
+	  }
+	}
+  }
+}
