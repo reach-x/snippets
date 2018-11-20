@@ -1,0 +1,14 @@
+{
+   "topicaAction" : {
+      "account" : "alucard", "password" : "carpa&thian23",
+      "subscriberAdd" : {
+         "list" : "medical,books",
+         "data" : {
+            "source" : "inline",
+            "content" : [
+               "alexander.hamilton@debiandental.org",
+               "fred@bedrock.co.uk",
+               "support@bicyclebonanza.com"
+] }
+} }
+}
