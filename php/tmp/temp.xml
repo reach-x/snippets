@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DDCCommonData xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" source="ECloudConnect"
+               AuditDate="2018-11-30T13:11:32.4222315Z">
+    <CounterNotification>
+        <Date>2018-11-29T01:48:00</Date>
+        <MachineModel>Model 123</MachineModel>
+        <MachineID xsi:nil="true"/>
+        <SerialNumber>CGD67291</SerialNumber>
+        <SourceDeviceID xsi:nil="true"/>
+        <SourceModelID xsi:nil="true"/>
+        <EncompassID xsi:nil="true"/>
+        <ChargeCounter>
+            <Counter Mode="PRINT" Color="BLACK" Type="COPY">
+                <Large>0</Large>
+                <Small>2043</Small>
+            </Counter>
+            <Counter Mode="PRINT" Color="FULL" Type="COPY">
+                <Large>0</Large>
+                <Small>0</Small>
+            </Counter>
+            <Counter Mode="PRINT" Color="TWIN" Type="COPY">
+                <Large>0</Large>
+                <Small>0</Small>
+            </Counter>
+            <Counter Mode="PRINT" Color="BLACK" Type="FAX">
+                <Large>0</Large>
+                <Small>0</Small>
+            </Counter>
+            <Counter Mode="PRINT" Color="FULL" Type="FAX">
+                <Large>0</Large>
+                <Small>0</Small>
+            </Counter>
+            <Counter Mode="PRINT" Color="TWIN" Type="FAX">
+                <Large>0</Large>
+                <Small>0</Small>
+            </Counter>
+            <Counter Mode="PRINT" Color="BLACK" Type="PRINT">
+                <Large>0</Large>
+                <Small>2470</Small>
+            </Counter>
+            <Counter Mode="PRINT" Color="FULL" Type="PRINT">
+                <Large>0</Large>
+                <Small>0</Small>
+            </Counter>
+            <Counter Mode="PRINT" Color="TWIN" Type="PRINT">
+                <Large>0</Large>
+                <Small>0</Small>
+            </Counter>
+            <Counter Mode="PRINT" Color="BLACK" Type="LIST">
+                <Large>0</Large>
+                <Small>11</Small>
+            </Counter>
+            <Counter Mode="PRINT" Color="FULL" Type="LIST">
+                <Large>0</Large>
+                <Small>0</Small>
+            </Counter>
+            <Counter Mode="PRINT" Color="TWIN" Type="LIST">
+                <Large>0</Large>
+                <Small>0</Small>
+            </Counter>
+            <Counter Mode="SCAN" Color="BLACK" Type="COPY">
+                <Large>0</Large>
+                <Small>1270</Small>
+            </Counter>
+            <Counter Mode="SCAN" Color="FULL" Type="COPY">
+                <Large>0</Large>
+                <Small>0</Small>
+            </Counter>
+            <Counter Mode="SCAN" Color="TWIN" Type="COPY">
+                <Large>0</Large>
+                <Small>0</Small>
+            </Counter>
+            <Counter Mode="SCAN" Color="BLACK" Type="FAX">
+                <Large>0</Large>
+                <Small>21</Small>
+            </Counter>
+            <Counter Mode="SCAN" Color="FULL" Type="FAX">
+                <Large>0</Large>
+                <Small>0</Small>
+            </Counter>
+            <Counter Mode="SCAN" Color="TWIN" Type="FAX">
+                <Large>0</Large>
+                <Small>0</Small>
+            </Counter>
+            <Counter Mode="SCAN" Color="BLACK" Type="NET">
+                <Large>1</Large>
+                <Small>544</Small>
+            </Counter>
+            <Counter Mode="SCAN" Color="FULL" Type="NET">
+                <Large>0</Large>
+                <Small>0</Small>
+            </Counter>
+            <Counter Mode="SCAN" Color="TWIN" Type="NET">
+                <Large>0</Large>
+                <Small>0</Small>
+            </Counter>
+        </ChargeCounter>
+        <ErrorHistory xsi:nil="true"/>
+        <DepartmentCodes/>
+
+
+
