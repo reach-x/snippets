@@ -6,7 +6,7 @@ core.register_fetches("forensiq", function(txn)
 --   local http = require "socket"
 
 local io = require("io")
-local http = require("socket.http")
+local https = require("ssl.https")
 local ltn12 = require("ltn12")
 
 --
@@ -87,7 +87,7 @@ local ltn12 = require("ltn12")
 
     print("API CALL: ", api_call)
 
-    result, statuscode, content = http.request(api_call)
+    result, statuscode, content = https.request(api_call)
 
     -- result = http.request(api_call)
     --
