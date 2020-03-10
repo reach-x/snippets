@@ -6,7 +6,7 @@ class database {
 	public $password = "<password>";
 	public $database = "<database_name>";
 	public $name = "ip_info";
-	public $server = 'db01.mypm.us';
+	public $server = 'database.pm.internal';
 	public $port = 3306;
 }
 

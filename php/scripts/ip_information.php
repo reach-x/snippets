@@ -11,7 +11,7 @@ class database {
 	public $username = "root";
 	public $password = "<password>";
 	public $name = "ip_info";
-	public $server = "db01.mypm.us";
+	public $server = "database.pm.internal";
 	public $port = 3306;
 }
 
