@@ -18,7 +18,7 @@ function pull_from_api() {
 
 	$page_limit = 1000;
 
-	$top_limit = $this->get_count() + 1000;
+	$top_limit = //$this->get_count() + 1000;
 
 	$campaigns = array();
 	$offset = 0;
@@ -46,7 +46,7 @@ function pull_from_api() {
 				'response' => $raw_response,
 			));
 		}
-		$campaigns = $this->append_campaigns($campaigns, json_decode($raw_response));
+		$campaigns = //$this->append_campaigns($campaigns, json_decode($raw_response));
 
 		curl_close($ch);
 
