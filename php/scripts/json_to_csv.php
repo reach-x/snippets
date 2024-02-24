@@ -15,11 +15,12 @@ if ($argc == 3) {
 	$json = json_decode($contents, TRUE);
 
 	$output = array();
-	$header = array_keys($json['records'][0]);
+	//$header = array_keys($json['records'][0]);
+	$header = array_keys($json[0]);
 
 	fputcsv($fp, $header);
 
-	foreach ($json['records'] as $row) {
+	foreach ($json as $row) {
 
 		fputcsv($fp, $row);
 	}
