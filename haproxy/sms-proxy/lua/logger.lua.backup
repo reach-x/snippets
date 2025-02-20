@@ -1,0 +1,35 @@
+local http = require("socket.http")
+local env = require "luasql.mysql".mysql()
+
+-- Connect to the MySQL database
+local conn = env:connect("haproxy", "haproxy", "AKZxXuo7KBd0QPDn", "pm-prod-database.cjcyp4tyx7zk.us-east-1.rds.amazonaws.com", 3306)
+
+core.register_action("log_request", {"http-req"}, function(txn)
+    local client_ip = txn.sf:req_fhdr("X-Forwarded-For") or txn.f:src()
+    local method = txn.sf:method()
+    local path = txn.sf:path()
+    local hostname = txn.sf:req_fhdr("Host") -- Get the hostname from the request
+
+    -- Insert the request log into the database
+    local sql = string.format(
+        [[INSERT INTO request_log (client_ip, method, path, hostname) VALUES ('%s', '%s', '%s', '%s')]], client_ip, method, path, hostname
+    )
+    assert(conn:execute(sql))
+end)
+
+
+core.register_action("log_response", {"http-res"}, function(txn)
+    local status_code = txn.sf:status()
+    local path = txn.sf:path() or "" -- Use an empty string if path is nil
+    local hostname = txn.sf:req_fhdr("Host") or "" -- Use an empty string if hostname is nil
+
+    -- Insert the response log into the database, without logging headers
+    local sql = string.format(
+        [[INSERT INTO response_log (status_code, hostname, path) VALUES (%d, '%s', '%s')]],
+        status_code, hostname, path
+    )
+    local res, err = conn:execute(sql)
+    if not res then
+        core.Alert("Database error: " .. err)
+    end
+end)

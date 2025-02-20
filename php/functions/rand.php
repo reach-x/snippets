@@ -1,7 +1,9 @@
 <?php
 
-//printf("%s\n", rand(100000, 999999));
+printf("%s\n", rand(100000, 999999));
+printf("%s\n", rand(100000, 999999,true));
 
+/*
 		$responses = [
 			'accept',
 			'accept',
@@ -24,3 +26,4 @@
 		];
 
 		printf("%s\n",json_encode($response));
+*/

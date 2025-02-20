@@ -14,7 +14,7 @@ function test_method($index){
 
 	if ($index == 2){
 	
-		continue;
+//		continue;
 		
 	} else {
 	

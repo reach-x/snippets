@@ -3,4 +3,5 @@
 print_r(array(
 		'$argv' => $argv,
 		'md5' => md5($argv[1]),
+		'md5-binary' => md5($argv[1],true),
 	));
