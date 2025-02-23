@@ -1,0 +1,428 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2818
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fnil\fcharset0 Verdana;\f1\fnil\fcharset0 Verdana-Bold;\f2\fnil\fcharset0 Verdana-Italic;
+\f3\fnil\fcharset0 AppleColorEmoji;}
+{\colortbl;\red255\green255\blue255;\red76\green78\blue78;\red0\green0\blue0;\red64\green128\blue0;
+\red0\green22\blue176;\red0\green0\blue255;\red108\green5\blue211;\red68\green21\blue176;}
+{\*\expandedcolortbl;;\csgenericrgb\c29999\c30457\c30457;\csgenericrgb\c0\c0\c0;\csgenericrgb\c25000\c50001\c0;
+\csgenericrgb\c0\c8656\c68986;\csgenericrgb\c0\c0\c100000;\csgenericrgb\c42337\c1841\c82833;\csgenericrgb\c26552\c8264\c69162;}
+\deftab480
+\pard\pardeftab480\slleading40\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf2 -- AWS CLI command to get the private IPs of instances containing "isticle" in their name\cf3 \
+
+\f1\b set
+\f0\b0  \cf4 awsCommand\cf3  
+\f1\b to
+\f0\b0  "/usr/local/bin/aws ec2 describe-instances --query \\"Reservations[*].Instances[*].\{PrivateIP:PrivateIpAddress,Name:Tags[?Key=='Name']|[0].Value\}\\" --filters \\"Name=instance-state-name,Values=running\\" --output json | jq -r '.[][] | select(.Name | test(\\"isticle\\")) | .PrivateIP'"\
+\
+\cf2 -- Get the list of private IPs by executing the AWS CLI command\cf3 \
+
+\f1\b set
+\f0\b0  \cf4 ipAddresses\cf3  
+\f1\b to
+\f0\b0  
+\f1\b \cf5 do shell script
+\f0\b0 \cf3  \cf4 awsCommand\cf3 \
+\
+\cf2 -- Split the IPs into a list\cf3 \
+
+\f1\b set
+\f0\b0  \cf4 ipList\cf3  
+\f1\b to
+\f0\b0  
+\f2\i \cf6 paragraphs
+\f0\i0 \cf3  
+\f1\b of
+\f0\b0  \cf4 ipAddresses\cf3 \
+\
+\cf2 -- If no AWS IPs found, exit\cf3 \
+
+\f1\b if
+\f0\b0  (
+\f1\b \cf6 count
+\f0\b0 \cf3  
+\f1\b of
+\f0\b0  \cf4 ipList\cf3 ) 
+\f1\b is
+\f0\b0  
+\f1\b less than
+\f0\b0  1 
+\f1\b then
+\f0\b0 \
+	
+\f1\b \cf5 display dialog
+\f0\b0 \cf3  "No running AWS instances found with 'isticle' in their name."\
+	
+\f1\b return
+\f0\b0 \
+
+\f1\b end
+\f0\b0  
+\f1\b if
+\f0\b0 \
+\
+\cf2 -- Create a folder on the desktop to store error screenshots\cf3 \
+
+\f1\b set
+\f0\b0  \cf4 errorFolderPath\cf3  
+\f1\b to
+\f0\b0  (\cf7 POSIX path\cf3  
+\f1\b of
+\f0\b0  (
+\f1\b \cf5 path to
+\f0\b0 \cf3  
+\f2\i \cf8 desktop
+\f0\i0 \cf3 )) & "SSH_Errors/"\
+
+\f1\b \cf5 do shell script
+\f0\b0 \cf3  "mkdir -p " & \cf7 quoted form\cf3  
+\f1\b of
+\f0\b0  \cf4 errorFolderPath\cf3 \
+\
+\cf2 -- Initialize counters and window tracking\cf3 \
+
+\f1\b set
+\f0\b0  \cf4 successfulCount\cf3  
+\f1\b to
+\f0\b0  0\
+
+\f1\b set
+\f0\b0  \cf4 failedCount\cf3  
+\f1\b to
+\f0\b0  0\
+
+\f1\b set
+\f0\b0  \cf4 failedIPs\cf3  
+\f1\b to
+\f0\b0  \{\}\
+
+\f1\b set
+\f0\b0  \cf4 openedWindows\cf3  
+\f1\b to
+\f0\b0  \{\}\
+\
+
+\f1\b tell
+\f0\b0  
+\f2\i \cf6 application
+\f0\i0 \cf3  "iTerm"\
+	
+\f1\b repeat
+\f0\b0  
+\f1\b with
+\f0\b0  \cf4 i\cf3  
+\f1\b from
+\f0\b0  1 
+\f1\b to
+\f0\b0  (
+\f1\b \cf6 count
+\f0\b0 \cf3  
+\f1\b of
+\f0\b0  \cf4 ipList\cf3 )\
+		
+\f1\b set
+\f0\b0  \cf4 ipAddress\cf3  
+\f1\b to
+\f0\b0  
+\f2\i \cf6 item
+\f0\i0 \cf3  \cf4 i\cf3  
+\f1\b of
+\f0\b0  \cf4 ipList\cf3 \
+		
+\f1\b set
+\f0\b0  \cf4 logFile\cf3  
+\f1\b to
+\f0\b0  "/tmp/ssh_exit_" & \cf4 ipAddress\cf3  & ".log"\
+		\
+		\cf2 -- Open a new window for each SSH session\cf3 \
+		
+\f1\b set
+\f0\b0  \cf4 newWindow\cf3  
+\f1\b to
+\f0\b0  (
+\f1\b \cf6 create window with default profile
+\f0\b0 \cf3 )\
+		
+\f1\b set
+\f0\b0  
+\f1\b end
+\f0\b0  
+\f1\b of
+\f0\b0  \cf4 openedWindows\cf3  
+\f1\b to
+\f0\b0  \cf4 newWindow\cf3  \cf2 -- Track opened windows\cf3 \
+		\
+		
+\f1\b tell
+\f0\b0  \cf4 newWindow\cf3 \
+			
+\f1\b set
+\f0\b0  \cf4 newSession\cf3  
+\f1\b to
+\f0\b0  \cf7 current session\cf3  
+\f1\b of
+\f0\b0  \cf7 current tab\cf3 \
+			\
+			\cf2 -- Run the SSH command, capture output locally, and get exit code\cf3 \
+			
+\f1\b tell
+\f0\b0  \cf4 newSession\cf3 \
+				
+\f1\b \cf6 write
+\f0\b0 \cf3  \cf6 text\cf3  "ssh root@" & \cf4 ipAddress\cf3  & " \\"/root/update-repos.sh && /usr/bin/su - web-system-sites -c 'git reset --hard --quiet && git pull'\\"; echo $? > " & \cf4 logFile\cf3 \
+			
+\f1\b end
+\f0\b0  
+\f1\b tell
+\f0\b0 \
+		
+\f1\b end
+\f0\b0  
+\f1\b tell
+\f0\b0 \
+	
+\f1\b end
+\f0\b0  
+\f1\b repeat
+\f0\b0 \
+	\
+	\cf2 -- Wait for all sessions to finish before checking results\cf3 \
+	
+\f1\b \cf6 delay
+\f0\b0 \cf3  10 \cf2 -- Adjust this based on estimated execution time\cf3 \
+	\
+	\cf2 -- Process results\cf3 \
+	
+\f1\b repeat
+\f0\b0  
+\f1\b with
+\f0\b0  \cf4 i\cf3  
+\f1\b from
+\f0\b0  1 
+\f1\b to
+\f0\b0  (
+\f1\b \cf6 count
+\f0\b0 \cf3  
+\f1\b of
+\f0\b0  \cf4 ipList\cf3 )\
+		
+\f1\b set
+\f0\b0  \cf4 ipAddress\cf3  
+\f1\b to
+\f0\b0  
+\f2\i \cf6 item
+\f0\i0 \cf3  \cf4 i\cf3  
+\f1\b of
+\f0\b0  \cf4 ipList\cf3 \
+		
+\f1\b set
+\f0\b0  \cf4 logFile\cf3  
+\f1\b to
+\f0\b0  "/tmp/ssh_exit_" & \cf4 ipAddress\cf3  & ".log"\
+		\
+		\cf2 -- Check if exit code file exists\cf3 \
+		
+\f1\b set
+\f0\b0  \cf4 exitCode\cf3  
+\f1\b to
+\f0\b0  "1" \cf2 -- Default to failure if file doesn't exist\cf3 \
+		
+\f1\b try
+\f0\b0 \
+			
+\f1\b set
+\f0\b0  \cf4 exitCode\cf3  
+\f1\b to
+\f0\b0  
+\f1\b \cf5 do shell script
+\f0\b0 \cf3  "cat " & \cf4 logFile\cf3 \
+		
+\f1\b on
+\f0\b0  
+\f1\b error
+\f0\b0 \
+			
+\f1\b set
+\f0\b0  \cf4 exitCode\cf3  
+\f1\b to
+\f0\b0  "1"\
+		
+\f1\b end
+\f0\b0  
+\f1\b try
+\f0\b0 \
+		\
+		
+\f1\b if
+\f0\b0  \cf4 exitCode\cf3  
+\f1\b is
+\f0\b0  "0" 
+\f1\b then
+\f0\b0 \
+			
+\f1\b set
+\f0\b0  \cf4 successfulCount\cf3  
+\f1\b to
+\f0\b0  \cf4 successfulCount\cf3  + 1\
+		
+\f1\b else
+\f0\b0 \
+			\cf2 -- Capture failed session screenshot\cf3 \
+			
+\f1\b set
+\f0\b0  \cf4 screenshotPath\cf3  
+\f1\b to
+\f0\b0  \cf4 errorFolderPath\cf3  & "error_" & \cf4 ipAddress\cf3  & ".png"\
+			
+\f1\b \cf5 do shell script
+\f0\b0 \cf3  "screencapture -l " & \cf4 winID\cf3  & " " & \cf7 quoted form\cf3  
+\f1\b of
+\f0\b0  \cf4 screenshotPath\cf3 \
+			\
+			\cf2 -- Store failed IP\cf3 \
+			
+\f1\b set
+\f0\b0  \cf4 failedCount\cf3  
+\f1\b to
+\f0\b0  \cf4 failedCount\cf3  + 1\
+			
+\f1\b set
+\f0\b0  
+\f1\b end
+\f0\b0  
+\f1\b of
+\f0\b0  \cf4 failedIPs\cf3  
+\f1\b to
+\f0\b0  \cf4 ipAddress\cf3 \
+		
+\f1\b end
+\f0\b0  
+\f1\b if
+\f0\b0 \
+		\
+		\cf2 -- Cleanup logs\cf3 \
+		
+\f1\b \cf5 do shell script
+\f0\b0 \cf3  "rm -f " & \cf4 logFile\cf3 \
+	
+\f1\b end
+\f0\b0  
+\f1\b repeat
+\f0\b0 \
+	\
+	\cf2 -- Close only the windows the script opened\cf3 \
+	
+\f1\b repeat
+\f0\b0  
+\f1\b with
+\f0\b0  \cf4 win\cf3  
+\f1\b in
+\f0\b0  \cf4 openedWindows\cf3 \
+		
+\f1\b tell
+\f0\b0  \cf4 win\cf3  
+\f1\b to
+\f0\b0  
+\f1\b \cf6 close
+\f0\b0 \cf3 \
+	
+\f1\b end
+\f0\b0  
+\f1\b repeat
+\f0\b0 \
+
+\f1\b end
+\f0\b0  
+\f1\b tell
+\f0\b0 \
+\
+\cf2 -- Generate a PDF of all errors if any exist\cf3 \
+
+\f1\b if
+\f0\b0  \cf4 failedCount\cf3  > 0 
+\f1\b then
+\f0\b0 \
+	
+\f1\b set
+\f0\b0  \cf4 pdfPath\cf3  
+\f1\b to
+\f0\b0  \cf4 errorFolderPath\cf3  & "SSH_Error_Report.pdf"\
+	
+\f1\b \cf5 do shell script
+\f0\b0 \cf3  "/opt/homebrew/bin/img2pdf " & \cf4 errorFolderPath\cf3  & "*.png -o " & \cf7 quoted form\cf3  
+\f1\b of
+\f0\b0  \cf4 pdfPath\cf3 \
+	\
+	\cf2 -- Open the PDF for review\cf3 \
+	
+\f1\b \cf5 do shell script
+\f0\b0 \cf3  "open " & \cf7 quoted form\cf3  
+\f1\b of
+\f0\b0  \cf4 pdfPath\cf3 \
+
+\f1\b end
+\f0\b0  
+\f1\b if
+\f0\b0 \
+\
+\cf2 -- Display a final summary\cf3 \
+\pard\pardeftab480\slleading40\pardirnatural\partightenfactor0
+
+\f1\b \cf3 set
+\f0\b0  \cf4 summaryMessage\cf3  
+\f1\b to
+\f0\b0  "AWS SSH Execution Completed.\
+\
+\pard\pardeftab480\slleading40\pardirnatural\partightenfactor0
+\cf3 "\
+\pard\pardeftab480\slleading40\pardirnatural\partightenfactor0
+
+\f1\b \cf3 set
+\f0\b0  \cf4 summaryMessage\cf3  
+\f1\b to
+\f0\b0  \cf4 summaryMessage\cf3  & "
+\f3 \uc0\u10004 \u65039 
+\f0  Successful: " & \cf4 successfulCount\cf3  & "\
+\pard\pardeftab480\slleading40\pardirnatural\partightenfactor0
+\cf3 "\
+\pard\pardeftab480\slleading40\pardirnatural\partightenfactor0
+
+\f1\b \cf3 set
+\f0\b0  \cf4 summaryMessage\cf3  
+\f1\b to
+\f0\b0  \cf4 summaryMessage\cf3  & "
+\f3 \uc0\u10060 
+\f0  Failed: " & \cf4 failedCount\cf3  & "\
+\
+\pard\pardeftab480\slleading40\pardirnatural\partightenfactor0
+\cf3 "\
+\
+
+\f1\b if
+\f0\b0  \cf4 failedCount\cf3  > 0 
+\f1\b then
+\f0\b0 \
+\pard\pardeftab480\slleading40\pardirnatural\partightenfactor0
+\cf3 	
+\f1\b set
+\f0\b0  \cf4 summaryMessage\cf3  
+\f1\b to
+\f0\b0  \cf4 summaryMessage\cf3  & "Errors captured for:\
+" & (\cf4 failedIPs\cf3  
+\f1\b as
+\f0\b0  
+\f2\i \cf6 text
+\f0\i0 \cf3 ) & "\
+\
+\pard\pardeftab480\slleading40\pardirnatural\partightenfactor0
+\cf3 Please check the PDF report on your Desktop."\
+
+\f1\b end
+\f0\b0  
+\f1\b if
+\f0\b0 \
+\
+
+\f1\b \cf5 display dialog
+\f0\b0 \cf3  \cf4 summaryMessage\cf3  \cf5 buttons\cf3  \{"OK"\} \cf5 default button\cf3  "OK"\
+}

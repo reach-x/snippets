@@ -1,0 +1,12 @@
+{
+    "name": "reachx/php-snippets",
+    "description": "a repo of php code snippets",
+    "type": "project",
+    "authors": [
+        {
+            "name": "John Brahy",
+            "email": "john@brahy.com"
+        }
+    ],
+    "require": {}
+}
