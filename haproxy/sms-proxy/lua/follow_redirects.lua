@@ -39,7 +39,7 @@ core.register_service("follow_redirects", "http", function(applet)
     local max_redirects = 10
     local user_id = applet.path:sub(3)
     local url = "https://clickserver.smsmanagerpro.com/advertorialdata?click_id=" .. user_id
---  local url = "https://170.39.213.118/advertorialdata?click_id=" .. user_id
+    -- local url = "https://170.39.213.118/advertorialdata?click_id=" .. user_id
     
     local headers = {}
     local original_headers = {}
@@ -94,7 +94,15 @@ core.register_service("follow_redirects", "http", function(applet)
         return
     end
 
-    local response_body = table.concat(response)  -- Join table elements into a single string
+    local clean_response = {}
+
+    for _, line in ipairs(response) do
+        if type(line) == "string" then
+            table.insert(clean_response, line)
+        end
+    end
+
+    local response_body = table.concat(clean_response) -- Join table elements into a single string
 
     local after_clickserver_request_time = socket.gettime()
 
@@ -143,7 +151,7 @@ core.register_service("follow_redirects", "http", function(applet)
     end
 
     -- Ensure required field exists
-    if not data.destination_url then
+    if not data.destination_url or data.destination_url == "" then
         applet:set_status(500)
         applet:add_header("Content-Type", "text/plain")
         applet:start_response()
@@ -153,6 +161,16 @@ core.register_service("follow_redirects", "http", function(applet)
 
     url = data.destination_url  -- Safe to access after validation
 
+--     -- Ensure we remove the incorrect Content-Type before redirecting
+--     if applet:get_header("Content-Type") then
+--         applet:del_header("Content-Type")
+--     end
+
+    if not original_headers then
+        original_headers = {}
+    end
+    original_headers["Content-Type"] = "text/html"  -- Ensure correct case
+
     -- Redirect loop
     while count < max_redirects do
         local now = socket.gettime()
@@ -161,7 +179,9 @@ core.register_service("follow_redirects", "http", function(applet)
             break
         end
 
-        local response = {}
+        response = {}
+
+        core.log(core.info,"LUA: Following " .. url)
 
         local result, status_code, res_headers, status_line = https.request {
             url = url,
@@ -171,6 +191,8 @@ core.register_service("follow_redirects", "http", function(applet)
             verify = "none",   -- Disable SSL certificate validation
             options = "all"    -- Allow all SSL options
         }
+
+        status_code = status_code or 500
 
         -- Ensure response headers are always a table
         if type(res_headers) ~= "table" then
@@ -194,7 +216,7 @@ core.register_service("follow_redirects", "http", function(applet)
 
         -- Updating URL for the next request
         if res_headers["location"] then
-            url = res_headers["location"]
+            url = res_headers["location"] or url
         else
             break  -- Stop redirect loop if no Location header
         end
