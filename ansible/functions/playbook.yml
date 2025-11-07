@@ -1,0 +1,296 @@
+---
+# Ansible Playbook Example
+# Configuration management and automation
+
+- name: Configure web servers
+  hosts: webservers
+  become: yes
+  gather_facts: yes
+
+  vars:
+    app_name: myapp
+    app_version: "1.0.0"
+    app_port: 8080
+    nginx_port: 80
+    deploy_user: appuser
+
+  vars_files:
+    - vars/secrets.yml
+
+  tasks:
+    - name: Update apt cache
+      apt:
+        update_cache: yes
+        cache_valid_time: 3600
+      when: ansible_os_family == "Debian"
+
+    - name: Install required packages
+      package:
+        name:
+          - nginx
+          - python3
+          - python3-pip
+          - git
+          - curl
+        state: present
+
+    - name: Create application user
+      user:
+        name: "{{ deploy_user }}"
+        state: present
+        shell: /bin/bash
+        home: "/home/{{ deploy_user }}"
+        createhome: yes
+
+    - name: Create application directories
+      file:
+        path: "{{ item }}"
+        state: directory
+        owner: "{{ deploy_user }}"
+        group: "{{ deploy_user }}"
+        mode: '0755'
+      loop:
+        - /var/www/{{ app_name }}
+        - /var/log/{{ app_name }}
+        - /etc/{{ app_name }}
+
+    - name: Copy application files
+      copy:
+        src: "{{ item.src }}"
+        dest: "{{ item.dest }}"
+        owner: "{{ deploy_user }}"
+        mode: '0644'
+      loop:
+        - { src: 'files/app.conf', dest: '/etc/{{ app_name }}/app.conf' }
+        - { src: 'files/requirements.txt', dest: '/var/www/{{ app_name }}/' }
+      notify: Restart application
+
+    - name: Template nginx configuration
+      template:
+        src: templates/nginx.conf.j2
+        dest: /etc/nginx/sites-available/{{ app_name }}
+        owner: root
+        group: root
+        mode: '0644'
+      notify: Reload nginx
+
+    - name: Enable nginx site
+      file:
+        src: /etc/nginx/sites-available/{{ app_name }}
+        dest: /etc/nginx/sites-enabled/{{ app_name }}
+        state: link
+      notify: Reload nginx
+
+    - name: Install Python dependencies
+      pip:
+        requirements: /var/www/{{ app_name }}/requirements.txt
+        virtualenv: /var/www/{{ app_name }}/venv
+        virtualenv_python: python3
+      become_user: "{{ deploy_user }}"
+
+    - name: Clone application repository
+      git:
+        repo: https://github.com/example/myapp.git
+        dest: /var/www/{{ app_name }}/src
+        version: "{{ app_version }}"
+        force: yes
+      become_user: "{{ deploy_user }}"
+
+    - name: Create systemd service
+      template:
+        src: templates/app.service.j2
+        dest: /etc/systemd/system/{{ app_name }}.service
+        mode: '0644'
+      notify: Restart application
+
+    - name: Enable and start application service
+      systemd:
+        name: "{{ app_name }}"
+        enabled: yes
+        state: started
+        daemon_reload: yes
+
+    - name: Configure firewall
+      ufw:
+        rule: allow
+        port: "{{ item }}"
+        proto: tcp
+      loop:
+        - "{{ nginx_port }}"
+        - "22"
+      when: ansible_os_family == "Debian"
+
+    - name: Check if application is responding
+      uri:
+        url: "http://localhost:{{ app_port }}/health"
+        status_code: 200
+      register: health_check
+      until: health_check.status == 200
+      retries: 5
+      delay: 10
+
+  handlers:
+    - name: Reload nginx
+      service:
+        name: nginx
+        state: reloaded
+
+    - name: Restart application
+      systemd:
+        name: "{{ app_name }}"
+        state: restarted
+
+- name: Configure database servers
+  hosts: database
+  become: yes
+
+  tasks:
+    - name: Install PostgreSQL
+      package:
+        name:
+          - postgresql
+          - postgresql-contrib
+          - python3-psycopg2
+        state: present
+
+    - name: Start PostgreSQL service
+      service:
+        name: postgresql
+        state: started
+        enabled: yes
+
+    - name: Create database
+      postgresql_db:
+        name: myapp_db
+        encoding: UTF-8
+        lc_collate: en_US.UTF-8
+        lc_ctype: en_US.UTF-8
+      become_user: postgres
+
+    - name: Create database user
+      postgresql_user:
+        name: myapp_user
+        password: "{{ db_password }}"
+        db: myapp_db
+        priv: ALL
+      become_user: postgres
+      no_log: yes
+
+    - name: Configure PostgreSQL authentication
+      lineinfile:
+        path: /etc/postgresql/*/main/pg_hba.conf
+        line: 'host    myapp_db    myapp_user    10.0.0.0/8    md5'
+        insertafter: EOF
+      notify: Restart PostgreSQL
+
+  handlers:
+    - name: Restart PostgreSQL
+      service:
+        name: postgresql
+        state: restarted
+
+# Roles example
+- name: Deploy with roles
+  hosts: all
+  become: yes
+
+  roles:
+    - common
+    - { role: nginx, when: "'webservers' in group_names" }
+    - { role: postgresql, when: "'database' in group_names" }
+
+# Include tasks
+- name: Include additional tasks
+  hosts: all
+  tasks:
+    - name: Include monitoring setup
+      include_tasks: tasks/monitoring.yml
+      when: enable_monitoring
+
+    - name: Import security tasks
+      import_tasks: tasks/security.yml
+
+# Block with error handling
+- name: Deploy with error handling
+  hosts: webservers
+  tasks:
+    - name: Deploy application block
+      block:
+        - name: Stop application
+          service:
+            name: myapp
+            state: stopped
+
+        - name: Deploy new version
+          copy:
+            src: dist/
+            dest: /var/www/myapp/
+
+        - name: Start application
+          service:
+            name: myapp
+            state: started
+
+      rescue:
+        - name: Rollback on failure
+          command: /usr/local/bin/rollback.sh
+
+        - name: Send alert
+          mail:
+            to: admin@example.com
+            subject: "Deployment failed"
+            body: "Application deployment failed, rolled back"
+
+      always:
+        - name: Cleanup temporary files
+          file:
+            path: /tmp/deploy
+            state: absent
+
+# Loops and conditionals
+- name: Advanced loops
+  hosts: localhost
+  tasks:
+    - name: Loop with dictionary
+      debug:
+        msg: "{{ item.key }} = {{ item.value }}"
+      loop: "{{ lookup('dict', {'a': 1, 'b': 2, 'c': 3}) }}"
+
+    - name: Loop until condition
+      shell: /usr/bin/check-status
+      register: result
+      until: result.stdout.find("ready") != -1
+      retries: 10
+      delay: 5
+
+    - name: Conditional execution
+      command: echo "Production environment"
+      when:
+        - inventory_hostname in groups['production']
+        - app_version is version('1.0', '>=')
+
+# Vault encrypted variables
+# ansible-vault encrypt vars/secrets.yml
+# ansible-vault decrypt vars/secrets.yml
+# ansible-playbook playbook.yml --ask-vault-pass
+
+# Tags
+- name: Task with tags
+  hosts: all
+  tasks:
+    - name: Install packages
+      package:
+        name: nginx
+        state: present
+      tags:
+        - install
+        - packages
+
+    - name: Configure service
+      template:
+        src: config.j2
+        dest: /etc/config
+      tags:
+        - configure
+
+# Run with: ansible-playbook playbook.yml --tags "install"
