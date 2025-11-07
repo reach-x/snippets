@@ -1,0 +1,499 @@
+= AsciiDoc Example Document
+John Doe <john.doe@example.com>
+v1.0.0, 2025-01-07
+:toc: left
+:toclevels: 3
+:numbered:
+:icons: font
+:source-highlighter: highlight.js
+:imagesdir: images
+:homepage: https://example.com
+
+== Introduction
+
+This document demonstrates *AsciiDoc* markup features. AsciiDoc is a
+lightweight markup language for authoring notes, articles, documentation,
+books, and more. It's more feature-rich than Markdown and easier to write
+than DocBook.
+
+== Text Formatting
+
+=== Basic Formatting
+
+- *Bold text* (strong emphasis)
+- _Italic text_ (emphasis)
+- `Monospace text` (code)
+- *_Bold and italic_*
+- `*Bold monospace*`
+
+=== Advanced Formatting
+
+- ^Superscript^: E = mc^2^
+- ~Subscript~: H~2~O
+- [.line-through]#Strikethrough#
+- [.underline]#Underline#
+- #Highlighted text#
+
+== Headers and Sections
+
+=== Level 2 Header
+
+==== Level 3 Header
+
+===== Level 4 Header
+
+====== Level 5 Header
+
+== Lists
+
+=== Unordered Lists
+
+* First item
+* Second item
+** Nested item 1
+** Nested item 2
+* Third item
+
+=== Ordered Lists
+
+. First numbered item
+. Second numbered item
+.. Nested item A
+.. Nested item B
+. Third numbered item
+
+=== Checklist
+
+* [*] Completed task
+* [x] Another completed task
+* [ ] Incomplete task
+
+=== Description Lists
+
+Term 1:: Definition of term 1
+
+Term 2::
+Definition of term 2 with more details.
+Can span multiple lines.
+
+Horizontal description list::
+Term 1::: Definition 1
+Term 2::: Definition 2
+
+=== Q&A List
+
+[qanda]
+What is AsciiDoc?::
+AsciiDoc is a lightweight markup language for authoring documents.
+
+Why use AsciiDoc?::
+It's more powerful than Markdown and easier than DocBook.
+
+== Links and Cross-References
+
+=== External Links
+
+Visit https://asciidoc.org[AsciiDoc website^].
+
+Link with title: https://github.com[GitHub^, role=external, window=_blank]
+
+Email: mailto:john@example.com[Contact us]
+
+=== Internal References
+
+See the <<Introduction>> section.
+
+Jump to <<code-blocks>>.
+
+[[custom-anchor]]
+=== Custom Anchor
+
+Reference this section using <<custom-anchor>>.
+
+== Paragraphs and Blocks
+
+Normal paragraph text goes here. This is a simple paragraph with
+multiple lines that will be formatted as a single block.
+
+.Paragraph with title
+This paragraph has a title above it.
+
+[.lead]
+This is a lead paragraph with larger text.
+
+== Code Blocks
+
+[[code-blocks]]
+=== Source Code Listings
+
+[source,python]
+----
+def factorial(n):
+    if n <= 1:
+        return 1
+    return n * factorial(n - 1)
+
+print(factorial(5))
+----
+
+.JavaScript Example with Title
+[source,javascript,linenums]
+----
+function greet(name) {
+    console.log(`Hello, ${name}!`);
+}
+
+greet("AsciiDoc");
+----
+
+=== Inline Code
+
+Use the `print()` function to output text.
+
+The command `git status` shows repository status.
+
+=== Callouts
+
+[source,python]
+----
+def hello():
+    print("Hello, World!")  # <1>
+    return True  # <2>
+----
+<1> Print greeting message
+<2> Return success status
+
+== Tables
+
+=== Simple Table
+
+|===
+|Header 1 |Header 2 |Header 3
+
+|Row 1, Col 1
+|Row 1, Col 2
+|Row 1, Col 3
+
+|Row 2, Col 1
+|Row 2, Col 2
+|Row 2, Col 3
+|===
+
+=== Table with Formatting
+
+[cols="1,2,3"]
+|===
+|Column 1 |Column 2 |Column 3
+
+|Short
+|Medium length
+|This is a longer column with more content
+
+|*Bold*
+|_Italic_
+|`Code`
+|===
+
+=== Table with Header Row
+
+[%header,cols="2,1,3"]
+|===
+|Feature
+|Status
+|Notes
+
+|Syntax Highlighting
+|✓
+|Supported via various highlighters
+
+|Math Support
+|✓
+|Via stem or latexmath
+
+|PDF Export
+|✓
+|Via asciidoctor-pdf
+|===
+
+=== CSV Data Table
+
+[%header,format=csv]
+|===
+Language,Year,Type
+Python,1991,Interpreted
+Java,1995,Compiled
+JavaScript,1995,Interpreted
+|===
+
+== Images and Media
+
+=== Block Image
+
+image::sample.png[Sample Image,300,200]
+
+.Figure with Caption
+image::diagram.svg[Architecture Diagram,align=center]
+
+=== Inline Image
+
+Click the image:icon.png[Icon,16,16] icon to continue.
+
+== Admonitions
+
+NOTE: This is a note. It provides additional information.
+
+TIP: This is a tip to help you be more productive.
+
+IMPORTANT: This is important information you should know.
+
+WARNING: This is a warning. Be careful!
+
+CAUTION: This requires caution. Proceed carefully.
+
+.Custom Admonition Title
+[NOTE]
+====
+This is a note with a custom title and multiple paragraphs.
+
+You can include lists:
+
+* Item 1
+* Item 2
+
+And code:
+
+[source,python]
+----
+print("Hello")
+----
+====
+
+== Sidebars and Examples
+
+.Optional Title
+****
+This is a sidebar.
+
+It can contain multiple paragraphs, lists, and other content.
+
+* Item 1
+* Item 2
+****
+
+.Example Block
+====
+This is an example of how to use a feature.
+
+[source,python]
+----
+import this
+----
+====
+
+== Quotes and Verses
+
+[quote, Albert Einstein]
+____
+The important thing is not to stop questioning.
+Curiosity has its own reason for existing.
+____
+
+[verse, William Blake, Auguries of Innocence]
+____
+To see a World in a Grain of Sand
+And a Heaven in a Wild Flower
+Hold Infinity in the palm of your hand
+And Eternity in an hour
+____
+
+== Literal and Listing Blocks
+
+....
+This is a literal block.
+All whitespace is preserved.
+    Including indentation.
+....
+
+[listing]
+----
+This is a listing block.
+It's useful for command output.
+
+$ ls -la
+total 48
+drwxr-xr-x  12 user  group   384 Jan  7 10:30 .
+drwxr-xr-x  20 user  group   640 Jan  7 10:00 ..
+----
+
+== Open Blocks
+
+[NOTE]
+--
+This is an open block converted to a note.
+
+Open blocks can be transformed into other block types using styles.
+
+* Flexible
+* Versatile
+* Powerful
+--
+
+== Passthrough Blocks
+
+++++
+<div class="custom-html">
+    This is <strong>raw HTML</strong> content.
+</div>
+++++
+
+== Includes
+
+// Include another document
+// include::chapter1.adoc[]
+
+// Include code from file
+// [source,python]
+// ----
+// include::example.py[]
+// ----
+
+// Include specific lines
+// [source,java]
+// ----
+// include::Example.java[lines=10..20]
+// ----
+
+== Mathematical Expressions
+
+=== Inline Math
+
+The equation stem:[E = mc^2] is Einstein's mass-energy equivalence.
+
+=== Block Math
+
+[stem]
+++++
+\int_0^\infty e^{-x^2} dx = \frac{\sqrt{\pi}}{2}
+++++
+
+== Attributes and Substitutions
+
+=== Document Attributes
+
+Document title: {doctitle}
+
+Author: {author}
+
+Version: {revnumber}
+
+Date: {revdate}
+
+=== Custom Attributes
+
+:project-name: MyProject
+:version: 1.0.0
+:api-url: https://api.example.com
+
+Welcome to {project-name} version {version}.
+
+API endpoint: {api-url}
+
+=== Character Replacement
+
+Copyright (C) symbol: (C)
+
+Trademark symbol: (TM)
+
+Registered symbol: (R)
+
+Em dash: --
+
+Ellipsis: ...
+
+Arrows: -> <- => <=
+
+== Comments
+
+// This is a single-line comment
+
+////
+This is a multi-line comment.
+It won't appear in the output.
+
+You can comment out entire sections:
+* Item 1
+* Item 2
+////
+
+== Footnotes
+
+This statement has a footnote.footnote:[This is the footnote text.]
+
+Another footnote reference.footnote:fn1[This is a labeled footnote.]
+
+Reuse footnote:fn1[] by referencing the label.
+
+== Index Terms
+
+The software((indexterm)) handles indexterm:[(((index term)))] indexing.
+
+== Page Breaks and Horizontal Rules
+
+'''
+
+<<<
+
+== Conditional Directives
+
+ifdef::backend-html5[]
+This content only appears in HTML output.
+endif::[]
+
+ifndef::backend-pdf[]
+This content appears in all formats except PDF.
+endif::[]
+
+ifeval::["{version}" >= "1.0"]
+This feature is available in version 1.0 and later.
+endif::[]
+
+== Bibliography
+
+[bibliography]
+== References
+
+* [[[asciidoc]]] AsciiDoc Language Documentation. https://asciidoc.org
+* [[[asciidoctor]]] Asciidoctor Documentation. https://asciidoctor.org
+
+Refer to <<asciidoc>> and <<asciidoctor>> for more information.
+
+== Glossary
+
+[glossary]
+== Glossary
+
+AsciiDoc:: A lightweight markup language for authoring documents.
+
+Asciidoctor:: A fast text processor & publishing toolchain for converting AsciiDoc.
+
+== Appendix
+
+[appendix]
+== Additional Resources
+
+Additional information and resources.
+
+[appendix]
+== License
+
+Copyright 2025 John Doe.
+
+Licensed under Creative Commons.
+
+== Conclusion
+
+This document demonstrated the comprehensive features of AsciiDoc markup.
+AsciiDoc is powerful for technical documentation, books, articles, and more.
+
+TIP: For more information, visit the official https://asciidoc.org[AsciiDoc^] and
+https://asciidoctor.org[Asciidoctor^] websites.
