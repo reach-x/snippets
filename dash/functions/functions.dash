@@ -1,0 +1,136 @@
+#!/bin/dash
+# Dash (Debian Almquist Shell) - POSIX-compliant shell examples
+# Note: Dash is minimal and POSIX-only, no arrays or advanced features
+
+echo ""
+echo "=== Dash (POSIX Shell) Examples ==="
+echo ""
+
+# Variables (POSIX)
+name="Alice"
+age=30
+echo "Name: $name, Age: $age"
+
+# String operations (POSIX-compliant)
+text="hello world"
+echo "Text: $text"
+
+# Parameter expansion
+echo "Length: ${#text}"
+echo "Remove shortest from end: ${text%world}"
+echo "Remove longest from start: ${text##*o }"
+
+# Positional parameters simulation
+set -- red green blue yellow
+echo "Colors: $@"
+echo "First color: $1"
+echo "Count: $#"
+
+# For loop (POSIX)
+echo ""
+echo "Loop through colors:"
+for color in red green blue yellow; do
+    echo "  - $color"
+done
+
+# While loop with counter
+echo ""
+i=1
+while [ $i -le 5 ]; do
+    echo "Number: $i"
+    i=$((i + 1))
+done
+
+# If statement (POSIX test)
+echo ""
+if [ "$age" -gt 18 ]; then
+    echo "Adult"
+else
+    echo "Minor"
+fi
+
+# Functions (POSIX)
+greet() {
+    echo "Hello, $1!"
+}
+
+greet "Bob"
+
+# Function with return value (using echo)
+add() {
+    result=$(($1 + $2))
+    echo "$result"
+}
+
+result=$(add 5 3)
+echo "5 + 3 = $result"
+
+# Case statement
+echo ""
+day="Monday"
+case "$day" in
+    Monday)
+        echo "Start of the week"
+        ;;
+    Friday)
+        echo "End of the week"
+        ;;
+    *)
+        echo "Midweek"
+        ;;
+esac
+
+# File tests (POSIX)
+echo ""
+if [ -f "/etc/hosts" ]; then
+    echo "/etc/hosts exists"
+fi
+
+if [ -d "/tmp" ]; then
+    echo "/tmp is a directory"
+fi
+
+# Command substitution (POSIX)
+current_date=$(date +%Y-%m-%d)
+echo "Current date: $current_date"
+
+# Arithmetic expansion (POSIX)
+sum=$((5 + 3))
+product=$((4 * 7))
+echo ""
+echo "Sum: $sum"
+echo "Product: $product"
+
+# IFS manipulation for parsing
+echo ""
+echo "Parsing CSV with IFS:"
+data="name,age,city"
+IFS=','
+set -- $data
+echo "Field 1: $1"
+echo "Field 2: $2"
+echo "Field 3: $3"
+IFS=' '
+
+# Here document (POSIX)
+cat <<EOF
+
+This is a here document.
+Variables are expanded: $name
+Current user: $(whoami)
+EOF
+
+# Exit status
+echo ""
+true
+if [ $? -eq 0 ]; then
+    echo "Last command succeeded"
+fi
+
+false
+if [ $? -ne 0 ]; then
+    echo "Last command failed"
+fi
+
+echo ""
+echo "Dash (POSIX Shell) examples complete!"
