@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title><%= pageTitle %></title>
+</head>
+<body>
+    <header>
+        <h1><%= title %></h1>
+        <nav>
+            <ul>
+                <% navItems.forEach(function(item) { %>
+                <li><a href="<%= item.url %>"><%= item.text %></a></li>
+                <% }); %>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section>
+            <h2>Welcome</h2>
+            <% if (user) { %>
+                <p>Hello, <%= user.name %>!</p>
+            <% } else { %>
+                <p>Please log in.</p>
+            <% } %>
+        </section>
+
+        <section>
+            <h2>Users</h2>
+            <ul>
+                <% users.forEach(function(u) { %>
+                <li>
+                    <strong><%= u.name %></strong> - <%= u.email %>
+                    <% if (u.active) { %>
+                        <span class="badge">Active</span>
+                    <% } %>
+                </li>
+                <% }); %>
+            </ul>
+        </section>
+
+        <section>
+            <h2>Items</h2>
+            <%- include('partials/items', {items: products}) %>
+        </section>
+
+        <section>
+            <h2>Raw HTML</h2>
+            <%- rawHtmlContent %>
+        </section>
+
+        <section>
+            <h2>Escaped HTML</h2>
+            <%= escapedContent %>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; <%= new Date().getFullYear() %> <%= siteName %></p>
+    </footer>
+
+    <script>
+        var config = <%- JSON.stringify(config) %>;
+    </script>
+</body>
+</html>

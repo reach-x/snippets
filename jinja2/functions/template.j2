@@ -1,0 +1,80 @@
+{# Jinja2 template example #}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ pageTitle }}</title>
+</head>
+<body>
+    <header>
+        <h1>{{ title }}</h1>
+        <nav>
+            <ul>
+                {% for item in navItems %}
+                <li><a href="{{ item.url }}">{{ item.text }}</a></li>
+                {% endfor %}
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section>
+            <h2>Welcome</h2>
+            {% if user %}
+                <p>Hello, {{ user.name }}!</p>
+            {% else %}
+                <p>Please log in.</p>
+            {% endif %}
+        </section>
+
+        <section>
+            <h2>Users</h2>
+            <ul>
+                {% for u in users %}
+                <li>
+                    <strong>{{ u.name }}</strong> - {{ u.email }}
+                    {% if u.active %}
+                        <span class="badge">Active</span>
+                    {% endif %}
+                </li>
+                {% else %}
+                <li>No users found.</li>
+                {% endfor %}
+            </ul>
+        </section>
+
+        <section>
+            <h2>Filters</h2>
+            <p>Uppercase: {{ title | upper }}</p>
+            <p>Lowercase: {{ title | lower }}</p>
+            <p>Capitalize: {{ title | capitalize }}</p>
+            <p>Length: {{ users | length }}</p>
+            <p>Join: {{ items | join(', ') }}</p>
+        </section>
+
+        {% with message = "Hello" %}
+        <section>
+            <p>{{ message }}</p>
+        </section>
+        {% endwith %}
+
+        {% include 'partials/footer.html' %}
+
+        {# Comment - not rendered #}
+
+        {% macro render_user(user) %}
+        <div class="user">
+            <h3>{{ user.name }}</h3>
+            <p>{{ user.email }}</p>
+        </div>
+        {% endmacro %}
+
+        {{ render_user(currentUser) }}
+    </main>
+
+    <footer>
+        <p>&copy; {{ year }} {{ siteName }}</p>
+    </footer>
+</body>
+</html>

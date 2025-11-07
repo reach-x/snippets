@@ -1,0 +1,63 @@
+//- Pug (formerly Jade) template example
+
+doctype html
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport" content="width=device-width, initial-scale=1.0")
+    title= pageTitle
+    style
+      include styles.css
+  body
+    header.header
+      h1= title
+      nav
+        ul
+          each item in navItems
+            li
+              a(href=item.url)= item.text
+
+    main.container
+      section#content
+        h2 Welcome
+        p This is a Pug template example.
+
+        if user
+          p Hello, #{user.name}!
+        else
+          p Please log in.
+
+      section#features
+        h2 Features
+        ul.feature-list
+          each feature in features
+            li.feature-item
+              h3= feature.title
+              p= feature.description
+
+      section#form
+        h2 Contact Form
+        form(method="POST" action="/submit")
+          .form-group
+            label(for="name") Name:
+            input#name(type="text" name="name" required)
+
+          .form-group
+            label(for="email") Email:
+            input#email(type="email" name="email" required)
+
+          .form-group
+            label(for="message") Message:
+            textarea#message(name="message" rows="4" required)
+
+          button(type="submit") Submit
+
+    footer.footer
+      p &copy; 2024 Example Site
+
+//- Mixins
+mixin button(text, type="button")
+  button(type=type class="btn")= text
+
+//- Usage
++button("Click Me", "submit")
