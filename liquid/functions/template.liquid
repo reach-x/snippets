@@ -1,0 +1,164 @@
+{% comment %} Liquid template example - Shopify's templating engine {% endcomment %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ page_title }}</title>
+</head>
+<body>
+    <header>
+        <h1>{{ title }}</h1>
+        <nav>
+            <ul>
+                {% for item in nav_items %}
+                <li><a href="{{ item.url }}">{{ item.text }}</a></li>
+                {% endfor %}
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section>
+            <h2>Welcome</h2>
+            {% if user %}
+                <p>Hello, {{ user.name }}!</p>
+            {% else %}
+                <p>Please log in.</p>
+            {% endif %}
+        </section>
+
+        <section>
+            <h2>Users</h2>
+            <ul>
+                {% for u in users %}
+                <li>
+                    <strong>{{ u.name }}</strong> - {{ u.email }}
+                    {% if u.active %}
+                        <span class="badge">Active</span>
+                    {% endif %}
+                </li>
+                {% else %}
+                <li>No users found.</li>
+                {% endfor %}
+            </ul>
+        </section>
+
+        <section>
+            <h2>Filters</h2>
+            <p>Uppercase: {{ title | upcase }}</p>
+            <p>Lowercase: {{ title | downcase }}</p>
+            <p>Capitalize: {{ title | capitalize }}</p>
+            <p>Length: {{ users | size }}</p>
+            <p>Join: {{ items | join: ', ' }}</p>
+            <p>First: {{ users | first }}</p>
+            <p>Last: {{ users | last }}</p>
+            <p>Slice: {{ title | slice: 0, 5 }}</p>
+            <p>Replace: {{ title | replace: 'Hello', 'Hi' }}</p>
+            <p>Remove: {{ title | remove: 'World' }}</p>
+            <p>Truncate: {{ long_text | truncate: 50 }}</p>
+            <p>Strip HTML: {{ html_content | strip_html }}</p>
+            <p>Default: {{ missing_var | default: 'N/A' }}</p>
+            <p>Date: {{ current_date | date: '%Y-%m-%d' }}</p>
+        </section>
+
+        {% comment %} Variable assignment {% endcomment %}
+        {% assign message = "Hello World" %}
+        <p>{{ message }}</p>
+
+        {% comment %} Capture content {% endcomment %}
+        {% capture greeting %}
+            Hello, {{ user.name }}! Welcome to {{ site_name }}.
+        {% endcapture %}
+        <p>{{ greeting }}</p>
+
+        {% comment %} Arithmetic {% endcomment %}
+        {% assign sum = 5 | plus: 3 %}
+        {% assign product = 4 | times: 7 %}
+        {% assign division = 10 | divided_by: 2 %}
+        <p>Sum: {{ sum }}</p>
+        <p>Product: {{ product }}</p>
+        <p>Division: {{ division }}</p>
+
+        {% comment %} String operations {% endcomment %}
+        {% assign full_name = first_name | append: ' ' | append: last_name %}
+        {% assign prefixed = 'Mr. ' | prepend: name %}
+        <p>{{ full_name }}</p>
+
+        {% comment %} Array filters {% endcomment %}
+        {% assign sorted_users = users | sort: 'name' %}
+        {% assign filtered_users = users | where: 'active', true %}
+        {% assign mapped = numbers | map: 'value' %}
+
+        {% comment %} Conditionals {% endcomment %}
+        {% if user.age >= 18 %}
+            <p>Adult</p>
+        {% elsif user.age >= 13 %}
+            <p>Teen</p>
+        {% else %}
+            <p>Child</p>
+        {% endif %}
+
+        {% comment %} Unless (opposite of if) {% endcomment %}
+        {% unless user.banned %}
+            <p>Welcome!</p>
+        {% endunless %}
+
+        {% comment %} Case/When {% endcomment %}
+        {% case status %}
+            {% when 'active' %}
+                <span class="active">Active</span>
+            {% when 'inactive' %}
+                <span class="inactive">Inactive</span>
+            {% else %}
+                <span class="unknown">Unknown</span>
+        {% endcase %}
+
+        {% comment %} Loop with special variables {% endcomment %}
+        {% for item in items %}
+            {{ forloop.index }}. {{ item }}
+            {% if forloop.first %}(first){% endif %}
+            {% if forloop.last %}(last){% endif %}
+            Length: {{ forloop.length }}
+        {% endfor %}
+
+        {% comment %} Loop with limit and offset {% endcomment %}
+        {% for item in items limit:5 offset:2 %}
+            {{ item }}
+        {% endfor %}
+
+        {% comment %} Cycle for alternating values {% endcomment %}
+        {% for item in items %}
+            <div class="{% cycle 'odd', 'even' %}">{{ item }}</div>
+        {% endfor %}
+
+        {% comment %} Break and continue {% endcomment %}
+        {% for item in items %}
+            {% if item == 'skip' %}{% continue %}{% endif %}
+            {% if item == 'stop' %}{% break %}{% endif %}
+            {{ item }}
+        {% endfor %}
+
+        {% comment %} Tablerow for HTML tables {% endcomment %}
+        <table>
+            {% tablerow product in products cols:3 %}
+                {{ product.name }}
+            {% endtablerow %}
+        </table>
+
+        {% comment %} Include (partials) {% endcomment %}
+        {% include 'header' %}
+        {% include 'user-card' with user %}
+        {% include 'list-item' for items %}
+
+        {% comment %} Raw to output Liquid syntax {% endcomment %}
+        {% raw %}
+            {{ this will not be processed }}
+        {% endraw %}
+    </main>
+
+    <footer>
+        <p>&copy; {{ 'now' | date: '%Y' }} {{ site_name }}</p>
+    </footer>
+</body>
+</html>

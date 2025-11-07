@@ -1,0 +1,229 @@
+@* Razor template example - ASP.NET templating engine *@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>@PageTitle</title>
+</head>
+<body>
+    <header>
+        <h1>@Title</h1>
+        <nav>
+            <ul>
+                @foreach (var item in NavItems)
+                {
+                    <li><a href="@item.Url">@item.Text</a></li>
+                }
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section>
+            <h2>Welcome</h2>
+            @if (User != null)
+            {
+                <p>Hello, @User.Name!</p>
+            }
+            else
+            {
+                <p>Please log in.</p>
+            }
+        </section>
+
+        <section>
+            <h2>Users</h2>
+            <ul>
+                @foreach (var u in Users)
+                {
+                    <li>
+                        <strong>@u.Name</strong> - @u.Email
+                        @if (u.Active)
+                        {
+                            <span class="badge">Active</span>
+                        }
+                    </li>
+                }
+            </ul>
+        </section>
+
+        <section>
+            <h2>String Operations</h2>
+            <p>Uppercase: @Title.ToUpper()</p>
+            <p>Lowercase: @Title.ToLower()</p>
+            <p>Length: @Users.Count</p>
+            <p>Join: @String.Join(", ", Items)</p>
+        </section>
+
+        @* Variable assignment *@
+        @{
+            var message = "Hello World";
+            var x = 5;
+            var y = 3;
+            var sum = x + y;
+        }
+        <p>@message</p>
+        <p>Sum: @sum</p>
+
+        @* Multi-line code block *@
+        @{
+            var greeting = $"Hello, {User.Name}! Welcome to {SiteName}.";
+            var isAdmin = User.Role == "Admin";
+            var timestamp = DateTime.Now;
+        }
+
+        @* Conditionals *@
+        @if (Age >= 18)
+        {
+            <p>Adult</p>
+        }
+        else if (Age >= 13)
+        {
+            <p>Teen</p>
+        }
+        else
+        {
+            <p>Child</p>
+        }
+
+        @* Ternary operator *@
+        <p>Status: @(User.Active ? "Active" : "Inactive")</p>
+
+        @* Switch statement *@
+        @switch (Status)
+        {
+            case "active":
+                <span class="active">Active</span>
+                break;
+            case "inactive":
+                <span class="inactive">Inactive</span>
+                break;
+            default:
+                <span class="unknown">Unknown</span>
+                break;
+        }
+
+        @* For loop *@
+        @for (int i = 0; i < 5; i++)
+        {
+            <p>Number: @i</p>
+        }
+
+        @* While loop *@
+        @{
+            var counter = 0;
+        }
+        @while (counter < 5)
+        {
+            <p>Counter: @counter</p>
+            counter++;
+        }
+
+        @* Do-while loop *@
+        @{
+            var j = 0;
+        }
+        @do
+        {
+            <p>J: @j</p>
+            j++;
+        } while (j < 3);
+
+        @* HTML encoding *@
+        <p>@Html.Raw(HtmlContent)</p>
+        <p>@Html.Encode(UserInput)</p>
+
+        @* Helpers *@
+        <p>@Html.ActionLink("Home", "Index", "Home")</p>
+        <p>@Url.Action("Index", "Home")</p>
+
+        @* Forms *@
+        @using (Html.BeginForm("Submit", "Home", FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+            @Html.LabelFor(m => m.Name)
+            @Html.TextBoxFor(m => m.Name)
+            @Html.ValidationMessageFor(m => m.Name)
+
+            @Html.LabelFor(m => m.Email)
+            @Html.TextBoxFor(m => m.Email)
+
+            <button type="submit">Submit</button>
+        }
+
+        @* Partials *@
+        @Html.Partial("_Header")
+        @Html.Partial("_UserCard", CurrentUser)
+
+        @* Sections *@
+        @section Scripts {
+            <script>
+                console.log('Hello from Razor');
+            </script>
+        }
+
+        @section Styles {
+            <style>
+                .card { padding: 1rem; }
+            </style>
+        }
+
+        @* Layouts *@
+        @{
+            Layout = "_Layout";
+        }
+
+        @* RenderSection in layout *@
+        @if (IsSectionDefined("Scripts"))
+        {
+            @RenderSection("Scripts", required: false)
+        }
+
+        @* Functions/Helpers *@
+        @functions {
+            public string RenderUserCard(User user)
+            {
+                return $"<div class='user-card'><h3>{user.Name}</h3><p>{user.Email}</p></div>";
+            }
+
+            public int Add(int a, int b)
+            {
+                return a + b;
+            }
+        }
+
+        @* Call function *@
+        <div>@Html.Raw(RenderUserCard(CurrentUser))</div>
+        <p>5 + 3 = @Add(5, 3)</p>
+
+        @* Razor syntax in attributes *@
+        <div class="@(IsActive ? "active" : "inactive")" data-id="@User.Id">
+            Content
+        </div>
+
+        @* Explicit code nugget *@
+        <p>The time is: @(DateTime.Now.ToString("HH:mm:ss"))</p>
+
+        @* Comments *@
+        @* This is a Razor comment (not rendered) *@
+        <!-- This is an HTML comment (rendered) -->
+
+        @* Text literals *@
+        <text>
+            This text will be rendered exactly as-is
+            without needing HTML tags.
+        </text>
+
+        @:This is also a single-line text literal
+    </main>
+
+    <footer>
+        <p>&copy; @DateTime.Now.Year @SiteName</p>
+    </footer>
+
+    <script>
+        var config = @Html.Raw(Json.Serialize(Config));
+    </script>
+</body>
+</html>

@@ -1,0 +1,164 @@
+/ Slim template example - minimal syntax templating language
+
+doctype html
+html lang="en"
+  head
+    meta charset="UTF-8"
+    title = page_title
+  body
+    header
+      h1 = title
+      nav
+        ul
+          - nav_items.each do |item|
+            li
+              a href=item[:url] = item[:text]
+
+    main
+      section
+        h2 Welcome
+        - if user
+          p
+            | Hello,
+            = user.name
+            | !
+        - else
+          p Please log in.
+
+      section
+        h2 Users
+        ul
+          - users.each do |u|
+            li
+              strong = u.name
+              |  -
+              = u.email
+              - if u.active
+                span.badge Active
+
+      section
+        h2 String Operations
+        p Uppercase: #{title.upcase}
+        p Lowercase: #{title.downcase}
+        p Length: #{users.length}
+
+      / Variable assignment
+      - message = "Hello World"
+      p = message
+
+      / Inline Ruby interpolation
+      p The answer is #{40 + 2}
+
+      / Attributes
+      div id="main" class="container"
+        | Content here
+
+      / Short form for divs
+      .card
+        .card-header
+          h3 Card Title
+        .card-body
+          p Card content
+
+      / ID shorthand
+      #header
+        p Header content
+
+      / Multiple classes
+      .btn.btn-primary.active
+        | Click me
+
+      / Dynamic attributes
+      div class=["box", active? ? "active" : "inactive"]
+        p Dynamic classes
+
+      / Boolean attributes
+      input type="checkbox" checked=true
+      input type="text" disabled=false
+
+      / Attribute merging
+      .card *{data: {id: user.id, role: user.role}}
+        p User card
+
+      / Unescaped content
+      == html_content
+
+      / Comments
+      / This is a Slim comment (not rendered)
+      /! This is an HTML comment (rendered)
+      /!
+        Multi-line
+        HTML comment
+
+      / Conditionals
+      - if user.admin?
+        .admin-panel
+          p Admin controls
+      - elsif user.moderator?
+        .mod-panel
+          p Moderator controls
+      - else
+        .user-panel
+          p User controls
+
+      / Case statement
+      - case status
+      - when 'active'
+        span.active Active
+      - when 'inactive'
+        span.inactive Inactive
+      - else
+        span.unknown Unknown
+
+      / Inline conditionals
+      p = user.active ? 'Active' : 'Inactive'
+
+      / Text block
+      p
+        |
+          This is a text block.
+          It preserves line breaks.
+          And whitespace.
+
+      / Code block
+      - users.each do |user|
+        .user-card
+          h3 = user.name
+          p = user.email
+
+      / Embedded engines
+      css:
+        .card {
+          padding: 1rem;
+          border: 1px solid #ccc;
+        }
+
+      javascript:
+        console.log('Hello from Slim');
+
+      markdown:
+        # Markdown Header
+        This is **bold** and this is *italic*.
+
+      / Helpers (Rails)
+      = link_to "Home", root_path
+      = form_for @user do |f|
+        = f.label :name
+        = f.text_field :name
+        = f.submit "Save"
+
+      / Partials
+      = render 'shared/header'
+      = render partial: 'user', collection: @users
+
+      / Content blocks
+      = content_for :sidebar do
+        .sidebar
+          p Sidebar content
+
+    footer
+      p
+        | &copy;
+        = Time.now.year
+        |
+        = site_name

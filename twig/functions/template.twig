@@ -1,0 +1,113 @@
+{# Twig template example - PHP templating engine #}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ pageTitle }}</title>
+</head>
+<body>
+    <header>
+        <h1>{{ title }}</h1>
+        <nav>
+            <ul>
+                {% for item in navItems %}
+                <li><a href="{{ item.url }}">{{ item.text }}</a></li>
+                {% endfor %}
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section>
+            <h2>Welcome</h2>
+            {% if user %}
+                <p>Hello, {{ user.name }}!</p>
+            {% else %}
+                <p>Please log in.</p>
+            {% endif %}
+        </section>
+
+        <section>
+            <h2>Users</h2>
+            <ul>
+                {% for u in users %}
+                <li>
+                    <strong>{{ u.name }}</strong> - {{ u.email }}
+                    {% if u.active %}
+                        <span class="badge">Active</span>
+                    {% endif %}
+                </li>
+                {% else %}
+                <li>No users found.</li>
+                {% endfor %}
+            </ul>
+        </section>
+
+        <section>
+            <h2>Filters</h2>
+            <p>Uppercase: {{ title|upper }}</p>
+            <p>Lowercase: {{ title|lower }}</p>
+            <p>Capitalize: {{ title|capitalize }}</p>
+            <p>Length: {{ users|length }}</p>
+            <p>Join: {{ items|join(', ') }}</p>
+            <p>Date format: {{ post.createdAt|date('Y-m-d H:i:s') }}</p>
+            <p>Default: {{ missingVar|default('N/A') }}</p>
+        </section>
+
+        {# Variable assignment #}
+        {% set message = "Hello World" %}
+        <p>{{ message }}</p>
+
+        {# Array creation #}
+        {% set numbers = [1, 2, 3, 4, 5] %}
+        {% for num in numbers %}
+            {{ num }}{% if not loop.last %}, {% endif %}
+        {% endfor %}
+
+        {# Ternary operator #}
+        <p>Status: {{ user.active ? 'Active' : 'Inactive' }}</p>
+
+        {# Tests #}
+        {% if user.email is defined %}
+            <p>Email: {{ user.email }}</p>
+        {% endif %}
+
+        {% if age is even %}
+            <p>Age is even</p>
+        {% endif %}
+
+        {# Macros (reusable functions) #}
+        {% macro render_user(user) %}
+        <div class="user-card">
+            <h3>{{ user.name }}</h3>
+            <p>{{ user.email }}</p>
+        </div>
+        {% endmacro %}
+
+        {{ _self.render_user(currentUser) }}
+
+        {# Include other templates #}
+        {% include 'partials/footer.html' %}
+
+        {# Extend base template #}
+        {% block content %}
+            This is the content block
+        {% endblock %}
+
+        {# Filters can be chained #}
+        {{ "hello world"|upper|replace({'WORLD': 'TWIG'}) }}
+
+        {# Loop variables #}
+        {% for item in items %}
+            {{ loop.index }} - {{ item }}
+            {% if loop.first %}(first){% endif %}
+            {% if loop.last %}(last){% endif %}
+        {% endfor %}
+    </main>
+
+    <footer>
+        <p>&copy; {{ "now"|date('Y') }} {{ siteName }}</p>
+    </footer>
+</body>
+</html>

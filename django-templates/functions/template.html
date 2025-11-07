@@ -1,0 +1,236 @@
+{% comment %} Django template example - Python web framework {% endcomment %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ page_title }}</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <header>
+        <h1>{{ title }}</h1>
+        <nav>
+            <ul>
+                {% for item in nav_items %}
+                <li><a href="{{ item.url }}">{{ item.text }}</a></li>
+                {% endfor %}
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section>
+            <h2>Welcome</h2>
+            {% if user %}
+                <p>Hello, {{ user.name }}!</p>
+            {% else %}
+                <p>Please log in.</p>
+            {% endif %}
+        </section>
+
+        <section>
+            <h2>Users</h2>
+            <ul>
+                {% for u in users %}
+                <li>
+                    <strong>{{ u.name }}</strong> - {{ u.email }}
+                    {% if u.active %}
+                        <span class="badge">Active</span>
+                    {% endif %}
+                </li>
+                {% empty %}
+                <li>No users found.</li>
+                {% endfor %}
+            </ul>
+        </section>
+
+        <section>
+            <h2>Filters</h2>
+            <p>Uppercase: {{ title|upper }}</p>
+            <p>Lowercase: {{ title|lower }}</p>
+            <p>Capitalize: {{ title|capfirst }}</p>
+            <p>Title case: {{ title|title }}</p>
+            <p>Length: {{ users|length }}</p>
+            <p>Join: {{ items|join:", " }}</p>
+            <p>First: {{ users|first }}</p>
+            <p>Last: {{ users|last }}</p>
+            <p>Slice: {{ items|slice:":3" }}</p>
+            <p>Default: {{ missing_var|default:"N/A" }}</p>
+            <p>Date: {{ post.created_at|date:"Y-m-d H:i:s" }}</p>
+            <p>Time since: {{ post.created_at|timesince }}</p>
+            <p>Truncate chars: {{ long_text|truncatechars:50 }}</p>
+            <p>Truncate words: {{ long_text|truncatewords:10 }}</p>
+            <p>Strip tags: {{ html_content|striptags }}</p>
+            <p>Line breaks: {{ text_with_newlines|linebreaks }}</p>
+        </section>
+
+        {% comment %} Variable assignment (requires template tag) {% endcomment %}
+        {% with message="Hello World" %}
+            <p>{{ message }}</p>
+        {% endwith %}
+
+        {% comment %} Multiple variable assignment {% endcomment %}
+        {% with x=5 y=3 %}
+            <p>X: {{ x }}, Y: {{ y }}</p>
+        {% endwith %}
+
+        {% comment %} URL tag {% endcomment %}
+        <a href="{% url 'home' %}">Home</a>
+        <a href="{% url 'user_profile' user.id %}">Profile</a>
+        <a href="{% url 'post_detail' slug=post.slug %}">Post</a>
+
+        {% comment %} Static files {% endcomment %}
+        <img src="{% static 'images/logo.png' %}" alt="Logo">
+        <script src="{% static 'js/app.js' %}"></script>
+
+        {% comment %} Conditionals {% endcomment %}
+        {% if age >= 18 %}
+            <p>Adult</p>
+        {% elif age >= 13 %}
+            <p>Teen</p>
+        {% else %}
+            <p>Child</p>
+        {% endif %}
+
+        {% comment %} Complex conditions {% endcomment %}
+        {% if user.is_authenticated and user.is_staff %}
+            <p>Admin access</p>
+        {% endif %}
+
+        {% comment %} ifequal/ifnotequal {% endcomment %}
+        {% ifequal status "active" %}
+            <span class="active">Active</span>
+        {% endifequal %}
+
+        {% comment %} for loop with counter {% endcomment %}
+        {% for item in items %}
+            {{ forloop.counter }}. {{ item }}
+            {% if forloop.first %}(first){% endif %}
+            {% if forloop.last %}(last){% endif %}
+            Remaining: {{ forloop.revcounter }}
+        {% endfor %}
+
+        {% comment %} for loop with unpacking {% endcomment %}
+        {% for key, value in person.items %}
+            <p>{{ key }}: {{ value }}</p>
+        {% endfor %}
+
+        {% comment %} Cycle for alternating values {% endcomment %}
+        {% for item in items %}
+            <div class="{% cycle 'odd' 'even' %}">{{ item }}</div>
+        {% endfor %}
+
+        {% comment %} Nested for loops {% endcomment %}
+        {% for category in categories %}
+            <h3>{{ category.name }}</h3>
+            <ul>
+                {% for product in category.products %}
+                    <li>{{ product.name }}</li>
+                {% endfor %}
+            </ul>
+        {% endfor %}
+
+        {% comment %} Include templates {% endcomment %}
+        {% include "header.html" %}
+        {% include "user_card.html" with user=current_user %}
+
+        {% comment %} Block tags for template inheritance {% endcomment %}
+        {% block content %}
+            This is the default content
+        {% endblock %}
+
+        {% comment %} Extends {% endcomment %}
+        {% extends "base.html" %}
+
+        {% comment %} Block with parent content {% endcomment %}
+        {% block scripts %}
+            {{ block.super }}
+            <script>console.log('Additional script');</script>
+        {% endblock %}
+
+        {% comment %} Autoescape {% endcomment %}
+        {% autoescape off %}
+            {{ html_content }}
+        {% endautoescape %}
+
+        <p>{{ html_content|safe }}</p>
+
+        {% comment %} CSRF token for forms {% endcomment %}
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Submit</button>
+        </form>
+
+        {% comment %} Form rendering {% endcomment %}
+        {{ form.as_p }}
+        {{ form.as_table }}
+        {{ form.as_ul }}
+
+        {% comment %} Manual form rendering {% endcomment %}
+        <form method="post">
+            {% csrf_token %}
+            {{ form.non_field_errors }}
+            <div>
+                {{ form.name.label_tag }}
+                {{ form.name }}
+                {{ form.name.errors }}
+            </div>
+            <button type="submit">Submit</button>
+        </form>
+
+        {% comment %} Spaceless {% endcomment %}
+        {% spaceless %}
+            <ul>
+                <li>Item 1</li>
+                <li>Item 2</li>
+            </ul>
+        {% endspaceless %}
+
+        {% comment %} Verbatim (don't process template tags) {% endcomment %}
+        {% verbatim %}
+            {{ this will not be processed }}
+            {% this won't either %}
+        {% endverbatim %}
+
+        {% comment %} Now (current date/time) {% endcomment %}
+        <p>{% now "Y-m-d H:i:s" %}</p>
+
+        {% comment %} Lorem ipsum generator {% endcomment %}
+        {% lorem 3 p %}
+
+        {% comment %} Custom template tags {% endcomment %}
+        {% load custom_tags %}
+        {% custom_tag arg1 arg2 %}
+
+        {% comment %} Custom filters {% endcomment %}
+        {{ value|custom_filter:"argument" }}
+
+        {% comment %} Regroup for grouping data {% endcomment %}
+        {% regroup people by gender as gender_list %}
+        {% for gender in gender_list %}
+            <h3>{{ gender.grouper }}</h3>
+            <ul>
+                {% for person in gender.list %}
+                    <li>{{ person.name }}</li>
+                {% endfor %}
+            </ul>
+        {% endfor %}
+
+        {% comment %} Widthratio for percentage calculations {% endcomment %}
+        <div style="width: {% widthratio value max_value 100 %}%;">
+            Progress bar
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; {% now "Y" %} {{ site_name }}</p>
+    </footer>
+
+    <script>
+        var config = {{ config|safe }};
+    </script>
+</body>
+</html>

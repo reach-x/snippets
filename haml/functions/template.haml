@@ -1,0 +1,148 @@
+-# HAML (HTML Abstraction Markup Language) template example
+-# Indentation-based, concise HTML
+
+!!!
+%html{lang: "en"}
+  %head
+    %meta{charset: "UTF-8"}
+    %title= page_title
+  %body
+    %header
+      %h1= title
+      %nav
+        %ul
+          - nav_items.each do |item|
+            %li
+              %a{href: item[:url]}= item[:text]
+
+    %main
+      %section
+        %h2 Welcome
+        - if user
+          %p
+            Hello,
+            = user.name
+            !
+        - else
+          %p Please log in.
+
+      %section
+        %h2 Users
+        %ul
+          - users.each do |u|
+            %li
+              %strong= u.name
+              \-
+              = u.email
+              - if u.active
+                %span.badge Active
+
+      %section
+        %h2 Helpers
+        %p
+          Uppercase:
+          = title.upcase
+        %p
+          Lowercase:
+          = title.downcase
+        %p
+          Length:
+          = users.length
+
+      -# Variable assignment
+      - message = "Hello World"
+      %p= message
+
+      -# Inline Ruby
+      %p= "The answer is #{40 + 2}"
+
+      -# Attributes
+      %div{id: "main", class: "container"}
+        Content here
+
+      -# Short form for divs with class
+      .card
+        .card-header
+          %h3 Card Title
+        .card-body
+          %p Card content
+
+      -# ID shorthand
+      #header
+        %p Header content
+
+      -# Multiple classes
+      .btn.btn-primary.active
+        Click me
+
+      -# Boolean attributes
+      %input{type: "checkbox", checked: true}
+      %input{type: "text", disabled: false}
+
+      -# Unescaped content
+      != html_content
+      ~ html_content
+
+      -# Preserving whitespace
+      ~ preserve do
+        This content
+        preserves whitespace
+        exactly
+
+      -# Comments
+      -# This is a HAML comment (not rendered)
+      / This is an HTML comment (rendered)
+      /
+        Multi-line
+        HTML comment
+
+      -# Conditionals
+      - if user.admin?
+        .admin-panel
+          %p Admin controls
+      - elsif user.moderator?
+        .mod-panel
+          %p Moderator controls
+      - else
+        .user-panel
+          %p User controls
+
+      -# Case statement
+      - case status
+      - when 'active'
+        %span.active Active
+      - when 'inactive'
+        %span.inactive Inactive
+      - else
+        %span.unknown Unknown
+
+      -# Filters
+      :css
+        .card {
+          padding: 1rem;
+          border: 1px solid #ccc;
+        }
+
+      :javascript
+        console.log('Hello from HAML');
+
+      :markdown
+        # Markdown Header
+        This is **bold** and this is *italic*.
+
+      -# Object reference
+      %div[@user]
+        = @user.name
+
+      -# Helpers (Rails)
+      = link_to "Home", root_path
+      = form_for @user do |f|
+        = f.label :name
+        = f.text_field :name
+        = f.submit "Save"
+
+    %footer
+      %p
+        &copy;
+        = Time.now.year
+        = site_name

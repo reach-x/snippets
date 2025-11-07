@@ -1,0 +1,121 @@
+<%# ERB (Embedded Ruby) template example %>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title><%= page_title %></title>
+</head>
+<body>
+    <header>
+        <h1><%= title %></h1>
+        <nav>
+            <ul>
+                <% nav_items.each do |item| %>
+                <li><a href="<%= item[:url] %>"><%= item[:text] %></a></li>
+                <% end %>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section>
+            <h2>Welcome</h2>
+            <% if user %>
+                <p>Hello, <%= user.name %>!</p>
+            <% else %>
+                <p>Please log in.</p>
+            <% end %>
+        </section>
+
+        <section>
+            <h2>Users</h2>
+            <ul>
+                <% users.each do |u| %>
+                <li>
+                    <strong><%= u.name %></strong> - <%= u.email %>
+                    <% if u.active %>
+                        <span class="badge">Active</span>
+                    <% end %>
+                </li>
+                <% end %>
+            </ul>
+        </section>
+
+        <section>
+            <h2>Helpers</h2>
+            <p>Uppercase: <%= title.upcase %></p>
+            <p>Lowercase: <%= title.downcase %></p>
+            <p>Capitalize: <%= title.capitalize %></p>
+            <p>Length: <%= users.length %></p>
+            <p>Join: <%= items.join(', ') %></p>
+        </section>
+
+        <%# Variable assignment %>
+        <% message = "Hello World" %>
+        <p><%= message %></p>
+
+        <%# Array iteration with index %>
+        <ul>
+            <% colors.each_with_index do |color, index| %>
+            <li><%= index + 1 %>. <%= color %></li>
+            <% end %>
+        </ul>
+
+        <%# Conditional inline %>
+        <p>Status: <%= user.active ? 'Active' : 'Inactive' %></p>
+
+        <%# Rendering without escaping HTML %>
+        <%= raw html_content %>
+        <%# Or: %>
+        <%== html_content %>
+
+        <%# Link helper (Rails) %>
+        <%= link_to "Home", root_path %>
+        <%= link_to "Profile", user_path(user) %>
+
+        <%# Form helpers (Rails) %>
+        <%= form_for @user do |f| %>
+            <%= f.label :name %>
+            <%= f.text_field :name %>
+            <%= f.label :email %>
+            <%= f.email_field :email %>
+            <%= f.submit "Save" %>
+        <% end %>
+
+        <%# Partials (Rails) %>
+        <%= render 'shared/header' %>
+        <%= render partial: 'user', collection: @users %>
+
+        <%# Content tag helper %>
+        <%= content_tag :div, class: 'card' do %>
+            <p>This is a card</p>
+        <% end %>
+
+        <%# Case statement %>
+        <% case status %>
+        <% when 'active' %>
+            <span class="active">Active</span>
+        <% when 'inactive' %>
+            <span class="inactive">Inactive</span>
+        <% else %>
+            <span class="unknown">Unknown</span>
+        <% end %>
+
+        <%# Loops with break/next %>
+        <% items.each do |item| %>
+            <% next if item.nil? %>
+            <% break if item == 'stop' %>
+            <%= item %>
+        <% end %>
+    </main>
+
+    <footer>
+        <p>&copy; <%= Time.now.year %> <%= site_name %></p>
+    </footer>
+
+    <script>
+        var config = <%= raw config.to_json %>;
+    </script>
+</body>
+</html>
