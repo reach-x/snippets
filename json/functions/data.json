@@ -1,0 +1,34 @@
+{
+  "name": "Example Data",
+  "version": "1.0.0",
+  "description": "JSON data structure example",
+  "users": [
+    {
+      "id": 1,
+      "name": "Alice",
+      "email": "alice@example.com",
+      "age": 30,
+      "active": true
+    },
+    {
+      "id": 2,
+      "name": "Bob",
+      "email": "bob@example.com",
+      "age": 25,
+      "active": false
+    }
+  ],
+  "settings": {
+    "theme": "dark",
+    "language": "en",
+    "notifications": {
+      "email": true,
+      "push": false
+    }
+  },
+  "tags": ["json", "data", "example"],
+  "metadata": {
+    "created": "2024-01-01T00:00:00Z",
+    "updated": "2024-01-15T12:30:00Z"
+  }
+}

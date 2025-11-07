@@ -1,0 +1,36 @@
+// SCSS (Sass) example
+
+$primary-color: #007bff;
+$secondary-color: #6c757d;
+$border-radius: 5px;
+
+@mixin button-style($bg-color) {
+    padding: 10px 20px;
+    background-color: $bg-color;
+    color: white;
+    border: none;
+    border-radius: $border-radius;
+    cursor: pointer;
+
+    &:hover {
+        background-color: darken($bg-color, 10%);
+    }
+}
+
+.button-primary {
+    @include button-style($primary-color);
+}
+
+.button-secondary {
+    @include button-style($secondary-color);
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+
+    .header {
+        padding: 20px;
+        background: lighten($primary-color, 40%);
+    }
+}

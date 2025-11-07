@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<data>
+    <application>
+        <name>Example Application</name>
+        <version>1.0.0</version>
+        <description>XML data example</description>
+    </application>
+
+    <users>
+        <user id="1">
+            <name>Alice</name>
+            <email>alice@example.com</email>
+            <age>30</age>
+            <active>true</active>
+        </user>
+        <user id="2">
+            <name>Bob</name>
+            <email>bob@example.com</email>
+            <age>25</age>
+            <active>false</active>
+        </user>
+    </users>
+
+    <settings>
+        <theme>dark</theme>
+        <language>en</language>
+        <notifications>
+            <email>true</email>
+            <push>false</push>
+        </notifications>
+    </settings>
+
+    <tags>
+        <tag>xml</tag>
+        <tag>data</tag>
+        <tag>example</tag>
+    </tags>
+</data>

@@ -1,0 +1,41 @@
+---
+name: Example Application
+version: 1.0.0
+description: YAML configuration example
+
+database:
+  host: localhost
+  port: 5432
+  name: <database_name>
+  username: <username>
+  password: <password>
+
+server:
+  host: 0.0.0.0
+  port: 8080
+  ssl: true
+  cert_path: /path/to/cert.pem
+
+features:
+  - authentication
+  - logging
+  - caching
+  - monitoring
+
+users:
+  - name: Alice
+    role: admin
+    permissions:
+      - read
+      - write
+      - delete
+  - name: Bob
+    role: user
+    permissions:
+      - read
+
+settings:
+  debug: false
+  log_level: info
+  timeout: 30
+  retry_attempts: 3

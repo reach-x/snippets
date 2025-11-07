@@ -1,0 +1,36 @@
+# TOML Configuration Example
+
+title = "Example Application"
+version = "1.0.0"
+
+[owner]
+name = "Alice"
+email = "alice@example.com"
+
+[database]
+host = "localhost"
+port = 5432
+name = "<database_name>"
+username = "<username>"
+password = "<password>"
+enabled = true
+
+[server]
+host = "0.0.0.0"
+ports = [8080, 8081, 8082]
+
+[[users]]
+name = "Alice"
+role = "admin"
+permissions = ["read", "write", "delete"]
+
+[[users]]
+name = "Bob"
+role = "user"
+permissions = ["read"]
+
+[settings]
+debug = false
+log_level = "info"
+timeout = 30
+features = ["auth", "logging", "caching"]
