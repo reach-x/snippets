@@ -1,0 +1,5 @@
+SELECT ?name ?email WHERE {
+  ?person a :Person .
+  ?person :name ?name .
+  ?person :email ?email .
+}
