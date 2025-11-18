@@ -1,7 +1,13 @@
 # Current Context - 2025-11-17
 
 ## Active Task
-**Status: COMPLETED** - All requested work completed:
+**Status: COMPLETED** - Terminal keyboard input issue resolved:
+1. ✅ Diagnosed modifyOtherKeys and mouse reporting issues in iTerm2
+2. ✅ Disabled mouse reporting via notification banner
+3. ✅ Located "Apps can change how keys are reported" setting in iTerm2
+4. ✅ User instructed to uncheck setting to fix keyboard escape sequences
+
+**Previous session tasks:**
 1. ✅ Interview problems (20 scripts)
 2. ✅ Terminal configuration enhanced
 3. ✅ Vim configured for Python development
@@ -10,6 +16,16 @@
 ## Session Summary
 
 ### Current Session Tasks Completed:
+1. ✅ **iTerm2 Terminal Input Issue Debugging**:
+   - Diagnosed escape sequences appearing in terminal input (`[27;5;117~`, `[27;2;32~`, `<64;67;14M`)
+   - Identified root causes:
+     - Mouse reporting was enabled (sequences like `<64;67;14M` for mouse movements)
+     - modifyOtherKeys mode enabled via "Apps can change how keys are reported" setting
+   - Fixed mouse reporting: User clicked "Yes" on notification banner
+   - Located keyboard setting: Profiles → Keys → General → "Apps can change how keys are reported"
+   - Solution: Uncheck "Apps can change how keys are reported" and restart terminal session
+
+### Previous Session Tasks Completed:
 1. ✅ Created 20 comprehensive interview problem solutions in `scripts/interview_problems/` directory
 2. ✅ Committed and pushed to remote repository (commit 301f957)
 3. ✅ Enhanced Python terminal with modern CLI tools and configuration
@@ -288,7 +304,13 @@
 
 ## Known Issues
 
-None currently.
+### Terminal Keyboard Input (iTerm2):
+**Status: User action required**
+- Issue: Escape sequences appear when typing (e.g., `[27;2;32~` for Shift+Space)
+- Cause: "Apps can change how keys are reported" setting is enabled in iTerm2
+- Location: iTerm2 → Preferences → Profiles → Keys → General
+- Fix: Uncheck "Apps can change how keys are reported" and restart terminal session
+- Note: This setting allows apps (vim, tmux, ssh) to enable modifyOtherKeys mode, which sends extended keyboard sequences that zsh doesn't handle properly
 
 ## Connection Details
 
