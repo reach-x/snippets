@@ -1,0 +1,26 @@
+
+# **The 20 Most Common Interview Problems**
+
+If you master these, you can pass 90% of interviews:
+
+1. Two Sum
+2. Longest Substring Without Repeating Characters
+3. Valid Parentheses
+4. Merge Two Sorted Lists
+5. Reverse Linked List
+6. Best Time to Buy and Sell Stock
+7. Binary Search
+8. Flood Fill
+9. Maximum Depth of Binary Tree
+10. Linked List Cycle
+11. Merge Intervals
+12. Word Search
+13. Permutations
+14. Combination Sum
+15. Climbing Stairs (DP)
+16. House Robber (DP)
+17. 0/1 Knapsack (pattern-level knowledge)
+18. Number of Islands
+19. Rotting Oranges (BFS)
+20. Kth Largest Element (heap)
+

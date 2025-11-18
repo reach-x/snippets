@@ -1,0 +1,27 @@
+"""
+str() - Python Built-in Function
+
+Description:
+str(object='') -> str
+str(bytes_or_buffer[, encoding[, errors]]) -> str
+
+Create a new string object from the given object. If encoding or
+errors is specified, then the object must expose a data buffer
+that will be decoded using the given encoding and error handler.
+Otherwise, returns the result of object.__str__() (if defined)
+or repr(object).
+encoding defaults to 'utf-8'.
+errors defaults to 'strict'.
+"""
+
+# Examples:
+
+# Converts to string
+result = str(42)
+print(result)  # '42'
+
+result = str([1, 2, 3])
+print(result)  # '[1, 2, 3]'
+
+result = str(3.14)
+print(result)  # '3.14' 

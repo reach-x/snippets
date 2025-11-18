@@ -1,0 +1,23 @@
+sliding window
+
+subset
+
+modified binary search
+ - bisect_right
+ - bisect_left
+
+find the k largest number in an array
+
+binary tree dfs
+
+topological sort
+    - directed acyclic graphs
+    -
+
+binary tree bfs
+    - explore all nodes at same level using the queue data structure
+    - level order traversal by binary key
+    - 2sum and 3sum
+
+two pointer pattern
+    - iterate through sorted array

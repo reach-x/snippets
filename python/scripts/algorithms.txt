@@ -1,0 +1,686 @@
+## **Array & Hash Map Techniques**
+
+
+### Core patterns:
+
+* **Two Pointers** (see: two_pointers_algorithms.py)
+* **Sliding Window** (see: two_pointers_algorithms.py)
+* **Prefix Sum**
+* **Hashing for quick lookup**
+* **Frequency counting (dict / Counter)**
+
+### Problems:
+
+* Two Sum
+* Longest Substring Without Repeating Characters
+* Contains Duplicate
+* Group Anagrams
+* Subarray Sum Equals K
+
+---
+
+## **Linked Lists**
+
+Understand pointer manipulation.
+
+### Key skills:
+
+* Fast/slow pointers
+* Reverse a linked list
+* Detect cycle
+* Merge two lists
+* Add Two Numbers (you just did!)
+
+---
+
+## **Stacks & Queues**
+
+Used for parsing, order reversal, and monotonic structures.
+
+### Patterns:
+
+* **Monotonic stack** (for next greater/smaller problems)
+* Valid Parentheses
+* Daily Temperatures
+* Min Stack
+* Queue using two stacks
+
+---
+
+## **Heap / Priority Queue**
+
+Essential for optimization and Top-K problems.
+
+### Patterns:
+
+* **Top K elements** (use heapq.nlargest / nsmallest)
+* **K Closest Points**
+* **Merge K Sorted Lists**
+* **Find Median from Data Stream**
+* **Task Scheduler**
+* **Kth Largest Element in Stream**
+
+### Python Usage:
+
+* heapq (min-heap by default)
+* Use negative values for max-heap: heapq.heappush(heap, -value)
+* heapq.heappush(), heapq.heappop()
+* heapq.heapify() - convert list to heap in O(n)
+
+---
+
+## **Binary Trees & Binary Search Trees**
+
+You must know:
+
+### Traversals:
+
+* Preorder
+* Inorder
+* Postorder
+* Level order (BFS)
+
+### Common problems:
+
+* Maximum depth
+* Lowest Common Ancestor
+* Binary Tree Level Order Traversal
+* Validate BST
+* Path Sum
+
+---
+
+## **Recursion & DFS/BFS**
+
+Huge category—know both graph and tree versions.
+
+### DFS Uses:
+
+* Backtracking
+* Maze solving
+* Graph traversal
+* Combinations & permutations
+
+### BFS Uses:
+
+* Shortest path in unweighted graphs
+* Level order traversal
+* Word Ladder
+
+---
+
+## **Backtracking**
+
+Systematic exploration of all possibilities with pruning.
+
+### Core Template:
+
+```
+def backtrack(path, choices):
+    if is_valid_solution(path):
+        result.add(path)
+        return
+
+    for choice in choices:
+        # Make choice
+        path.append(choice)
+
+        # Recurse
+        backtrack(path, remaining_choices)
+
+        # Undo choice (backtrack)
+        path.pop()
+```
+
+### Classic Problems:
+
+* **Permutations** - All arrangements
+* **Combinations** - Choosing k from n
+* **Subsets / Power Set** - All possible subsets
+* **N-Queens** - Place N queens on board
+* **Sudoku Solver**
+* **Word Search** - Find word in grid
+* **Palindrome Partitioning**
+* **Generate Parentheses**
+* **Letter Combinations of Phone Number**
+* **Combination Sum**
+
+### Key Techniques:
+
+* Track visited elements
+* Prune invalid branches early
+* Use index to avoid duplicates
+* Sort input when needed
+
+---
+
+## **Binary Search**
+
+### Patterns:
+
+* Classic binary search
+* First/last occurrence
+* Binary search on answer space
+* Search in rotated sorted array
+
+---
+
+## **Sorting Algorithms & Patterns**
+
+### Patterns:
+
+* Custom comparator sorting
+* Sorting to simplify problems
+* Merging intervals
+* Top-K elements (heapq)
+
+---
+
+## **Dynamic Programming**
+
+Most people fear this. You only need the common patterns.
+
+### DP Categories:
+
+* **1D DP**
+
+  * Fibonacci
+  * Climbing stairs
+  * House robber
+
+* **2D DP**
+
+  * Longest Common Subsequence
+  * Edit Distance
+  * Coin Change
+
+* **DP on grids**
+
+  * Unique paths
+  * Minimum path sum
+
+* **Knapsack**
+
+  * 0/1 knapsack basics
+
+---
+
+## **Greedy Algorithms**
+
+### Problems:
+
+* Interval scheduling
+* Jump game
+* Gas station
+* Meeting rooms
+
+---
+
+## **Bit Manipulation**
+
+Compact and efficient solutions using binary operations.
+
+### Core Operations:
+
+* **AND (&)** - Check if bit is set: `num & (1 << i)`
+* **OR (|)** - Set a bit: `num | (1 << i)`
+* **XOR (^)** - Toggle bit, find unique elements
+* **NOT (~)** - Invert bits
+* **Left Shift (<<)** - Multiply by 2: `num << 1`
+* **Right Shift (>>)** - Divide by 2: `num >> 1`
+
+### Common Patterns:
+
+* **XOR properties**: `a ^ a = 0`, `a ^ 0 = a`, `a ^ b ^ a = b`
+* **Check power of 2**: `num & (num - 1) == 0`
+* **Count set bits**: Use Brian Kernighan's algorithm
+* **Clear lowest set bit**: `num & (num - 1)`
+* **Get lowest set bit**: `num & -num`
+
+### Problems:
+
+* **Single Number** - Find unique element (XOR all)
+* **Number of 1 Bits** - Count set bits
+* **Missing Number** - XOR trick
+* **Power of Two** - Bit manipulation check
+* **Reverse Bits**
+* **Subsets** - Use bitmask for generation
+* **Sum of Two Integers** - Without +/- operators
+
+---
+
+## **Trie (Prefix Tree)**
+
+Tree structure for efficient string prefix operations.
+
+### Use Cases:
+
+* Autocomplete systems
+* Spell checkers
+* IP routing tables
+* Word search optimization
+
+### Structure:
+
+```
+class TrieNode:
+    def __init__(self):
+        self.children = {}
+        self.is_end_of_word = False
+```
+
+### Operations:
+
+* **Insert**: O(m) where m = word length
+* **Search**: O(m)
+* **StartsWith**: O(m)
+
+### Problems:
+
+* **Implement Trie**
+* **Word Search II** - Use Trie + DFS
+* **Design Add and Search Words**
+* **Replace Words**
+* **Longest Word in Dictionary**
+* **Word Break** - Can use Trie optimization
+
+---
+
+## **Union Find (Disjoint Set)**
+
+Track connected components efficiently.
+
+### Core Operations:
+
+* **Find**: Find root/parent of element
+* **Union**: Merge two sets
+* **Connected**: Check if two elements in same set
+
+### Optimizations:
+
+* **Path compression** - Flatten tree during find
+* **Union by rank/size** - Attach smaller tree to larger
+
+### Time Complexity:
+
+* Nearly O(1) amortized with optimizations
+
+### Problems:
+
+* **Number of Connected Components**
+* **Redundant Connection**
+* **Accounts Merge**
+* **Most Stones Removed**
+* **Satisfiability of Equality Equations**
+
+---
+
+## **Graphs**
+
+Not as common unless applying to big tech, but important.
+
+### Skills:
+
+* Adjacency list representation
+* BFS/DFS on graphs
+* Detect cycle (directed & undirected)
+* Topological sort
+* Dijkstra (priority queue)
+
+---
+
+## **String Algorithms**
+
+Beyond basic manipulation 
+
+### Common Patterns:
+
+* **Palindrome checks** (two pointers)
+* **String reversal** variations
+* **Anagram detection** (sorting or frequency count)
+* **Substring problems** (sliding window)
+* **Pattern matching**
+
+### Problems:
+
+* **Longest Palindromic Substring** - Expand around center or DP
+* **Valid Anagram**
+* **Group Anagrams** - Use sorted string or char count as key
+* **Longest Common Prefix**
+* **String to Integer (atoi)**
+* **ZigZag Conversion**
+* **Encode and Decode Strings**
+* **Minimum Window Substring**
+* **Longest Repeating Character Replacement**
+
+### Advanced:
+
+* **KMP Algorithm** - Pattern matching in O(n+m)
+* **Rabin-Karp** - Rolling hash for pattern matching
+* **Manacher's Algorithm** - Longest palindrome in O(n)
+
+---
+
+## **Math & Number Theory**
+
+### Common Topics:
+
+* **Prime Numbers** - Sieve of Eratosthenes
+* **GCD / LCM** - Euclidean algorithm
+* **Modular Arithmetic** - (a + b) % m = ((a % m) + (b % m)) % m
+* **Fast Exponentiation** - Binary exponentiation O(log n)
+* **Factorial / Combinations** - Calculate nCr
+* **Roman Numerals** - Conversion logic
+
+### Problems:
+
+* **Pow(x, n)** - Fast exponentiation
+* **Sqrt(x)** - Binary search approach
+* **Count Primes** - Sieve
+* **Happy Number**
+* **Excel Sheet Column Number**
+* **Factorial Trailing Zeroes**
+* **Reverse Integer**
+* **Palindrome Number**
+
+---
+
+## **Design Problems**
+
+System design meets data structures.
+
+### Common Designs:
+
+* **LRU Cache** - HashMap + Doubly Linked List
+* **LFU Cache** - HashMap + Min Heap or Frequency tracking
+* **Min Stack** - Two stacks or stack of (val, min) pairs
+* **Implement Queue using Stacks**
+* **Design HashMap**
+* **Design HashSet**
+* **Twitter Feed / Timeline**
+* **Hit Counter**
+* **Logger Rate Limiter**
+* **Design Browser History**
+
+### Key Concepts:
+
+* Choose right data structures
+* Balance time vs space tradeoffs
+* Consider operation frequencies
+* Think about edge cases
+
+---
+
+# **Python-Specific Knowledge**
+
+### Know:
+
+* List comprehensions
+* Lambda & key functions
+* heapq (min-heap)
+* bisect module
+* collections:
+
+  * deque
+  * Counter
+  * defaultdict
+
+* String methods: split(), join(), strip(), replace()
+* sorted() with custom key
+* enumerate(), zip(), reversed()
+* all(), any()
+* set operations: union, intersection, difference
+* Dictionary methods: get(), setdefault(), items(), keys(), values()
+
+---
+
+# **Interview Strategy & Best Practices**
+
+Master the process, not just the problems.
+
+## **Problem-Solving Framework (UMPIRE)**
+
+1. **Understand** - Clarify the problem
+   * Restate the problem in your own words
+   * Ask about input constraints (size, range, types)
+   * Ask about edge cases (empty, null, duplicates, negatives)
+   * Confirm expected output format
+
+2. **Match** - Identify the pattern
+   * Does this look like a known pattern?
+   * Array? -> Two pointers, sliding window, prefix sum?
+   * Tree? -> DFS, BFS, recursion?
+   * Optimization? -> Greedy, DP, heap?
+
+3. **Plan** - Design before coding
+   * Explain your approach out loud
+   * Walk through a simple example
+   * Identify time and space complexity
+   * Get interviewer buy-in before coding
+
+4. **Implement** - Write clean code
+   * Use meaningful variable names
+   * Add comments for complex logic
+   * Write modular, testable code
+   * Think out loud while coding
+
+5. **Review** - Test your solution
+   * Walk through your code line by line
+   * Test with the example case
+   * Test edge cases (empty, single element, large input)
+   * Check for off-by-one errors
+
+6. **Evaluate** - Optimize if needed
+   * Can we do better than O(n^2)?
+   * Can we trade space for time?
+   * Discuss alternative approaches
+
+## **Common Edge Cases to Always Consider**
+
+* **Empty input**: [], "", null/None
+* **Single element**: [1], "a"
+* **Two elements**: [1, 2]
+* **All same elements**: [5, 5, 5, 5]
+* **Duplicates**: [1, 2, 2, 3]
+* **Negatives**: [-5, -2, 0, 3]
+* **Zeros**: [0, 0, 1]
+* **Large numbers**: Integer overflow (not common in Python)
+* **Sorted vs unsorted**
+* **Odd vs even length**
+
+## **Time Complexity Quick Reference**
+
+From fastest to slowest:
+
+* **O(1)** - Constant: Hash lookup, array access
+* **O(log n)** - Logarithmic: Binary search, balanced tree operations
+* **O(n)** - Linear: Single pass through data
+* **O(n log n)** - Linearithmic: Efficient sorting, heap operations
+* **O(n^2)** - Quadratic: Nested loops, brute force
+* **O(2^n)** - Exponential: Recursive fibonacci, subsets
+* **O(n!)** - Factorial: Permutations
+
+## **Space Complexity Considerations**
+
+* **O(1)** - Constant: Only using variables
+* **O(log n)** - Logarithmic: Recursion stack for balanced tree
+* **O(n)** - Linear: Hash map, extra array, recursion stack
+* **O(n^2)** - Quadratic: 2D DP table
+
+## **Interview Tips**
+
+### **Communication:**
+* Think out loud - let interviewer see your thought process
+* Ask clarifying questions before diving in
+* Explain your reasoning as you code
+* If stuck, talk through what you're thinking
+
+### **Coding:**
+* Start with brute force if optimal solution isn't obvious
+* Write helper functions for repeated logic
+* Use descriptive variable names (not i, j, k for everything)
+* Leave space for edge case handling
+
+### **Testing:**
+* Don't wait to be asked to test
+* Proactively walk through examples
+* Verbalize what you're checking
+* Fix bugs calmly - everyone makes mistakes
+
+### **Time Management:**
+* Don't spend 30 minutes on optimal solution if you have no code
+* Better to have working brute force than incomplete optimal
+* Save 5-10 minutes for testing
+* If really stuck, ask for a hint
+
+## **Red Flags to Avoid**
+
+* Jumping into code without understanding problem
+* Writing code without explaining approach first
+* Not testing your solution
+* Getting defensive about bugs
+* Giving up too easily
+* Not asking any questions
+* Ignoring hints from interviewer
+* Poor variable naming
+* Writing overly complex code
+
+## **Study Strategy**
+
+### **Week 1-2: Fundamentals**
+* Arrays, strings, hash maps
+* Two pointers, sliding window
+* Linked lists, stacks, queues
+
+### **Week 3-4: Trees & Recursion**
+* Binary trees (all traversals)
+* BST operations
+* DFS/BFS
+* Basic recursion
+
+### **Week 5-6: Advanced Patterns**
+* Binary search variations
+* Backtracking
+* Heap/priority queue
+* Trie
+
+### **Week 7-8: Dynamic Programming & Graphs**
+* 1D and 2D DP
+* Graph traversal
+* Topological sort
+* Classic DP problems
+
+### **Daily Practice:**
+* 2-3 problems per day minimum
+* Mix difficulties: 1 easy, 1 medium, 1 hard (or review)
+* Redo problems you struggled with
+* Focus on understanding patterns, not memorizing solutions
+
+### **Before Interview:**
+* Review common patterns (not individual problems)
+* Practice on whiteboard or Google docs (not IDE)
+* Do a few easy problems to warm up
+* Get good sleep!
+
+---
+
+# **Top 75 LeetCode Problems**
+
+Essential problems covering all patterns (Blind 75 + variations):
+
+## **Arrays:**
+1. Two Sum
+2. Best Time to Buy and Sell Stock
+3. Contains Duplicate
+4. Product of Array Except Self
+5. Maximum Subarray
+6. Maximum Product Subarray
+7. Find Minimum in Rotated Sorted Array
+8. Search in Rotated Sorted Array
+9. 3Sum
+10. Container With Most Water
+
+## **Binary:**
+11. Sum of Two Integers
+12. Number of 1 Bits
+13. Counting Bits
+14. Missing Number
+15. Reverse Bits
+
+## **Dynamic Programming:**
+16. Climbing Stairs
+17. Coin Change
+18. Longest Increasing Subsequence
+19. Longest Common Subsequence
+20. Word Break
+21. Combination Sum
+22. House Robber
+23. House Robber II
+24. Decode Ways
+25. Unique Paths
+26. Jump Game
+
+## **Graph:**
+27. Clone Graph
+28. Course Schedule
+29. Pacific Atlantic Water Flow
+30. Number of Islands
+31. Longest Consecutive Sequence
+32. Graph Valid Tree
+33. Number of Connected Components
+
+## **Interval:**
+34. Insert Interval
+35. Merge Intervals
+36. Non-overlapping Intervals
+37. Meeting Rooms
+38. Meeting Rooms II
+
+## **Linked List:**
+39. Reverse Linked List
+40. Detect Cycle
+41. Merge Two Sorted Lists
+42. Merge K Sorted Lists
+43. Remove Nth Node From End
+44. Reorder List
+
+## **Matrix:**
+45. Set Matrix Zeroes
+46. Spiral Matrix
+47. Rotate Image
+48. Word Search
+
+## **String:**
+49. Longest Substring Without Repeating Characters
+50. Longest Repeating Character Replacement
+51. Minimum Window Substring
+52. Valid Anagram
+53. Group Anagrams
+54. Valid Parentheses
+55. Valid Palindrome
+56. Longest Palindromic Substring
+57. Palindromic Substrings
+58. Encode and Decode Strings
+
+## **Tree:**
+59. Maximum Depth of Binary Tree
+60. Same Tree
+61. Invert Binary Tree
+62. Binary Tree Maximum Path Sum
+63. Binary Tree Level Order Traversal
+64. Serialize and Deserialize Binary Tree
+65. Subtree of Another Tree
+66. Construct Binary Tree from Preorder and Inorder
+67. Validate Binary Search Tree
+68. Kth Smallest Element in BST
+69. Lowest Common Ancestor of BST
+70. Implement Trie
+71. Add and Search Word
+72. Word Search II
+
+## **Heap:**
+73. Merge K Sorted Lists (duplicate)
+74. Top K Frequent Elements
+75. Find Median from Data Stream
+
+---
