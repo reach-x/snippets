@@ -27,6 +27,110 @@ import bisect
 
 
 # ============================================================================
+# QUICK REFERENCE - COPY-PASTE TEMPLATES
+# ============================================================================
+"""
+Use these minimal templates during interviews. Copy and adapt as needed.
+CRITICAL: Use mid = left + (right - left) // 2 to avoid overflow
+"""
+
+# TEMPLATE 1: Classic Binary Search (find exact value)
+def binary_search_template(arr: List[int], target: int) -> int:
+    """Find index of target, or -1 if not found."""
+    left, right = 0, len(arr) - 1
+
+    while left <= right:
+        mid = left + (right - left) // 2
+
+        if arr[mid] == target:
+            return mid
+        elif arr[mid] < target:
+            left = mid + 1
+        else:
+            right = mid - 1
+
+    return -1
+
+
+# TEMPLATE 2: Find First Occurrence (leftmost boundary)
+def find_first_template(arr: List[int], target: int) -> int:
+    """Find index of first occurrence of target."""
+    left, right = 0, len(arr) - 1
+    result = -1
+
+    while left <= right:
+        mid = left + (right - left) // 2
+
+        if arr[mid] == target:
+            result = mid
+            right = mid - 1  # Continue searching LEFT
+        elif arr[mid] < target:
+            left = mid + 1
+        else:
+            right = mid - 1
+
+    return result
+
+
+# TEMPLATE 3: Find Last Occurrence (rightmost boundary)
+def find_last_template(arr: List[int], target: int) -> int:
+    """Find index of last occurrence of target."""
+    left, right = 0, len(arr) - 1
+    result = -1
+
+    while left <= right:
+        mid = left + (right - left) // 2
+
+        if arr[mid] == target:
+            result = mid
+            left = mid + 1  # Continue searching RIGHT
+        elif arr[mid] < target:
+            left = mid + 1
+        else:
+            right = mid - 1
+
+    return result
+
+
+# TEMPLATE 4: Search Insert Position
+def search_insert_template(arr: List[int], target: int) -> int:
+    """Find index where target should be inserted to maintain sorted order."""
+    left, right = 0, len(arr) - 1
+
+    while left <= right:
+        mid = left + (right - left) // 2
+
+        if arr[mid] < target:
+            left = mid + 1
+        else:
+            right = mid - 1
+
+    return left  # Insertion position
+
+
+# TEMPLATE 5: Using Python's bisect module (fastest for standard cases)
+def bisect_template(arr: List[int], target: int):
+    """
+    Python's built-in binary search functions.
+    bisect_left: first occurrence (or insertion point)
+    bisect_right: after last occurrence (or insertion point)
+    """
+    # Find first occurrence
+    index = bisect.bisect_left(arr, target)
+    if index < len(arr) and arr[index] == target:
+        first = index
+    else:
+        first = -1  # Not found
+
+    # Count occurrences
+    left = bisect.bisect_left(arr, target)
+    right = bisect.bisect_right(arr, target)
+    count = right - left
+
+    return first, count
+
+
+# ============================================================================
 # PATTERN 1: CLASSIC BINARY SEARCH
 # ============================================================================
 

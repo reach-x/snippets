@@ -39,6 +39,111 @@ class TreeNode:
 
 
 # ============================================================================
+# QUICK REFERENCE - COPY-PASTE TEMPLATES
+# ============================================================================
+"""
+Use these minimal templates during interviews. Copy and adapt as needed.
+"""
+
+# TEMPLATE 1: Preorder Traversal (Root → Left → Right)
+def preorder_template(root: Optional[TreeNode]) -> List[int]:
+    """Process root before children."""
+    result = []
+
+    def dfs(node):
+        if not node:
+            return
+        result.append(node.value)  # Process root
+        dfs(node.left)  # Visit left
+        dfs(node.right)  # Visit right
+
+    dfs(root)
+    return result
+
+
+# TEMPLATE 2: Inorder Traversal (Left → Root → Right)
+def inorder_template(root: Optional[TreeNode]) -> List[int]:
+    """For BST, gives sorted order."""
+    result = []
+
+    def dfs(node):
+        if not node:
+            return
+        dfs(node.left)  # Visit left
+        result.append(node.value)  # Process root
+        dfs(node.right)  # Visit right
+
+    dfs(root)
+    return result
+
+
+# TEMPLATE 3: Postorder Traversal (Left → Right → Root)
+def postorder_template(root: Optional[TreeNode]) -> List[int]:
+    """Process children before root."""
+    result = []
+
+    def dfs(node):
+        if not node:
+            return
+        dfs(node.left)  # Visit left
+        dfs(node.right)  # Visit right
+        result.append(node.value)  # Process root
+
+    dfs(root)
+    return result
+
+
+# TEMPLATE 4: Maximum Depth
+def max_depth_template(root: Optional[TreeNode]) -> int:
+    """Find height of tree."""
+    if not root:
+        return 0
+    return 1 + max(max_depth_template(root.left), max_depth_template(root.right))
+
+
+# TEMPLATE 5: Path Sum (root to leaf with target sum)
+def has_path_sum_template(root: Optional[TreeNode], target: int) -> bool:
+    """Check if path from root to leaf sums to target."""
+    if not root:
+        return False
+
+    if not root.left and not root.right:  # Leaf node
+        return root.value == target
+
+    remaining = target - root.value
+    return (has_path_sum_template(root.left, remaining) or
+            has_path_sum_template(root.right, remaining))
+
+
+# TEMPLATE 6: Validate BST
+def is_valid_bst_template(root: Optional[TreeNode]) -> bool:
+    """Check if tree is valid binary search tree."""
+    def validate(node, min_val, max_val):
+        if not node:
+            return True
+        if node.value <= min_val or node.value >= max_val:
+            return False
+        return (validate(node.left, min_val, node.value) and
+                validate(node.right, node.value, max_val))
+
+    return validate(root, float('-inf'), float('inf'))
+
+
+# TEMPLATE 7: Lowest Common Ancestor
+def lca_template(root: Optional[TreeNode], p: TreeNode, q: TreeNode) -> Optional[TreeNode]:
+    """Find lowest common ancestor of two nodes."""
+    if not root or root == p or root == q:
+        return root
+
+    left = lca_template(root.left, p, q)
+    right = lca_template(root.right, p, q)
+
+    if left and right:  # p and q on different sides
+        return root
+    return left if left else right
+
+
+# ============================================================================
 # PATTERN 1: TREE TRAVERSALS (RECURSIVE)
 # ============================================================================
 

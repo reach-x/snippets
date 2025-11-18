@@ -33,6 +33,97 @@ import random
 
 
 # ============================================================================
+# QUICK REFERENCE - COPY-PASTE TEMPLATES
+# ============================================================================
+"""
+Use these minimal templates during interviews. Copy and adapt as needed.
+CRITICAL: Min-heap for k largest, Max-heap (negated) for k smallest!
+"""
+
+# TEMPLATE 1: K Largest Elements (using min-heap)
+def k_largest_template(nums: List[int], k: int) -> List[int]:
+    """Find k largest elements using min-heap of size k."""
+    if k <= 0 or k > len(nums):
+        return []
+
+    min_heap = nums[:k]
+    heapq.heapify(min_heap)
+
+    for i in range(k, len(nums)):
+        if nums[i] > min_heap[0]:
+            heapq.heapreplace(min_heap, nums[i])
+
+    return min_heap
+
+
+# TEMPLATE 2: K Smallest Elements (using max-heap with negation)
+def k_smallest_template(nums: List[int], k: int) -> List[int]:
+    """Find k smallest elements using max-heap (negated values)."""
+    if k <= 0 or k > len(nums):
+        return []
+
+    max_heap = [-x for x in nums[:k]]
+    heapq.heapify(max_heap)
+
+    for i in range(k, len(nums)):
+        if nums[i] < -max_heap[0]:
+            heapq.heapreplace(max_heap, -nums[i])
+
+    return [-x for x in max_heap]
+
+
+# TEMPLATE 3: Kth Largest Element (single value)
+def kth_largest_template(nums: List[int], k: int) -> int:
+    """Find the kth largest element."""
+    min_heap = nums[:k]
+    heapq.heapify(min_heap)
+
+    for i in range(k, len(nums)):
+        if nums[i] > min_heap[0]:
+            heapq.heapreplace(min_heap, nums[i])
+
+    return min_heap[0]  # Top of min-heap is kth largest
+
+
+# TEMPLATE 4: Top K Frequent Elements
+def top_k_frequent_template(nums: List[int], k: int) -> List[int]:
+    """Find k most frequent elements."""
+    counter = Counter(nums)
+
+    # Min-heap of (frequency, element) pairs of size k
+    min_heap = []
+    for num, freq in counter.items():
+        heapq.heappush(min_heap, (freq, num))
+        if len(min_heap) > k:
+            heapq.heappop(min_heap)
+
+    return [num for freq, num in min_heap]
+
+
+# TEMPLATE 5: Merge K Sorted Lists
+def merge_k_sorted_template(lists: List[List[int]]) -> List[int]:
+    """Merge k sorted lists into one sorted list."""
+    min_heap = []
+    result = []
+
+    # Initialize heap with first element from each list
+    for list_index, lst in enumerate(lists):
+        if lst:
+            heapq.heappush(min_heap, (lst[0], list_index, 0))
+
+    while min_heap:
+        value, list_index, element_index = heapq.heappop(min_heap)
+        result.append(value)
+
+        # Add next element from same list
+        if element_index + 1 < len(lists[list_index]):
+            next_value = lists[list_index][element_index + 1]
+            heapq.heappush(min_heap, (next_value, list_index, element_index + 1))
+
+    return result
+
+
+# ============================================================================
 # PATTERN 1: K LARGEST ELEMENTS USING MIN-HEAP
 # ============================================================================
 

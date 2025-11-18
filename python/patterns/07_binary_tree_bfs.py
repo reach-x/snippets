@@ -50,6 +50,154 @@ class Node:
 
 
 # ============================================================================
+# QUICK REFERENCE - COPY-PASTE TEMPLATES
+# ============================================================================
+"""
+Use these minimal templates during interviews. Copy and adapt as needed.
+CRITICAL: Use deque() not list for queue! deque.popleft() is O(1), list.pop(0) is O(n)
+"""
+
+# TEMPLATE 1: Level-Order Traversal (Basic BFS)
+def level_order_template(root: Optional[TreeNode]) -> List[List[int]]:
+    """Process tree level by level."""
+    if not root:
+        return []
+
+    result = []
+    queue = deque([root])
+
+    while queue:
+        level_size = len(queue)  # CRITICAL: Capture size before processing
+        level_values = []
+
+        for _ in range(level_size):
+            node = queue.popleft()
+            level_values.append(node.value)
+
+            if node.left:
+                queue.append(node.left)
+            if node.right:
+                queue.append(node.right)
+
+        result.append(level_values)
+
+    return result
+
+
+# TEMPLATE 2: Zigzag Level-Order (Alternate Directions)
+def zigzag_template(root: Optional[TreeNode]) -> List[List[int]]:
+    """Alternate left-to-right and right-to-left by level."""
+    if not root:
+        return []
+
+    result = []
+    queue = deque([root])
+    left_to_right = True
+
+    while queue:
+        level_size = len(queue)
+        level_values = []
+
+        for _ in range(level_size):
+            node = queue.popleft()
+            level_values.append(node.value)
+
+            if node.left:
+                queue.append(node.left)
+            if node.right:
+                queue.append(node.right)
+
+        if not left_to_right:
+            level_values.reverse()
+
+        result.append(level_values)
+        left_to_right = not left_to_right
+
+    return result
+
+
+# TEMPLATE 3: Right Side View
+def right_side_view_template(root: Optional[TreeNode]) -> List[int]:
+    """Last node at each level (rightmost visible)."""
+    if not root:
+        return []
+
+    result = []
+    queue = deque([root])
+
+    while queue:
+        level_size = len(queue)
+
+        for i in range(level_size):
+            node = queue.popleft()
+
+            if i == level_size - 1:  # Last node in level
+                result.append(node.value)
+
+            if node.left:
+                queue.append(node.left)
+            if node.right:
+                queue.append(node.right)
+
+    return result
+
+
+# TEMPLATE 4: Minimum Depth (Shortest Path)
+def min_depth_template(root: Optional[TreeNode]) -> int:
+    """BFS finds shortest path to leaf."""
+    if not root:
+        return 0
+
+    queue = deque([root])
+    depth = 1
+
+    while queue:
+        level_size = len(queue)
+
+        for _ in range(level_size):
+            node = queue.popleft()
+
+            if not node.left and not node.right:  # Leaf node
+                return depth
+
+            if node.left:
+                queue.append(node.left)
+            if node.right:
+                queue.append(node.right)
+
+        depth += 1
+
+    return depth
+
+
+# TEMPLATE 5: Average of Levels
+def average_of_levels_template(root: Optional[TreeNode]) -> List[float]:
+    """Calculate average value at each level."""
+    if not root:
+        return []
+
+    result = []
+    queue = deque([root])
+
+    while queue:
+        level_size = len(queue)
+        level_sum = 0
+
+        for _ in range(level_size):
+            node = queue.popleft()
+            level_sum += node.value
+
+            if node.left:
+                queue.append(node.left)
+            if node.right:
+                queue.append(node.right)
+
+        result.append(level_sum / level_size)
+
+    return result
+
+
+# ============================================================================
 # PATTERN 1: BASIC LEVEL-ORDER TRAVERSAL
 # ============================================================================
 

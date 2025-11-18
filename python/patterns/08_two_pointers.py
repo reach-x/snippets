@@ -27,6 +27,141 @@ from typing import List
 
 
 # ============================================================================
+# QUICK REFERENCE - COPY-PASTE TEMPLATES
+# ============================================================================
+"""
+Use these minimal templates during interviews. Copy and adapt as needed.
+"""
+
+# TEMPLATE 1: Two Sum (Opposite Ends) - Sorted Array
+def two_sum_template(nums: List[int], target: int) -> List[int]:
+    """Find two numbers that sum to target in sorted array."""
+    left, right = 0, len(nums) - 1
+
+    while left < right:
+        current_sum = nums[left] + nums[right]
+
+        if current_sum == target:
+            return [left, right]
+        elif current_sum < target:
+            left += 1  # Need larger sum
+        else:
+            right -= 1  # Need smaller sum
+
+    return []
+
+
+# TEMPLATE 2: Three Sum (Fix + Two Pointers)
+def three_sum_template(nums: List[int]) -> List[List[int]]:
+    """Find all triplets that sum to zero."""
+    nums.sort()
+    result = []
+
+    for i in range(len(nums) - 2):
+        if i > 0 and nums[i] == nums[i - 1]:  # Skip duplicates
+            continue
+
+        left, right = i + 1, len(nums) - 1
+        target = -nums[i]
+
+        while left < right:
+            current_sum = nums[left] + nums[right]
+
+            if current_sum == target:
+                result.append([nums[i], nums[left], nums[right]])
+
+                # Skip duplicates
+                while left < right and nums[left] == nums[left + 1]:
+                    left += 1
+                while left < right and nums[right] == nums[right - 1]:
+                    right -= 1
+
+                left += 1
+                right -= 1
+            elif current_sum < target:
+                left += 1
+            else:
+                right -= 1
+
+    return result
+
+
+# TEMPLATE 3: Remove Duplicates (Same Direction)
+def remove_duplicates_template(nums: List[int]) -> int:
+    """Remove duplicates in-place, return new length."""
+    if not nums:
+        return 0
+
+    slow = 0  # Write position for unique elements
+
+    for fast in range(1, len(nums)):
+        if nums[fast] != nums[slow]:
+            slow += 1
+            nums[slow] = nums[fast]
+
+    return slow + 1
+
+
+# TEMPLATE 4: Valid Palindrome (Opposite Ends)
+def is_palindrome_template(s: str) -> bool:
+    """Check if string is palindrome (alphanumeric only)."""
+    left, right = 0, len(s) - 1
+
+    while left < right:
+        # Skip non-alphanumeric
+        while left < right and not s[left].isalnum():
+            left += 1
+        while left < right and not s[right].isalnum():
+            right -= 1
+
+        if s[left].lower() != s[right].lower():
+            return False
+
+        left += 1
+        right -= 1
+
+    return True
+
+
+# TEMPLATE 5: Container With Most Water (Opposite Ends)
+def max_area_template(heights: List[int]) -> int:
+    """Find maximum water container area."""
+    left, right = 0, len(heights) - 1
+    max_area = 0
+
+    while left < right:
+        width = right - left
+        height = min(heights[left], heights[right])
+        area = width * height
+        max_area = max(max_area, area)
+
+        # Move pointer with smaller height (limiting factor)
+        if heights[left] < heights[right]:
+            left += 1
+        else:
+            right -= 1
+
+    return max_area
+
+
+# TEMPLATE 6: Sort Colors (Dutch National Flag - Three Pointers)
+def sort_colors_template(nums: List[int]) -> None:
+    """Sort array of 0s, 1s, 2s in-place."""
+    low, mid, high = 0, 0, len(nums) - 1
+
+    while mid <= high:
+        if nums[mid] == 0:
+            nums[low], nums[mid] = nums[mid], nums[low]
+            low += 1
+            mid += 1
+        elif nums[mid] == 1:
+            mid += 1
+        else:  # nums[mid] == 2
+            nums[mid], nums[high] = nums[high], nums[mid]
+            high -= 1
+
+
+# ============================================================================
 # PATTERN 1: TWO SUM (SORTED ARRAY)
 # ============================================================================
 

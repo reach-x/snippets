@@ -32,6 +32,92 @@ from typing import List, Set
 
 
 # ============================================================================
+# QUICK REFERENCE - COPY-PASTE TEMPLATES
+# ============================================================================
+"""
+Use these minimal templates during interviews. Copy and adapt as needed.
+CRITICAL: Always copy current_path with current_path[:] when adding to result!
+"""
+
+# TEMPLATE 1: Subsets (all combinations)
+def subsets_template(nums: List[int]) -> List[List[int]]:
+    """Generate all subsets (power set)."""
+    result = []
+
+    def backtrack(start_index: int, current_path: List[int]):
+        result.append(current_path[:])  # CRITICAL: Make a copy!
+
+        for i in range(start_index, len(nums)):
+            current_path.append(nums[i])  # Make choice
+            backtrack(i + 1, current_path)  # Explore
+            current_path.pop()  # Undo choice (backtrack)
+
+    backtrack(0, [])
+    return result
+
+
+# TEMPLATE 2: Permutations (all orderings)
+def permutations_template(nums: List[int]) -> List[List[int]]:
+    """Generate all permutations."""
+    result = []
+
+    def backtrack(current_path: List[int]):
+        if len(current_path) == len(nums):
+            result.append(current_path[:])  # CRITICAL: Make a copy!
+            return
+
+        for num in nums:
+            if num in current_path:  # Skip if already used
+                continue
+            current_path.append(num)  # Make choice
+            backtrack(current_path)  # Explore
+            current_path.pop()  # Undo choice
+
+    backtrack([])
+    return result
+
+
+# TEMPLATE 3: Combinations (choose k elements)
+def combinations_template(n: int, k: int) -> List[List[int]]:
+    """Choose k numbers from 1 to n."""
+    result = []
+
+    def backtrack(start: int, current_path: List[int]):
+        if len(current_path) == k:
+            result.append(current_path[:])  # Found k elements
+            return
+
+        for i in range(start, n + 1):
+            current_path.append(i)
+            backtrack(i + 1, current_path)  # Next element must be > i
+            current_path.pop()
+
+    backtrack(1, [])
+    return result
+
+
+# TEMPLATE 4: Combination Sum (with reuse allowed)
+def combination_sum_template(candidates: List[int], target: int) -> List[List[int]]:
+    """Find all combinations that sum to target (can reuse numbers)."""
+    result = []
+
+    def backtrack(start: int, current_path: List[int], current_sum: int):
+        if current_sum == target:
+            result.append(current_path[:])
+            return
+        if current_sum > target:
+            return  # Prune: exceeded target
+
+        for i in range(start, len(candidates)):
+            current_path.append(candidates[i])
+            backtrack(i, current_path, current_sum + candidates[i])  # i not i+1 (reuse)
+            current_path.pop()
+
+    backtrack(0, [], 0)
+    return result
+
+
+# ============================================================================
 # PATTERN 1: SUBSETS (POWER SET)
 # ============================================================================
 

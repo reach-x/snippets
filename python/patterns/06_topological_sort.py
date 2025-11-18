@@ -29,6 +29,131 @@ from collections import deque, defaultdict
 
 
 # ============================================================================
+# QUICK REFERENCE - COPY-PASTE TEMPLATES
+# ============================================================================
+"""
+Use these minimal templates during interviews. Copy and adapt as needed.
+"""
+
+# TEMPLATE 1: Kahn's Algorithm (BFS-based) - Most Common
+def topological_sort_template(n: int, edges: List[List[int]]) -> List[int]:
+    """
+    Topological sort using Kahn's algorithm.
+    Returns empty list if cycle detected.
+    """
+    # Build graph and calculate in-degrees
+    graph = defaultdict(list)
+    in_degree = [0] * n
+
+    for src, dst in edges:
+        graph[src].append(dst)
+        in_degree[dst] += 1
+
+    # Start with all vertices that have in-degree 0
+    queue = deque([i for i in range(n) if in_degree[i] == 0])
+    result = []
+
+    while queue:
+        vertex = queue.popleft()
+        result.append(vertex)
+
+        # Reduce in-degree for neighbors
+        for neighbor in graph[vertex]:
+            in_degree[neighbor] -= 1
+            if in_degree[neighbor] == 0:
+                queue.append(neighbor)
+
+    # If not all vertices processed, there's a cycle
+    return result if len(result) == n else []
+
+
+# TEMPLATE 2: Course Schedule (can finish all courses?)
+def can_finish_template(num_courses: int, prerequisites: List[List[int]]) -> bool:
+    """Check if all courses can be finished (no cycle)."""
+    graph = defaultdict(list)
+    in_degree = [0] * num_courses
+
+    for course, prereq in prerequisites:
+        graph[prereq].append(course)
+        in_degree[course] += 1
+
+    queue = deque([i for i in range(num_courses) if in_degree[i] == 0])
+    completed = 0
+
+    while queue:
+        course = queue.popleft()
+        completed += 1
+
+        for next_course in graph[course]:
+            in_degree[next_course] -= 1
+            if in_degree[next_course] == 0:
+                queue.append(next_course)
+
+    return completed == num_courses
+
+
+# TEMPLATE 3: DFS-based Cycle Detection
+def has_cycle_template(n: int, edges: List[List[int]]) -> bool:
+    """
+    Detect cycle in directed graph using DFS.
+    Uses three states: white (0), gray (1), black (2)
+    """
+    graph = defaultdict(list)
+    for src, dst in edges:
+        graph[src].append(dst)
+
+    # State: 0 = unvisited, 1 = visiting, 2 = visited
+    state = [0] * n
+
+    def has_cycle_dfs(vertex):
+        if state[vertex] == 1:  # Currently visiting (back edge)
+            return True
+        if state[vertex] == 2:  # Already visited
+            return False
+
+        state[vertex] = 1  # Mark as visiting
+
+        for neighbor in graph[vertex]:
+            if has_cycle_dfs(neighbor):
+                return True
+
+        state[vertex] = 2  # Mark as visited
+        return False
+
+    for i in range(n):
+        if state[i] == 0:
+            if has_cycle_dfs(i):
+                return True
+
+    return False
+
+
+# TEMPLATE 4: Find Course Order (return actual ordering)
+def find_order_template(num_courses: int, prerequisites: List[List[int]]) -> List[int]:
+    """Find valid course ordering, or empty list if impossible."""
+    graph = defaultdict(list)
+    in_degree = [0] * num_courses
+
+    for course, prereq in prerequisites:
+        graph[prereq].append(course)
+        in_degree[course] += 1
+
+    queue = deque([i for i in range(num_courses) if in_degree[i] == 0])
+    order = []
+
+    while queue:
+        course = queue.popleft()
+        order.append(course)
+
+        for next_course in graph[course]:
+            in_degree[next_course] -= 1
+            if in_degree[next_course] == 0:
+                queue.append(next_course)
+
+    return order if len(order) == num_courses else []
+
+
+# ============================================================================
 # PATTERN 1: KAHN'S ALGORITHM (BFS-BASED)
 # ============================================================================
 

@@ -31,6 +31,66 @@ from collections import Counter
 
 
 # ============================================================================
+# QUICK REFERENCE - COPY-PASTE TEMPLATES
+# ============================================================================
+"""
+Use these minimal templates during interviews. Copy and adapt as needed.
+"""
+
+# TEMPLATE 1: Fixed Window Size
+def sliding_window_fixed_template(array: List[int], k: int) -> int:
+    """Find max/min/sum of k consecutive elements."""
+    window_sum = sum(array[:k])  # Initial window
+    result = window_sum
+
+    for right_index in range(k, len(array)):
+        window_sum = window_sum - array[right_index - k] + array[right_index]
+        result = max(result, window_sum)  # or min() depending on problem
+
+    return result
+
+
+# TEMPLATE 2: Variable Window Size
+def sliding_window_variable_template(array: List[int], target: int) -> int:
+    """Find longest/shortest subarray matching condition."""
+    left = 0
+    current_sum = 0  # or use Counter/set for tracking
+    result = 0  # or float('inf') for minimum
+
+    for right in range(len(array)):
+        current_sum += array[right]  # Expand window
+
+        while current_sum > target:  # Contract window when invalid
+            current_sum -= array[left]
+            left += 1
+
+        result = max(result, right - left + 1)  # Update result when valid
+
+    return result
+
+
+# TEMPLATE 3: Variable Window with HashMap
+def sliding_window_hashmap_template(string: str, k: int) -> int:
+    """Find longest substring with at most k distinct characters."""
+    left = 0
+    char_frequency = {}
+    result = 0
+
+    for right in range(len(string)):
+        char_frequency[string[right]] = char_frequency.get(string[right], 0) + 1
+
+        while len(char_frequency) > k:  # Too many distinct chars
+            char_frequency[string[left]] -= 1
+            if char_frequency[string[left]] == 0:
+                del char_frequency[string[left]]
+            left += 1
+
+        result = max(result, right - left + 1)
+
+    return result
+
+
+# ============================================================================
 # PATTERN 1: FIXED WINDOW SIZE
 # ============================================================================
 
