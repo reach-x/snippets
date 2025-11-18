@@ -1,147 +1,290 @@
 # Current Context - 2025-11-17
 
 ## Active Task
-**Status: COMPLETED** - Enhanced Python snippets repository with comprehensive interview preparation materials.
+**Status: COMPLETED** - All requested work completed:
+1. ✅ Interview problems (20 scripts)
+2. ✅ Terminal configuration enhanced
+3. ✅ Vim configured for Python development
+4. ✅ All errors resolved
 
 ## Session Summary
 
-### Tasks Completed:
+### Current Session Tasks Completed:
+1. ✅ Created 20 comprehensive interview problem solutions in `scripts/interview_problems/` directory
+2. ✅ Committed and pushed to remote repository (commit 301f957)
+3. ✅ Enhanced Python terminal with modern CLI tools and configuration
+4. ✅ Configured Vim as complete Python IDE with 30+ plugins
+5. ✅ Fixed exa → eza deprecation issue
+6. ✅ Fixed Vim Python3 support errors
+
+### Previous Session Tasks Completed:
 1. ✅ Created individual files for all 146 Python built-in functions in `functions/` directory
 2. ✅ Created comprehensive two pointers algorithm examples with 30+ variations
 3. ✅ Enhanced `algorithms.txt` from 183 to 692 lines with complete interview prep guide
 
 ## Files Created This Session
 
-### 1. Built-in Functions (functions/ directory)
-- **Generator Script**: `generate_builtin_functions.py`
-- **Output**: 146 individual `.py` files, one for each Python built-in function
-- **Total Files in functions/**: 156 (146 new + 10 existing operation files)
-- **Coverage**: All native Python functions including:
-  - Functions: abs, all, any, map, filter, zip, len, etc.
-  - Types: int, str, float, list, dict, tuple, set, bool
-  - Advanced: compile, eval, exec, getattr, setattr, isinstance
-  - Decorators: classmethod, staticmethod, property
-  - Exceptions: All built-in exception classes
+### Interview Problems (scripts/interview_problems/ directory)
+**Created 20 comprehensive solutions for the most common interview problems:**
 
-### 2. Two Pointers Algorithms
-- **File**: `scripts/two_pointers_algorithms.py`
-- **Categories Implemented**:
-  1. Opposite Direction Pointers (8 algorithms)
-     - Two Sum, Palindrome check, Container with most water, Trapping rain water, Three Sum, etc.
-  2. Same Direction Pointers - Slow/Fast (6 algorithms)
-     - Remove duplicates, Move zeroes, Squares of sorted array, etc.
-  3. Sliding Window - Fixed Size (4 algorithms)
-     - Max sum subarray, Max average, Count distinct in window, etc.
-  4. Sliding Window - Variable Size (7 algorithms)
-     - Longest substring without repeating, Min window substring, etc.
-  5. Multiple Arrays (3 algorithms)
-     - Merge sorted arrays, Intersection, Compare versions
-  6. Linked List Two Pointers (5 algorithms)
-     - Detect cycle, Find middle, Nth from end, Palindrome check, Reverse
-- **Total Variations**: 30+ working implementations
-- **Status**: Fully tested and working
+1. **01_two_sum.py** - Hash map approach (O(n))
+2. **02_longest_substring_without_repeating.py** - Sliding window
+3. **03_valid_parentheses.py** - Stack pattern
+4. **04_merge_two_sorted_lists.py** - Linked list, two pointers
+5. **05_reverse_linked_list.py** - Iterative and recursive
+6. **06_best_time_to_buy_and_sell_stock.py** - Greedy approach
+7. **07_binary_search.py** - Iterative and recursive
+8. **08_flood_fill.py** - DFS/BFS on matrix
+9. **09_maximum_depth_of_binary_tree.py** - Tree traversal
+10. **10_linked_list_cycle.py** - Floyd's cycle detection
+11. **11_merge_intervals.py** - Sorting and merging
+12. **12_word_search.py** - Backtracking on matrix
+13. **13_permutations.py** - Backtracking
+14. **14_combination_sum.py** - Backtracking with reuse
+15. **15_climbing_stairs.py** - Dynamic programming (Fibonacci)
+16. **16_house_robber.py** - Dynamic programming
+17. **17_01_knapsack.py** - DP pattern (fundamental)
+18. **18_number_of_islands.py** - DFS/BFS, connected components
+19. **19_rotting_oranges.py** - Multi-source BFS
+20. **20_kth_largest_element.py** - Heap, quick select
 
-### 3. Enhanced Algorithm Study Guide
-- **File**: `scripts/algorithms.txt`
-- **Original**: 183 lines
-- **Enhanced**: 692 lines
-- **New Sections Added**:
-  1. Heap / Priority Queue - With Python heapq usage
-  2. Backtracking - Complete template + 10 problems
-  3. Bit Manipulation - All operations + 7 problems
-  4. Trie (Prefix Tree) - Implementation + 6 problems
-  5. Union Find - With optimizations + 5 problems
-  6. String Algorithms - 9 problems + advanced algorithms
-  7. Math & Number Theory - 8 problems
-  8. Design Problems - LRU Cache, etc. (10+ problems)
-  9. Interview Strategy & Best Practices - Complete UMPIRE framework
-  10. Top 75 LeetCode Problems - Categorized by topic
-- **Cross-references**: Added links to two_pointers_algorithms.py
+**Each solution includes:**
+- Multiple approaches (brute force, optimal)
+- Complete time and space complexity analysis
+- Comprehensive test cases with expected outputs
+- Detailed algorithm explanations
+- Code templates for quick reference
+- Pattern recognition guidance
+
+**Total Files**: 20 Python scripts
+**Total Lines**: ~3,726 lines of code and documentation
+**Commit**: 301f957 - Pushed to remote repository
 
 ## Repository Structure
 
 ```
 /Users/jbrahy/Projects/snippets/python/
-├── functions/              # 156 files (146 new + 10 existing)
-│   ├── abs.py
-│   ├── all.py
-│   ├── any.py
-│   ├── [143 more built-in functions...]
-│   ├── class_example.py
-│   ├── datetime_operations.py
-│   └── [other operation files...]
-├── scripts/                # Interview prep & algorithms
-│   ├── two_pointers_algorithms.py  # NEW: 30+ variations
-│   ├── algorithms.txt              # ENHANCED: 692 lines
+├── functions/                      # 156 files (146 built-ins + 10 operations)
+│   ├── abs.py, all.py, any.py, ...
+│   └── [All Python built-in functions]
+├── scripts/
+│   ├── interview_problems/         # NEW: 20 most common problems
+│   │   ├── 01_two_sum.py
+│   │   ├── 02_longest_substring_without_repeating.py
+│   │   ├── 03_valid_parentheses.py
+│   │   ├── 04_merge_two_sorted_lists.py
+│   │   ├── 05_reverse_linked_list.py
+│   │   ├── 06_best_time_to_buy_and_sell_stock.py
+│   │   ├── 07_binary_search.py
+│   │   ├── 08_flood_fill.py
+│   │   ├── 09_maximum_depth_of_binary_tree.py
+│   │   ├── 10_linked_list_cycle.py
+│   │   ├── 11_merge_intervals.py
+│   │   ├── 12_word_search.py
+│   │   ├── 13_permutations.py
+│   │   ├── 14_combination_sum.py
+│   │   ├── 15_climbing_stairs.py
+│   │   ├── 16_house_robber.py
+│   │   ├── 17_01_knapsack.py
+│   │   ├── 18_number_of_islands.py
+│   │   ├── 19_rotting_oranges.py
+│   │   └── 20_kth_largest_element.py
+│   ├── two_pointers_algorithms.py  # 30+ variations
+│   ├── algorithms.txt              # 692 lines guide
 │   ├── find_two_numbers_that_add_to_target.py
 │   ├── add_two_matrixes.py
 │   ├── apartment_multidimensional_array.py
 │   ├── apartments_occupied_multidimensional_array.py
 │   ├── test_redirects.py
 │   └── traverse_matrix.py
-├── generate_builtin_functions.py  # NEW: Generator script
-├── examples/               # Existing examples
-├── interview/             # Existing interview materials
-└── libs/                  # Existing libraries
+├── generate_builtin_functions.py
+├── examples/
+├── interview/
+└── libs/
 ```
 
 ## Git Status
 
-### Untracked Files to Commit:
-- `generate_builtin_functions.py`
-- `scripts/two_pointers_algorithms.py`
-- `functions/*.py` (146 new files)
-- Additional scripts in scripts/ directory
-
-### Modified Files:
-- `scripts/algorithms.txt` - Enhanced with comprehensive content
-- `../.DS_Store` - System file (should be in .gitignore)
+### Recent Commits:
+- **301f957** (HEAD): Add 20 most common interview problems with comprehensive solutions
+- **9f60b8c**: Update context before compaction
+- **fb5f58f**: Add comprehensive Python interview preparation materials
+- **e93b080**: Update CONTEXT.md - Force push completed successfully
 
 ### Branch Information:
 - **Current Branch**: master
 - **Main Branch**: master
-- **Recent Commits**:
-  - fb5f58f: Add comprehensive Python interview preparation materials
-  - e93b080: Update CONTEXT.md - Force push completed successfully
+- **Status**: All changes committed and pushed to remote
+
+### Still Untracked (from previous sessions):
+- `generate_builtin_functions.py`
+- `scripts/two_pointers_algorithms.py`
+- `functions/*.py` (146 built-in function files)
+- Other script files in scripts/ directory
+- `../.DS_Store` - System file (should be in .gitignore)
 
 ## Technical Decisions Made
 
-1. **Built-in Functions Organization**:
-   - Created generator script for maintainability
-   - Each function gets individual file with docstring + examples
-   - Used inspect module to extract official documentation
-   - Created examples for 30+ most common functions
+### Interview Problems Organization:
+1. **Numbered files**: 01-20 for easy reference and ordering
+2. **Descriptive names**: Each file clearly indicates the problem
+3. **Multiple approaches**: Show progression from brute force to optimal
+4. **Comprehensive testing**: Each file includes test cases and expected outputs
+5. **Educational focus**: Detailed explanations, templates, and complexity analysis
+6. **Self-contained**: Each file can be run independently to see results
 
-2. **Two Pointers Implementation**:
-   - Organized by pattern category (opposite, same direction, sliding window)
-   - Included time/space complexity for each algorithm
-   - Added comprehensive test suite with output
-   - Linked list variations included with helper class
+### Pattern Coverage:
+- **Arrays & Hashing**: Two Sum
+- **Sliding Window**: Longest Substring, Best Time to Buy/Sell Stock
+- **Stack**: Valid Parentheses
+- **Linked Lists**: Merge, Reverse, Cycle Detection
+- **Binary Search**: Binary Search algorithm
+- **Matrix/Graph**: Flood Fill, Word Search, Number of Islands
+- **Backtracking**: Word Search, Permutations, Combination Sum
+- **Dynamic Programming**: Climbing Stairs, House Robber, Knapsack
+- **BFS**: Rotting Oranges (multi-source)
+- **Heap**: Kth Largest Element
+- **Trees**: Maximum Depth
+- **Intervals**: Merge Intervals
 
-3. **Algorithm Guide Enhancement**:
-   - Added UMPIRE problem-solving framework
-   - Included 8-week study plan
-   - Added complexity reference guides
-   - Provided Top 75 LeetCode problem list
+## Terminal & Development Environment Configuration
+
+### Files Created for Terminal Enhancement:
+
+**Home Directory Scripts:**
+1. **~/.zshrc** - Enhanced with 493 lines including:
+   - 30+ Python development aliases (py, ipy, venv, activate, format, lint, pt)
+   - Modern CLI tool integration (fzf, bat, eza, ripgrep, zoxide, starship)
+   - Custom functions: newpy(), va(), pym(), serve(), json(), ptest(), pyfiles(), pyloc()
+   - Git aliases and productivity shortcuts
+   - Conditional plugin loading for zsh-autosuggestions, zsh-syntax-highlighting
+
+2. **~/.pythonrc** - Python REPL enhancement with:
+   - Rich library for pretty printing and tracebacks
+   - Auto-imports: json, datetime, Path, Counter, defaultdict
+   - Utility functions: see(), ls(), pwd(), source(), jsondump(), timeit(), get(), post()
+   - Tab completion and readline configuration
+
+3. **~/install_brew_tools.sh** - Installs modern CLI tools:
+   - fzf, bat, eza, ripgrep, fd, httpie, jq, tldr, delta, zoxide
+   - pyenv, pyenv-virtualenv for Python version management
+   - starship, thefuck for productivity
+
+4. **~/install_python_packages.sh** - Installs Python development packages:
+   - REPLs: ipython, ptpython, bpython
+   - Debuggers: ipdb, pudb
+   - Tools: icecream, rich, typer
+   - Linters/Formatters: ruff, black, isort, mypy
+   - Testing: pytest, pytest-watch, pytest-cov
+
+5. **~/install_zsh_plugins.sh** - Installs zsh custom plugins:
+   - zsh-autosuggestions
+   - zsh-syntax-highlighting
+   - fzf keybindings
+
+6. **~/setup_python_terminal.sh** - Master script to run all installations
+
+7. **~/PYTHON_TERMINAL_REFERENCE.md** - 400+ line documentation with:
+   - All shortcuts, aliases, functions, keyboard shortcuts
+   - Quick reference for Python development workflow
+
+### Vim Configuration Files:
+
+**Home Directory Vim Setup:**
+1. **~/.vimrc** - 700+ line configuration with 30+ plugins:
+   - Auto-completion: COC.nvim with Python LSP
+   - Linting: ALE (ruff, mypy, flake8)
+   - Formatting: Black, isort
+   - Navigation: NERDTree, FZF, vim-tmux-navigator
+   - Git: vim-fugitive, vim-gitgutter
+   - Python-specific: vim-python-pep8-indent, python-syntax
+   - UI: airline, gruvbox theme, indent guides
+   - Utilities: vim-commentary, vim-surround, auto-pairs
+   - Conditional loading for python3 and tmux dependencies
+
+2. **~/.vim/templates/python.template** - Auto-template for new Python files with:
+   - Shebang, module docstring, type imports
+   - Main function template
+
+3. **~/setup_vim_python.sh** - Automated Vim setup script:
+   - Installs vim-plug
+   - Installs Node.js for COC.nvim
+   - Installs Powerline fonts
+   - Installs all Vim plugins
+
+4. **~/VIM_PYTHON_REFERENCE.md** - Complete documentation:
+   - All 30+ plugin keybindings
+   - Workflow examples
+   - Configuration details
+
+5. **~/VIM_PYTHON_CHEATSHEET.txt** - ASCII quick reference
+
+### Errors Fixed:
+
+**Error 1: exa package deprecated (Homebrew)**
+- **Issue**: `brew install exa` failed - package renamed to `eza`
+- **Files Updated**:
+  - `~/install_brew_tools.sh` (changed tool name)
+  - `~/.zshrc` (all ls aliases: ls, ll, la, lt, llt)
+  - `~/PYTHON_TERMINAL_REFERENCE.md` (documentation)
+- **Status**: ✅ Fixed and tested
+
+**Error 2: Vim Python support missing**
+- **Issue**: System Vim compiled without Python3 support (`-python3`)
+- **Symptoms**:
+  - "E605: Exception not caught: No python support present, vim-isort will be disabled"
+  - "Failed to find executable tmux"
+- **Solution**:
+  - Installed Homebrew Vim: `brew install vim tmux`
+  - Verified new Vim has `+python3` flag
+  - Updated `.vimrc` with conditional plugin loading:
+    - vim-isort: only if `has('python3')`
+    - vim-tmux-navigator: only if `executable('tmux')`
+  - Ran: `vim +PlugClean! +PlugInstall +qall`
+- **Verification**: `vim -c ':q' /tmp/test.py 2>&1 | grep -E "Error|Exception|Failed"` → No errors
+- **Status**: ✅ Fixed and verified
+
+### Current Environment Status:
+
+**Python Environment:**
+- Python 3.13.5 (via Anaconda)
+- zsh with oh-my-zsh configured
+- All modern CLI tools ready to use after `source ~/.zshrc`
+
+**Vim Status:**
+- Homebrew Vim with Python3 support: `/opt/homebrew/bin/vim`
+- 42 plugins installed successfully
+- COC.nvim configured for Python LSP
+- No startup errors
+
+**Git Repository:**
+- All terminal/Vim config files created in home directory (not tracked in this repo)
+- Interview problems committed and pushed (301f957)
 
 ## Next Steps
 
 ### Immediate:
-1. Commit all new files to git
-2. Push to remote repository
+1. ✅ All requested work completed
+2. User can now:
+   - Run `source ~/.zshrc` to activate terminal enhancements
+   - Use `vim` with full Python IDE features
+   - Reference interview problems during interviews
 3. Consider adding .gitignore for .DS_Store files
+4. Consider committing remaining files from previous session (functions/, scripts/)
 
 ### Future Enhancements:
-1. Create implementation files for other algorithm categories:
-   - Backtracking algorithms
-   - Binary search variations
-   - Dynamic programming patterns
-   - Graph algorithms (BFS/DFS variations)
-   - Heap/Priority queue problems
-   - Trie implementations
-2. Add more example problems to existing categories
-3. Create test suites for algorithm implementations
-4. Consider adding complexity analysis for all algorithms
+1. Add a README.md in interview_problems/ directory with:
+   - Quick reference table of all problems
+   - Pattern categorization
+   - Difficulty levels
+   - LeetCode links
+2. Create additional problem sets:
+   - Medium difficulty variations
+   - Advanced data structures (Trie, Segment Tree)
+   - System design problems
+3. Add visual diagrams for complex algorithms
+4. Create test runner script to verify all solutions
+5. Consider adding timing benchmarks
 
 ## Known Issues
 
@@ -153,16 +296,66 @@ Not applicable - local development only, no server connections needed.
 
 ## Recent Changes Timeline
 
-1. **Session Start**: Ran `/restore` but CONTEXT.md didn't exist (new project context)
-2. **Task 1**: Generated 146 built-in function files
-3. **Task 2**: Created comprehensive two_pointers_algorithms.py with 30+ variations
-4. **Task 3**: Reviewed and enhanced algorithms.txt guide
-5. **Current**: Preparing for compaction
+**Current Session (2025-11-17):**
+
+**Phase 1: Interview Problems**
+1. User requested 20 most common interview problem solutions for use during actual interviews
+2. Created todo list with 21 tasks (directory + 20 problems)
+3. Systematically implemented all 20 problems with comprehensive solutions
+4. Committed changes (301f957) with detailed commit message
+5. Pushed to remote repository
+
+**Phase 2: Terminal Enhancement**
+6. User requested "best possible python terminal advantages"
+7. Analyzed existing setup (Python 3.13.5, zsh, oh-my-zsh)
+8. Created comprehensive terminal enhancement:
+   - Updated ~/.zshrc with 30+ Python aliases and modern CLI tool integration
+   - Created ~/.pythonrc for enhanced Python REPL with Rich library
+   - Created installation scripts: install_brew_tools.sh, install_python_packages.sh, install_zsh_plugins.sh
+   - Created master setup script: setup_python_terminal.sh
+   - Created documentation: PYTHON_TERMINAL_REFERENCE.md (400+ lines)
+
+**Phase 3: Vim Configuration**
+9. User requested to "trick out vim as much as possible for python"
+10. Created comprehensive Vim IDE configuration:
+    - Created ~/.vimrc with 700+ lines and 30+ plugins
+    - Installed vim-plug as plugin manager
+    - Configured COC.nvim for LSP, ALE for linting, Black/isort for formatting
+    - Set up NERDTree, FZF, vim-fugitive for navigation and git
+    - Created Python template file
+    - Created setup script: setup_vim_python.sh
+    - Created documentation: VIM_PYTHON_REFERENCE.md and cheatsheet
+
+**Phase 4: Error Resolution**
+11. Fixed exa → eza deprecation error when user ran setup_python_terminal.sh
+    - Updated install_brew_tools.sh, ~/.zshrc, PYTHON_TERMINAL_REFERENCE.md
+12. Fixed Vim Python support errors when user opened Vim
+    - Installed Homebrew Vim with Python3 support: `brew install vim tmux`
+    - Updated .vimrc with conditional plugin loading
+    - Verified all 42 plugins installed successfully with no errors
+
+**Previous Session:**
+1. Generated 146 built-in function files
+2. Created two_pointers_algorithms.py with 30+ variations
+3. Enhanced algorithms.txt from 183 to 692 lines
 
 ## Notes
 
-- This is a Python snippets and interview preparation repository
-- Focus is on educational examples and algorithm implementations
-- All code follows Python best practices
-- Examples are well-documented and tested
-- Repository serves as quick reference for coding interviews
+- This repository now contains comprehensive interview preparation materials
+- All 20 most common coding interview problems are implemented with optimal solutions
+- Each problem includes multiple approaches, complexity analysis, and test cases
+- Repository is public and can be used as reference during interviews
+- Focus remains on educational value and best practices
+- Code is well-documented, tested, and follows Python conventions
+- Repository serves as both learning tool and quick reference
+
+## User Intent
+
+User needs these solutions in a public repository to reference during actual coding interviews. The implementations are:
+- Complete and correct
+- Well-documented
+- Include complexity analysis
+- Runnable with test cases
+- Professional quality
+
+Ready for interview use!
